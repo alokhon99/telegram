@@ -23,7 +23,7 @@ def send_mess(chat, text):
 
 def main():  
     update_id = last_update(get_updates_json(url))['update_id']
-    while True:
+    while False:
         if update_id == last_update(get_updates_json(url))['update_id']:
            send_mess(get_chat_id(last_update(get_updates_json(url))), 'test')
            update_id += 1
