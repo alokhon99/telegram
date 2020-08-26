@@ -22,6 +22,7 @@ def send_mess(chat, text):
     return response
 
 def main():  
+    print("1")
    # update_id = last_update(get_updates_json(url))['update_id']
    # while True:
    #     if update_id == last_update(get_updates_json(url))['update_id']:
