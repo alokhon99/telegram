@@ -74,7 +74,7 @@ def main():
                     hour = hour - 24
                 hour = str(hour)
                 minute = temp[1]
-                new_m = team.text + '\n' + day + '\n' + hour + ':' + minute
+                new_m = 'Следующий матч: ' + team.text + '\n' + day + '\n' + hour + ':' + minute
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
             else:
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),message)
