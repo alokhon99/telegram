@@ -63,8 +63,8 @@ def main():
                 text = center.text
                 words = text.split('\n')
                 new_m = ' '
-                day = words[3]
-                time = words[4]
+                day = words[4]
+                time = words[5]
                 temp = time.split(' ')
                 time = temp[1]
                 temp = time.split(':')
