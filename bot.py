@@ -61,7 +61,7 @@ def main():
                 team = box.find('b')
                 center = box.find('div')
                 text = center.text
-                words = text.split()
+                words = text.split('\n')
                 new_m = ' '
                 i = 0
                 print(words)
