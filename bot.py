@@ -51,7 +51,7 @@ def main():
             message = re.sub(r'mayman\b','miman', message)
             message = re.sub(r'maysan\b','misan', message)
             message = re.sub(r'yab','vo', message)
-            if message == 'liverpool':
+            if message == 'liverpool' or message == '/liverpool':
                 html_content = requests.get(liverpool).text
                 soup = BeautifulSoup(html_content, "lxml")
                 contents=soup.find_all('table')
