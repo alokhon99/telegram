@@ -1,1 +1,4 @@
 python-telegram-bot==12.7
+python-requests
+python-re
+python-BeautifulSoup
