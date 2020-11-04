@@ -60,6 +60,11 @@ def main():
                 box = table.find('div', class_="boxContent")
                 team = box.find('b')
                 center = box.find('div')
+                text = center.text
+                words = text.split()
+                new_m = ' '
+                i = 0
+                print(words)
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),center.text)
             else:
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),message)
