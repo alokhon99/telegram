@@ -68,12 +68,12 @@ def main():
                 temp = time.split(' ')
                 time = temp[1]
                 temp = time.split(':')
-                hour = int(temp[0].text)
+                hour = int(temp[0])
                 hour = hour + 2
                 if hour > 23:
                     hour = hour - 24
                 str(hour)
-                minute = temp[1].text
+                minute = temp[1]
                 i = 0
                 new_m = team.text + '\n' + day.text + '\n' + hour + ':' + minute
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
