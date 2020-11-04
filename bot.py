@@ -72,7 +72,7 @@ def main():
                 hour = hour + 2
                 if hour > 23:
                     hour = hour - 24
-                str(hour)
+                hour = str(hour)
                 minute = temp[1]
                 new_m = team.text + '\n' + day + '\n' + hour + ':' + minute
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
