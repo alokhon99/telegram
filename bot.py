@@ -63,9 +63,20 @@ def main():
                 text = center.text
                 words = text.split('\n')
                 new_m = ' '
+                day = words[3]
+                time = words[4]
+                temp = time.split(' ')
+                time = temp[1]
+                temp = time.split(':')
+                hour = int(temp[0].text)
+                hour = hour + 2
+                if hour > 23:
+                    hour = hour - 24
+                str(hour)
+                minute = temp[1].text
                 i = 0
-                print(words)
-                send_mess(  get_chat_id(last_update(get_updates_json(url))),center.text)
+                new_m = team.text + '\n' + day.text + '\n' + hour + ':' + minute
+                send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
             else:
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),message)
 #            send_mess(get_chat_id(last_update(get_updates_json(url))), 'test')
