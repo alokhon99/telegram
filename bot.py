@@ -75,7 +75,7 @@ def main():
                 str(hour)
                 minute = temp[1]
                 i = 0
-                new_m = team.text + '\n' + day.text + '\n' + hour + ':' + minute
+                new_m = team + '\n' + day.text + '\n' + hour + ':' + minute
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
             else:
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),message)
