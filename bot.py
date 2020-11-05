@@ -79,11 +79,11 @@ def main():
             message = re.sub(r'yab','vo', message)
             if message == 'liverpool' or message == '/liverpool':
                 next_match('liverpool')
-            elseif message == 'arsenal' or message == '/arsenal':
+            eiif message == 'arsenal' or message == '/arsenal':
                 next_match('arsenal')
-            elseif message == 'chelsea' or message == '/liverpool':
+            elif message == 'chelsea' or message == '/liverpool':
                 next_match('chelsea')
-            elseif message == 'real' or message == '/real':
+            elif message == 'real' or message == '/real':
                 next_match('real')
             else:
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),message)
