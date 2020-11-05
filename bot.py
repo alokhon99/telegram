@@ -43,12 +43,10 @@ def liverpool_next():
      next_match = contents[1]
      team1 = next_match.find_all('span')[1].text
      team2 = next_match.find_all('span')[3].text
-     print(team1)
-     print(team2)
      details = soup.find_all('div', class_='score-descr')[1]
      dt_full = details.text
      dt_words = dt_full.split(' ')
-     date = dt_words[1] + dt_words[2]
+     date = dt_words[0] + dt_words[1] + dt_words[2]
      time = dt_words[3]
      tournament = dt_words[4] + dt_words[5]
      temp = time.split(':')
@@ -59,7 +57,7 @@ def liverpool_next():
      hour = str(hour)
      minute = temp[1]
      time = hour + ':' + minute
-     new_m = 'Следующий матч: ' + tournament + '\n' + team1 + ' - ' + team2 + '\n' + date+ ' ' + time
+     new_m = 'Следующий матч: ' + tournament + '\n' + date+ ' ' + time
      print(date)
      send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
 
