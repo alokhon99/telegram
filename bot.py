@@ -110,7 +110,7 @@ def main():
             if len(results) == 0:
                 return
             total_updates = len(results) - 1
-            print(type(results))
+            print(len(results))
             prev = results[total_updates - delay]
             message, author = get_mess(prev)
             message = message.lower()
