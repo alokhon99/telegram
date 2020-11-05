@@ -62,6 +62,7 @@ def liverpool_next():
   #   hour = str(hour)
  #    minute = temp[1]
      new_m = 'Следующий матч: ' + team1 + ' - ' + team2 + '\n' + dt_full
+     print(new_m)
      send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
 
 
