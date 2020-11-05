@@ -3,7 +3,7 @@ from time import sleep
 from bs4 import BeautifulSoup
 import requests	
 url = "https://api.telegram.org/bot1267299041:AAGA-G9FCLj1EMTJ4DTkvWp2SWskNnsgq6s/"
-liverpool ="https://www.sports.ru/arsenal/"
+url_t = "https://www.sports.ru/"
 
 def get_updates_json(request):  
     params = {'timeout': 100, 'offset': None}
@@ -36,8 +36,8 @@ def get_mess(update):
     author = update['message']['chat']['first_name']
     return message, author;
 
-def liverpool_next():
-     html_content = requests.get(liverpool).text
+def next_match(team):
+     html_content = requests.get(url_t + team + '/').text
      soup = BeautifulSoup(html_content, "lxml")
      contents=soup.find_all('div', class_='commands')
      next_match = contents[1]
@@ -80,7 +80,13 @@ def main():
             message = re.sub(r'maysan\b','misan', message)
             message = re.sub(r'yab','vo', message)
             if message == 'liverpool' or message == '/liverpool':
-               liverpool_next()
+                next_match('liverpool')
+            else if message == 'arsenal' or message == '/arsenal':
+                next_match('arsenal')
+            else if message == 'chelsea' or message == '/liverpool':
+                next_match('chelsea')
+            else if message == 'real' or message == '/real':
+                next_match('real')
             else:
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),message)
 #            send_mess(get_chat_id(last_update(get_updates_json(url))), 'test')
