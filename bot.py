@@ -43,7 +43,8 @@ def liverpool_next():
      next_match = contents[1]
      team1 = next_match.find_all('span')[1].text
      team2 = next_match.find_all('span')[3].text
-     dt_full = next_match.text
+     details = soup.find_all('div', class_='score-descr')[1]
+     dt_full = details.text
    #  box = table.find('div', class_="boxContent")
     # team = box.find('b')
     # center = box.find('div')
