@@ -96,7 +96,6 @@ def main():
         print(json)
         if json == None:
               continue
-        endif
         delay = update_id - json['update_id']
         print(update_id)
         print(json['update_id'])
