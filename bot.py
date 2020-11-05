@@ -47,9 +47,10 @@ def liverpool_next():
      dt_full = details.text
      dt_full = dt_full.replace(next_match.text,'')
      dt_words = dt_full.split(' ')
-     date = dt_words[1] + ' ' + dt_words[2]
-     time = dt_words[3]
-     tournament = dt_words[4] + dt_words[5]
+     date = dt_words[0] + ' ' + dt_words[1]
+     time = dt_words[2]
+     print(dt_words)
+     tournament = dt_words[3] + dt_words[4]
      temp = time.split(':')
      hour = int(temp[0])
      hour = hour + 2
