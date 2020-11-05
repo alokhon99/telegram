@@ -105,6 +105,8 @@ def main():
             update_id += 1
         elif update_id < json['update_id']:
             bigJ = get_updates_json(url)
+            print(type(bigJ))
+            print(bigJ)
             results = bigJ['results']
             if len(results) == 0:
                 return
