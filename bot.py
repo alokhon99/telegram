@@ -91,7 +91,8 @@ def main():
     while True:
         json = last_update(get_updates_json(url))
         delay = update_id - json['update_id']
-        print(delay)
+        print(update_id)
+        print(json['update_id'])
         if delay == 0:
 #             message = re.sub(r'men\b','man', message)
 #             message = re.sub(r'sen\b','san', message)
