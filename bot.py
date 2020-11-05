@@ -90,6 +90,7 @@ def main():
     update_id = last_update(get_updates_json(url))['update_id']
     while True:
         json = last_update(get_updates_json(url,update_id))
+        print(json)
         delay = update_id - json['update_id']
         print(update_id)
         print(json['update_id'])
