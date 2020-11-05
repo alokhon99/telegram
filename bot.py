@@ -36,7 +36,7 @@ def get_mess(update):
     author = update['message']['chat']['first_name']
     return message, author;
 
-def next_match(team):
+def next_match(team, chat):
      html_content = requests.get(url_t + team + '/').text
      soup = BeautifulSoup(html_content, "lxml")
      contents=soup.find_all('div', class_='commands')
@@ -60,14 +60,15 @@ def next_match(team):
      minute = temp[1]
      time = hour + ':' + minute
      new_m = 'Следующий матч: ' + '\n' + tournament + date+ ' ' + time + '\n' +  team1 + ' - ' +  team2  
-     send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
+     send_mess(  chat,new_m)
 
 
 def main():  
     update_id = last_update(get_updates_json(url))['update_id']
     while True:
-        if update_id == last_update(get_updates_json(url))['update_id']:
-            message, author = get_mess(last_update(get_updates_json(url)))
+        json = last_update(get_updates_json(url))
+        if update_id == json['update_id']:
+            message, author = get_mess(json)
             message = message.lower()
             message = re.sub(r'men\b','man', message)
             message = re.sub(r'sen\b','san', message)
@@ -76,21 +77,21 @@ def main():
             message = re.sub(r'mayman\b','miman', message)
             message = re.sub(r'maysan\b','misan', message)
             message = re.sub(r'yab','vo', message)
+            chat = get_chat_id(json)
             if message == 'liverpool' or message == '/liverpool':
                 print('1')
-                next_match('liverpool')
+                next_match('liverpool', chat)
             elif message == 'arsenal' or message == '/arsenal':
                 print('2')
-                next_match('arsenal')
+                next_match('arsenal', chat)
             elif message == 'chelsea' or message == '/chelsea':
                 print('3')
-                next_match('chelsea')
+                next_match('chelsea', chat)
             elif message == 'real' or message == '/real':
                 print('4')
-                next_match('real')
+                next_match('real', chat)
             else:
-                send_mess(  get_chat_id(last_update(get_updates_json(url))),message)
-#            send_mess(get_chat_id(last_update(get_updates_json(url))), 'test')
+                send_mess( chat,message)
             update_id += 1
         sleep(1)       
 
