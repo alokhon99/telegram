@@ -92,6 +92,9 @@ def main():
             elif message == 'real' or message == '/real':
                 print('4')
                 next_match('real', chat)
+            elif message == 'barcelona' or message == '/barcelona' or 'barsa':
+                print('5')
+                next_match('barcelona', chat)
             else:
                 send_mess( chat,'Используйте команды начинающиеся с /')
             update_id += 1
