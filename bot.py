@@ -51,7 +51,7 @@ def liverpool_next():
      time = dt_words[2]
      print(dt_words)
      tournament = dt_words[3] + ' ' + dt_words[4]
-     tournament = tournament.replace('/', '')
+     tournament = tournament.replace('|', '')
      temp = time.split(':')
      hour = int(temp[0])
      hour = hour + 2
