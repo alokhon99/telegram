@@ -37,6 +37,7 @@ def get_mess(update):
     return message, author;
 
 def next_match(team, chat):
+     print('+')
      html_content = requests.get(url_t + team + '/').text
      soup = BeautifulSoup(html_content, "lxml")
      contents=soup.find_all('div', class_='commands')
