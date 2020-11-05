@@ -43,12 +43,13 @@ def liverpool_next():
      next_match = contents[1]
      team1 = next_match.find_all('span')[1].text
      team2 = next_match.find_all('span')[3].text
+     print(team1)
+     print(team2)
      details = soup.find_all('div', class_='score-descr')[1]
      dt_full = details.text
      dt_words = dt_full.split(' ')
      date = dt_words[1] + dt_words[2]
      time = dt_words[3]
-     print(time)
      tournament = dt_words[4] + dt_words[5]
      temp = time.split(':')
      hour = int(temp[0])
