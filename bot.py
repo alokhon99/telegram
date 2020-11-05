@@ -2,7 +2,7 @@ import requests, re
 from time import sleep
 from bs4 import BeautifulSoup
 import requests	
-url = "https://api.telegram.org/bot1267299041:AAGA-G9FCLj1EMTJ4DTkvWp2SWskNnsgq6s/"
+url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
 
 def get_updates_json(request):  
@@ -93,7 +93,7 @@ def main():
                 print('4')
                 next_match('real', chat)
             else:
-                send_mess( chat,message)
+                send_mess( chat,'Используйте команды начинающиеся с /')
             update_id += 1
         sleep(1)       
 
