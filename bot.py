@@ -51,7 +51,7 @@ def next_match(team, chat):
      time = dt_words[2]
      tournament = ''
      for w in dt_words[3:]:
-            tournament = tournament + w
+            tournament = tournament + w + ' '
      tournament = tournament.replace('|\n', '').lstrip()
      temp = time.split(':')
      hour = int(temp[0])
@@ -69,8 +69,6 @@ def main():
     update_id = last_update(get_updates_json(url))['update_id']
     while True:
         json = last_update(get_updates_json(url))
-        print(update_id)
-        print(json['update_id'])
         if update_id == json['update_id']:
             message, author = get_mess(json)
             message = message.lower()
