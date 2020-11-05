@@ -52,6 +52,9 @@ def action(message, chat):
      elif message == 'barcelona' or message == '/barcelona' or message == 'barsa':
          print('5')
          next_match('barcelona', chat)
+     elif message == 'mu' or message == '/mu' or message == 'mu':
+         print('6')
+         next_match('mu', chat)
      else:
          send_mess( chat,'Используйте команды начинающиеся с /')
 
