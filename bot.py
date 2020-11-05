@@ -45,25 +45,19 @@ def liverpool_next():
      team2 = next_match.find_all('span')[3].text
      details = soup.find_all('div', class_='score-descr')[1]
      dt_full = details.text
-   #  box = table.find('div', class_="boxContent")
-    # team = box.find('b')
-    # center = box.find('div')
-    # text = center.text
-#     words = text.split('\n')
-#     new_m = ' '
-#     day = words[4]
-    # time = words[5]
-   #  temp = time.split(' ')
-    # time = temp[1]
-   #  temp = time.split(':')
-  #   hour = int(temp[0])
-#     hour = hour + 2
- #    if hour > 23:
-   #      hour = hour - 24
-  #   hour = str(hour)
- #    minute = temp[1]
-     new_m = 'Следующий матч: ' + team1 + ' - ' + team2 + '\n' + dt_full
-     print(new_m)
+     dt_words = dt_full.split(' ')
+     date = dt_words[0] + dt_words[1]
+     time = dt_words[2]
+     tournament = dt_words[3]
+     temp = time.split(':')
+     hour = int(temp[0])
+     hour = hour + 2
+     if hour > 23:
+         hour = hour - 24
+     hour = str(hour)
+     minute = temp[1]
+     time = hour + ':' + minute
+     new_m = 'Следующий матч: ' + tournament + '\n' + team1 + ' - ' + team2 + '\n' + date + time
      send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
 
 
