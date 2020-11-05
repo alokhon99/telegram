@@ -48,6 +48,7 @@ def liverpool_next():
      dt_words = dt_full.split(' ')
      date = dt_words[0] + dt_words[1]
      time = dt_words[2]
+     print(time)
      tournament = dt_words[3]
      temp = time.split(':')
      hour = int(temp[0])
