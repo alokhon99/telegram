@@ -81,7 +81,7 @@ def main():
                 next_match('liverpool')
             elif message == 'arsenal' or message == '/arsenal':
                 next_match('arsenal')
-            elif message == 'chelsea' or message == '/liverpool':
+            elif message == 'chelsea' or message == '/chelsea':
                 next_match('chelsea')
             elif message == 'real' or message == '/real':
                 next_match('real')
