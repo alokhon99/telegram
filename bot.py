@@ -3,7 +3,7 @@ from time import sleep
 from bs4 import BeautifulSoup
 import requests	
 url = "https://api.telegram.org/bot1267299041:AAGA-G9FCLj1EMTJ4DTkvWp2SWskNnsgq6s/"
-liverpool ="https://www.sports.ru/liverpool/"
+liverpool ="https://www.sports.ru/arsenal/"
 
 def get_updates_json(request):  
     params = {'timeout': 100, 'offset': None}
