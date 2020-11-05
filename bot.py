@@ -41,10 +41,9 @@ def liverpool_next():
      soup = BeautifulSoup(html_content, "lxml")
      contents=soup.find_all('div', class_='commands')
      next_match = contents[1]
-     team1 = next_match.find_all('span')[0].text
-     team2 = next_match.find_all('span')[1].text
+     team1 = next_match.find_all('span')[1].text
+     team2 = next_match.find_all('span')[3].text
      dt_full = next_match.text
-     print(next_match.find_all('span'))
    #  box = table.find('div', class_="boxContent")
     # team = box.find('b')
     # center = box.find('div')
@@ -62,9 +61,9 @@ def liverpool_next():
    #      hour = hour - 24
   #   hour = str(hour)
  #    minute = temp[1]
-     #new_m = 'Следующий матч: ' + team1 + ' - ' + team2 + '\n' + dt_full
-     #print(new_m)
-     #send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
+     new_m = 'Следующий матч: ' + team1 + ' - ' + team2 + '\n' + dt_full
+     print(new_m)
+     send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
 
 
 def main():  
