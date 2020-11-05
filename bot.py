@@ -68,7 +68,6 @@ def main():
     while True:
         if update_id == last_update(get_updates_json(url))['update_id']:
             message, author = get_mess(last_update(get_updates_json(url)))
-#            send_mess('383326777', message+'\n'+author)
             message = message.lower()
             message = re.sub(r'men\b','man', message)
             message = re.sub(r'sen\b','san', message)
