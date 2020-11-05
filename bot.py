@@ -35,13 +35,39 @@ def get_mess(update):
     message = update['message']['text']
     author = update['message']['chat']['first_name']
     return message, author;
-    
+
+def liverpool_next():
+     html_content = requests.get(liverpool).text
+     soup = BeautifulSoup(html_content, "lxml")
+     contents=soup.find_all('table')
+     table = contents[3]
+     table = table.find('table')
+     box = table.find('div', class_="boxContent")
+     team = box.find('b')
+     center = box.find('div')
+     text = center.text
+     words = text.split('\n')
+     new_m = ' '
+     day = words[4]
+     time = words[5]
+     temp = time.split(' ')
+     time = temp[1]
+     temp = time.split(':')
+     hour = int(temp[0])
+     hour = hour + 2
+     if hour > 23:
+         hour = hour - 24
+     hour = str(hour)
+     minute = temp[1]
+     new_m = 'Следующий матч: ' + team.text + '\n' + day + '\n' + hour + ':' + minute
+     send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
+
+
 def main():  
     update_id = last_update(get_updates_json(url))['update_id']
     while True:
         if update_id == last_update(get_updates_json(url))['update_id']:
             message, author = get_mess(last_update(get_updates_json(url)))
-            print( last_update(get_updates_json(url)))
 #            send_mess('383326777', message+'\n'+author)
             message = message.lower()
             message = re.sub(r'men\b','man', message)
@@ -52,30 +78,7 @@ def main():
             message = re.sub(r'maysan\b','misan', message)
             message = re.sub(r'yab','vo', message)
             if message == 'liverpool' or message == '/liverpool':
-                html_content = requests.get(liverpool).text
-                soup = BeautifulSoup(html_content, "lxml")
-                contents=soup.find_all('table')
-                table = contents[3]
-                table = table.find('table')
-                box = table.find('div', class_="boxContent")
-                team = box.find('b')
-                center = box.find('div')
-                text = center.text
-                words = text.split('\n')
-                new_m = ' '
-                day = words[4]
-                time = words[5]
-                temp = time.split(' ')
-                time = temp[1]
-                temp = time.split(':')
-                hour = int(temp[0])
-                hour = hour + 2
-                if hour > 23:
-                    hour = hour - 24
-                hour = str(hour)
-                minute = temp[1]
-                new_m = 'Следующий матч: ' + team.text + '\n' + day + '\n' + hour + ':' + minute
-                send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
+               liverpool_next()
             else:
                 send_mess(  get_chat_id(last_update(get_updates_json(url))),message)
 #            send_mess(get_chat_id(last_update(get_updates_json(url))), 'test')
