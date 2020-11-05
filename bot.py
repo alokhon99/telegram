@@ -5,8 +5,8 @@ import requests
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
 
-def get_updates_json(request):  
-    params = {'timeout': 100, 'offset': None}
+def get_updates_json(request, offset=None):  
+    params = {'timeout': 100, 'offset': offset}
     response = requests.get(request + 'getUpdates', data=params)
     return response.json()
 
@@ -89,7 +89,7 @@ def next_match(team, chat):
 def main():  
     update_id = last_update(get_updates_json(url))['update_id']
     while True:
-        json = last_update(get_updates_json(url))
+        json = last_update(get_updates_json(url,update_id))
         delay = update_id - json['update_id']
         print(update_id)
         print(json['update_id'])
