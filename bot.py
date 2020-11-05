@@ -46,8 +46,8 @@ def liverpool_next():
      details = soup.find_all('div', class_='score-descr')[1]
      dt_full = details.text
      dt_words = dt_full.split(' ')
-     date = dt_words[0] + dt_words[1]
-     time = dt_words[2]
+     date = dt_words[1] + dt_words[2]
+     time = dt_words[3]
      print(time)
      tournament = dt_words[3]
      temp = time.split(':')
