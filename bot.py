@@ -67,6 +67,7 @@ def main():
     update_id = last_update(get_updates_json(url))['update_id']
     while True:
         json = last_update(get_updates_json(url))
+        print(json)
         if update_id == json['update_id']:
             message, author = get_mess(json)
             message = message.lower()
