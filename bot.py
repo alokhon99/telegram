@@ -3,7 +3,7 @@ from time import sleep
 from bs4 import BeautifulSoup
 import requests	
 url = "https://api.telegram.org/bot1267299041:AAGA-G9FCLj1EMTJ4DTkvWp2SWskNnsgq6s/"
-liverpool ="http://liverpool-fan.ru/"
+liverpool ="https://www.sports.ru/liverpool/"
 
 def get_updates_json(request):  
     params = {'timeout': 100, 'offset': None}
@@ -39,27 +39,29 @@ def get_mess(update):
 def liverpool_next():
      html_content = requests.get(liverpool).text
      soup = BeautifulSoup(html_content, "lxml")
-     contents=soup.find_all('table')
-     table = contents[3]
-     table = table.find('table')
-     box = table.find('div', class_="boxContent")
-     team = box.find('b')
-     center = box.find('div')
-     text = center.text
-     words = text.split('\n')
-     new_m = ' '
-     day = words[4]
-     time = words[5]
-     temp = time.split(' ')
-     time = temp[1]
-     temp = time.split(':')
-     hour = int(temp[0])
-     hour = hour + 2
-     if hour > 23:
-         hour = hour - 24
-     hour = str(hour)
-     minute = temp[1]
-     new_m = 'Следующий матч: ' + team.text + '\n' + day + '\n' + hour + ':' + minute
+     contents=soup.find_all('div', class_='commands')
+     next_match = contents[1]
+     team1 = next_match.find('span', itemprop_='name')[0].text
+     team2 = next_match.find('span', itemprop_='name')[1].text
+     dt_full = next_match.text
+   #  box = table.find('div', class_="boxContent")
+    # team = box.find('b')
+    # center = box.find('div')
+    # text = center.text
+#     words = text.split('\n')
+#     new_m = ' '
+#     day = words[4]
+    # time = words[5]
+   #  temp = time.split(' ')
+    # time = temp[1]
+   #  temp = time.split(':')
+  #   hour = int(temp[0])
+#     hour = hour + 2
+ #    if hour > 23:
+   #      hour = hour - 24
+  #   hour = str(hour)
+ #    minute = temp[1]
+     new_m = 'Следующий матч: ' + team1 + ' - ' + team2 + '\n' + dt_full
      send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
 
 
