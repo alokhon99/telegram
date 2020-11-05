@@ -41,8 +41,8 @@ def liverpool_next():
      soup = BeautifulSoup(html_content, "lxml")
      contents=soup.find_all('div', class_='commands')
      next_match = contents[1]
-     team1 = next_match.find('span', itemprop_='name')[0].text
-     team2 = next_match.find('span', itemprop_='name')[1].text
+     team1 = next_match.find_all('span', itemprop_='name')[0].text
+     team2 = next_match.find_all('span', itemprop_='name')[1].text
      dt_full = next_match.text
    #  box = table.find('div', class_="boxContent")
     # team = box.find('b')
