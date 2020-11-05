@@ -105,11 +105,16 @@ def main():
             update_id += 1
         elif update_id < json['update_id']:
             bigJ = get_updates_json(url)
-            prev = bigJ[update_id]
-            message, author = get_mess(prev)
-            message = message.lower()
-            chat = get_chat_id(prev)
-            action(message, chat)
+            results = bigJ['results']
+            if len(results) == 0:
+                return
+            total_updates = len(results) - 1
+            print(type(results))
+#             prev = bigJ[update_id]
+#             message, author = get_mess(prev)
+#             message = message.lower()
+#             chat = get_chat_id(prev)
+#             action(message, chat)
             update_id += 1
         sleep(1)       
 
