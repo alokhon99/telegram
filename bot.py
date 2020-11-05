@@ -79,7 +79,7 @@ def main():
             message = re.sub(r'yab','vo', message)
             if message == 'liverpool' or message == '/liverpool':
                 next_match('liverpool')
-            eiif message == 'arsenal' or message == '/arsenal':
+            elif message == 'arsenal' or message == '/arsenal':
                 next_match('arsenal')
             elif message == 'chelsea' or message == '/liverpool':
                 next_match('chelsea')
