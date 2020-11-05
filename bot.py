@@ -107,7 +107,7 @@ def main():
             bigJ = get_updates_json(url)
             print(type(bigJ))
             print(bigJ)
-            results = bigJ['results']
+            results = bigJ['result']
             if len(results) == 0:
                 return
             total_updates = len(results) - 1
