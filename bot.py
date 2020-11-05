@@ -47,10 +47,11 @@ def liverpool_next():
      dt_full = details.text
      dt_full = dt_full.replace(next_match.text,'')
      dt_words = dt_full.split(' ')
-     date = dt_words[0] + ' ' + dt_words[1]
+     date = dt_words[0].lstrip() + ' ' + dt_words[1]
      time = dt_words[2]
      print(dt_words)
-     tournament = dt_words[3] + dt_words[4]
+     tournament = dt_words[3] + ' ' + dt_words[4]
+     tournament = tournament.replace('/', '')
      temp = time.split(':')
      hour = int(temp[0])
      hour = hour + 2
@@ -59,7 +60,7 @@ def liverpool_next():
      hour = str(hour)
      minute = temp[1]
      time = hour + ':' + minute
-     new_m = 'Следующий матч: ' + tournament + team1 + ' - ' +  team2 +  '\n' + date+ ' ' + time
+     new_m = 'Следующий матч: ' + '\n' + tournament + date+ ' ' + time + '\n' +  team1 + ' - ' +  team2  
      print(date)
      send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
 
