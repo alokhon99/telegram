@@ -49,7 +49,6 @@ def next_match(team):
      dt_words = dt_full.split(' ')
      date = dt_words[0].lstrip() + ' ' + dt_words[1]
      time = dt_words[2]
-     print(dt_words)
      tournament = dt_words[3] + ' ' + dt_words[4]
      tournament = tournament.replace('|\n', '').lstrip()
      temp = time.split(':')
@@ -61,7 +60,6 @@ def next_match(team):
      minute = temp[1]
      time = hour + ':' + minute
      new_m = 'Следующий матч: ' + '\n' + tournament + date+ ' ' + time + '\n' +  team1 + ' - ' +  team2  
-     print(date)
      send_mess(  get_chat_id(last_update(get_updates_json(url))),new_m)
 
 
