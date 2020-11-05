@@ -36,6 +36,26 @@ def get_mess(update):
     author = update['message']['chat']['first_name']
     return message, author;
 
+def action(message, chat):
+     if message == 'liverpool' or message == '/liverpool':
+         print('1')
+         next_match('liverpool', chat)
+     elif message == 'arsenal' or message == '/arsenal':
+         print('2')
+         next_match('arsenal', chat)
+     elif message == 'chelsea' or message == '/chelsea':
+         print('3')
+         next_match('chelsea', chat)
+     elif message == 'real' or message == '/real':
+         print('4')
+         next_match('real', chat)
+     elif message == 'barcelona' or message == '/barcelona' or message == 'barsa':
+         print('5')
+         next_match('barcelona', chat)
+     else:
+         send_mess( chat,'Используйте команды начинающиеся с /')
+
+
 def next_match(team, chat):
      print('+')
      html_content = requests.get(url_t + team + '/').text
@@ -71,33 +91,25 @@ def main():
     while True:
         json = last_update(get_updates_json(url))
         if update_id == json['update_id']:
+#             message = re.sub(r'men\b','man', message)
+#             message = re.sub(r'sen\b','san', message)
+#             message = re.sub(r'iq\b','u', message)
+#             message = re.sub(r'men\b','man', message)
+#             message = re.sub(r'mayman\b','miman', message)
+#             message = re.sub(r'maysan\b','misan', message)
+#             message = re.sub(r'yab','vo', message)
             message, author = get_mess(json)
             message = message.lower()
-            message = re.sub(r'men\b','man', message)
-            message = re.sub(r'sen\b','san', message)
-            message = re.sub(r'iq\b','u', message)
-            message = re.sub(r'men\b','man', message)
-            message = re.sub(r'mayman\b','miman', message)
-            message = re.sub(r'maysan\b','misan', message)
-            message = re.sub(r'yab','vo', message)
             chat = get_chat_id(json)
-            if message == 'liverpool' or message == '/liverpool':
-                print('1')
-                next_match('liverpool', chat)
-            elif message == 'arsenal' or message == '/arsenal':
-                print('2')
-                next_match('arsenal', chat)
-            elif message == 'chelsea' or message == '/chelsea':
-                print('3')
-                next_match('chelsea', chat)
-            elif message == 'real' or message == '/real':
-                print('4')
-                next_match('real', chat)
-            elif message == 'barcelona' or message == '/barcelona' or message == 'barsa':
-                print('5')
-                next_match('barcelona', chat)
-            else:
-                send_mess( chat,'Используйте команды начинающиеся с /')
+            action(message, chat)
+            update_id += 1
+        elif update_id < json['update_id']:
+            bigJ = get_updates_json(url)
+            prev = bigJ[update_id]
+            message, author = get_mess(prev)
+            message = message.lower()
+            chat = get_chat_id(prev)
+            action(message, chat)
             update_id += 1
         sleep(1)       
 
