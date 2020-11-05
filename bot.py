@@ -93,7 +93,7 @@ def main():
             elif message == 'real' or message == '/real':
                 print('4')
                 next_match('real', chat)
-            elif message == 'barcelona' or message == '/barcelona' or 'barsa':
+            elif message == 'barcelona' or message == '/barcelona' or message == 'barsa':
                 print('5')
                 next_match('barcelona', chat)
             else:
