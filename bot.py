@@ -90,7 +90,8 @@ def main():
     update_id = last_update(get_updates_json(url))['update_id']
     while True:
         json = last_update(get_updates_json(url))
-        if update_id == json['update_id']:
+        delay = update_id - json['update_id']
+        if delay == 0:
 #             message = re.sub(r'men\b','man', message)
 #             message = re.sub(r'sen\b','san', message)
 #             message = re.sub(r'iq\b','u', message)
@@ -103,20 +104,18 @@ def main():
             chat = get_chat_id(json)
             action(message, chat)
             update_id += 1
-        elif update_id < json['update_id']:
+        elif delay < 0:
             bigJ = get_updates_json(url)
-            print(type(bigJ))
-            print(bigJ)
             results = bigJ['result']
             if len(results) == 0:
                 return
             total_updates = len(results) - 1
             print(type(results))
-#             prev = bigJ[update_id]
-#             message, author = get_mess(prev)
-#             message = message.lower()
-#             chat = get_chat_id(prev)
-#             action(message, chat)
+            prev = bigJ[total_updates - delay]
+            message, author = get_mess(prev)
+            message = message.lower()
+            chat = get_chat_id(prev)
+            action(message, chat)
             update_id += 1
         sleep(1)       
 
