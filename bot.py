@@ -49,7 +49,9 @@ def next_match(team, chat):
      dt_words = dt_full.split(' ')
      date = dt_words[0].lstrip() + ' ' + dt_words[1]
      time = dt_words[2]
-     tournament = dt_words[3] + ' ' + dt_words[4]
+     tournament = ''
+     for w in dt_words[3:]:
+            tournament = tournament + w
      tournament = tournament.replace('|\n', '').lstrip()
      temp = time.split(':')
      hour = int(temp[0])
