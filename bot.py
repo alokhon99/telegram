@@ -4,6 +4,12 @@ from bs4 import BeautifulSoup
 import requests	
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
+team1 = ' '
+team2 = ' '
+team3 = ' '
+team4 = ' '
+team5 = ' '
+team6 = ' '
 
 def get_updates_json(request, offset=None):  
     params = {'timeout': 100, 'offset': offset}
@@ -39,27 +45,27 @@ def get_mess(update):
 def action(message, chat):
      if message == 'liverpool' or message == '/liverpool':
          print('1')
-         next_match('liverpool', chat)
+         send_mess(chat, team1)
      elif message == 'arsenal' or message == '/arsenal':
          print('2')
-         next_match('arsenal', chat)
+         send_mess(chat, team2)
      elif message == 'chelsea' or message == '/chelsea':
          print('3')
-         next_match('chelsea', chat)
+         send_mess(chat, team3)
      elif message == 'real' or message == '/real':
          print('4')
-         next_match('real', chat)
+         send_mess(chat, team4)
      elif message == 'barcelona' or message == '/barcelona' or message == 'barsa':
          print('5')
-         next_match('barcelona', chat)
+         send_mess(chat, team5)
      elif message == 'mu' or message == '/mu' or message == 'mu':
          print('6')
-         next_match('mu', chat)
+         send_mess(chat, team6)
      else:
          send_mess( chat,'Используйте команды начинающиеся с /')
 
 
-def next_match(team, chat):
+def next_match(team):
      print('+')
      html_content = requests.get(url_t + team + '/').text
      soup = BeautifulSoup(html_content, "lxml")
@@ -85,12 +91,20 @@ def next_match(team, chat):
      hour = str(hour)
      minute = temp[1]
      time = hour + ':' + minute
-     new_m = 'Следующий матч: ' + '\n' + tournament + date+ ' ' + time + '\n' +  team1 + ' - ' +  team2  
-     send_mess(  chat,new_m)
+     new_m = 'Следующий матч: ' + '\n' + tournament + date+ ' ' + time + '\n' +  team1 + ' - ' +  team2
+     return new_m
 
+def update_data():
+    team1 = next_match('liverpool')
+    team2 = next_match('arsenal')
+    team3 = next_match('chelsea')
+    team4 = next_match('real')
+    team5 = next_match('barcelona')
+    team6 = next_match('mu')
 
 def main():  
     update_id = last_update(get_updates_json(url))['update_id']
+    update_data()
     while True:
         json = last_update(get_updates_json(url,update_id))
         print(json)
@@ -125,6 +139,8 @@ def main():
             chat = get_chat_id(prev)
             action(message, chat)
             update_id += 1
+        else:
+            update_data()
         sleep(1)       
 
 if __name__ == '__main__':  
