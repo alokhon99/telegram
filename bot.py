@@ -51,29 +51,22 @@ def action(message, chat):
      global team5 
      global team6 
      if message == 'liverpool' or message == '/liverpool':
-         print('1')
          send_mess(chat, team1)
      elif message == 'arsenal' or message == '/arsenal':
-         print('2')
          send_mess(chat, team2)
      elif message == 'chelsea' or message == '/chelsea':
-         print('3')
          send_mess(chat, team3)
      elif message == 'real' or message == '/real':
-         print('4')
          send_mess(chat, team4)
      elif message == 'barcelona' or message == '/barcelona' or message == 'barsa':
-         print('5')
          send_mess(chat, team5)
      elif message == 'mu' or message == '/mu' or message == 'mu':
-         print('6')
          send_mess(chat, team6)
      else:
          send_mess( chat,'Используйте команды начинающиеся с /')
 
 
 def next_match(team):
-     print('+')
      html_content = requests.get(url_t + team + '/').text
      soup = BeautifulSoup(html_content, "lxml")
      contents=soup.find_all('div', class_='commands')
@@ -102,7 +95,6 @@ def next_match(team):
      return new_m
 
 def update_data():
-    print('kirvoman')
     global team1 
     global team2 
     global team3 
@@ -115,21 +107,17 @@ def update_data():
     team4 = next_match('real')
     team5 = next_match('barcelona')
     team6 = next_match('mu')
-    
-    print('updated')
+    print(updated)
 def main():
     update_id = last_update(get_updates_json(url))['update_id']
     update_data()
     while True:
-        
+        print("loop")
         json = last_update(get_updates_json(url,update_id))
-        print(json)
         if json == None:
               continue
         delay = update_id - json['update_id']
         print(delay)
-        print(update_id)
-        print(json['update_id'])
         if delay == 0:
 #             message = re.sub(r'men\b','man', message)
 #             message = re.sub(r'sen\b','san', message)
@@ -149,7 +137,6 @@ def main():
             if len(results) == 0:
                 return
             total_updates = len(results) - 1
-            print(len(results))
             prev = results[total_updates + delay]
             message, author = get_mess(prev)
             message = message.lower()
