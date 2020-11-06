@@ -121,6 +121,7 @@ def main():
     update_id = last_update(get_updates_json(url))['update_id']
     update_data()
     while True:
+        print(delay)
         json = last_update(get_updates_json(url,update_id))
         print(json)
         if json == None:
@@ -155,6 +156,7 @@ def main():
             action(message, chat)
             update_id += 1
         else:
+            print("else")
             update_data()
         sleep(1)       
 
