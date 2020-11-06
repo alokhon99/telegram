@@ -10,6 +10,8 @@ team3 = '3'
 team4 = '4'
 team5 = '5'
 team6 = '6'
+team7 = '7'
+team8 = '8'
 
 def get_updates_json(request, offset=None):
     print('get_update_e')
@@ -51,7 +53,9 @@ def action(message, chat):
      global team3 
      global team4 
      global team5 
-     global team6 
+     global team6
+     global team7 
+     global team8 
      if message == 'liverpool' or message == '/liverpool':
          send_mess(chat, team1)
      elif message == 'arsenal' or message == '/arsenal':
@@ -64,6 +68,10 @@ def action(message, chat):
          send_mess(chat, team5)
      elif message == 'mu' or message == '/mu' or message == 'mu':
          send_mess(chat, team6)
+     elif message == 'juventus' or message == '/juventus' or message == 'juve' or message == 'cr7' or message == 'penaldu':
+         send_mess(chat, team7)
+     elif message == 'manchester-city' or message == '/city' or message == 'city' or message == 'bir qop pul' or message == 'kalbosh' or message == 'kal':
+         send_mess(chat, team8)       
      else:
          send_mess( chat,'Используйте команды начинающиеся с /')
 
@@ -102,13 +110,17 @@ def update_data():
     global team3 
     global team4 
     global team5 
-    global team6 
+    global team6
+    global team7 
+    global team8
     team1 = next_match('liverpool')
     team2 = next_match('arsenal')
     team3 = next_match('chelsea')
     team4 = next_match('real')
     team5 = next_match('barcelona')
     team6 = next_match('mu')
+    team7 = next_match('juventus')
+    team8 = next_match('manchester-city')
     print('updated')
 def main():
     update_id = last_update(get_updates_json(url))['update_id']
