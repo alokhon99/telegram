@@ -31,7 +31,7 @@ def get_chat_id(update):
 def send_mess(chat, text):  
     params = {'chat_id': chat, 'text': text}
     response = requests.post(url + 'sendMessage', data=params)
-    print("I send it"+chat)
+    print("I send it"+text+str(chat))
     return response
 
 def innerHTML(element):
