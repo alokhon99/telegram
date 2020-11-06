@@ -155,7 +155,7 @@ def main():
                 return
             total_updates = len(results) - 1
             prev = results[total_updates + delay]
-            message, author = get_mess(prev)
+            message = get_mess(prev)
             message = message.lower()
             chat = get_chat_id(prev)
             action(message, chat)
