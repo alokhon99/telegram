@@ -4,12 +4,12 @@ from bs4 import BeautifulSoup
 import requests	
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
-team1 = ' '
-team2 = ' '
-team3 = ' '
-team4 = ' '
-team5 = ' '
-team6 = ' '
+team1 = '1'
+team2 = '2'
+team3 = '3'
+team4 = '4'
+team5 = '5'
+team6 = '6'
 
 def get_updates_json(request, offset=None):  
     params = {'timeout': 100, 'offset': offset}
