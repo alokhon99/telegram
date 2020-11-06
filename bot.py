@@ -97,12 +97,12 @@ def next_match(team):
 
 def update_data():
     print('kirvoman')
-    team1 = next_match('liverpool')
-    team2 = next_match('arsenal')
-    team3 = next_match('chelsea')
-    team4 = next_match('real')
-    team5 = next_match('barcelona')
-    team6 = next_match('mu')
+    global team1 = next_match('liverpool')
+    global team2 = next_match('arsenal')
+    global team3 = next_match('chelsea')
+    global team4 = next_match('real')
+    global team5 = next_match('barcelona')
+    global team6 = next_match('mu')
     
     print('updated')
 def main():
