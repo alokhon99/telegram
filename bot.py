@@ -106,8 +106,8 @@ def update_data():
     
     print('updated')
 def main():
-    print("i was here")
     update_id = last_update(get_updates_json(url))['update_id']
+    print("i was here")
     update_data()
     print(team1)
     while True:
