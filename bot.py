@@ -121,12 +121,13 @@ def main():
     update_id = last_update(get_updates_json(url))['update_id']
     update_data()
     while True:
-        print(delay)
+        
         json = last_update(get_updates_json(url,update_id))
         print(json)
         if json == None:
               continue
         delay = update_id - json['update_id']
+        print(delay)
         print(update_id)
         print(json['update_id'])
         if delay == 0:
