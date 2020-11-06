@@ -48,7 +48,7 @@ def innerHTML(element):
 def get_mess(update):
     message = update['message']['text']
 #     author = update['message']['chat']['first_name']
-    return message, author;
+    return message;
 
 def action(message, chat):
      global team1 
