@@ -76,7 +76,7 @@ def action(message, chat):
      elif message == 'manchester-city' or message == '/city' or message == 'city' or message == 'bir qop pul' or message == 'kalbosh' or message == 'kal':
          send_mess(chat, team8)
      elif message == '1492312':
-         send_mess(chat, "yusuf алкашь")
+         send_mess(chat, "yusuf алкаш buni hamma biladi")
      else:
          send_mess( chat,'Используйте команды начинающиеся с /')
 
