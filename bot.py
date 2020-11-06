@@ -44,6 +44,12 @@ def get_mess(update):
     return message, author;
 
 def action(message, chat):
+     global team1 
+     global team2 
+     global team3 
+     global team4 
+     global team5 
+     global team6 
      if message == 'liverpool' or message == '/liverpool':
          print('1')
          send_mess(chat, team1)
@@ -97,19 +103,23 @@ def next_match(team):
 
 def update_data():
     print('kirvoman')
-    global team1 = next_match('liverpool')
-    global team2 = next_match('arsenal')
-    global team3 = next_match('chelsea')
-    global team4 = next_match('real')
-    global team5 = next_match('barcelona')
-    global team6 = next_match('mu')
+    global team1 
+    global team2 
+    global team3 
+    global team4 
+    global team5 
+    global team6 
+    team1 = next_match('liverpool')
+    team2 = next_match('arsenal')
+    team3 = next_match('chelsea')
+    team4 = next_match('real')
+    team5 = next_match('barcelona')
+    team6 = next_match('mu')
     
     print('updated')
 def main():
     update_id = last_update(get_updates_json(url))['update_id']
-    print("i was here")
     update_data()
-    print(team1)
     while True:
         json = last_update(get_updates_json(url,update_id))
         print(json)
