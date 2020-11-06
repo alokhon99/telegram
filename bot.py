@@ -96,6 +96,7 @@ def next_match(team):
      return new_m
 
 def update_data():
+    print('kirvoman')
     team1 = next_match('liverpool')
     team2 = next_match('arsenal')
     team3 = next_match('chelsea')
