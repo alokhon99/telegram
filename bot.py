@@ -107,7 +107,7 @@ def update_data():
     team4 = next_match('real')
     team5 = next_match('barcelona')
     team6 = next_match('mu')
-    print(updated)
+    print('updated')
 def main():
     update_id = last_update(get_updates_json(url))['update_id']
     update_data()
