@@ -47,7 +47,7 @@ def innerHTML(element):
 
 def get_mess(update):
     message = update['message']['text']
-    author = update['message']['chat']['first_name']
+#     author = update['message']['chat']['first_name']
     return message, author;
 
 def action(message, chat):
@@ -143,7 +143,7 @@ def main():
 #             message = re.sub(r'mayman\b','miman', message)
 #             message = re.sub(r'maysan\b','misan', message)
 #             message = re.sub(r'yab','vo', message)
-            message, author = get_mess(json)
+            message = get_mess(json)
             message = message.lower()
             chat = get_chat_id(json)
             action(message, chat)
