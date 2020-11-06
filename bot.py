@@ -11,9 +11,11 @@ team4 = '4'
 team5 = '5'
 team6 = '6'
 
-def get_updates_json(request, offset=None):  
+def get_updates_json(request, offset=None):
+    print('get_update_e')
     params = {'timeout': 100, 'offset': offset}
     response = requests.get(request + 'getUpdates', data=params)
+    print('get_update_o)
     return response.json()
 
 
