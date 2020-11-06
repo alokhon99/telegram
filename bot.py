@@ -105,7 +105,8 @@ def update_data():
     team6 = next_match('mu')
     
     print('updated')
-def main():  
+def main():
+    print("i was here")
     update_id = last_update(get_updates_json(url))['update_id']
     update_data()
     print(team1)
