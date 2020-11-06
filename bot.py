@@ -160,8 +160,6 @@ def main():
             chat = get_chat_id(prev)
             action(message, chat)
             update_id += 1
-        if utc_timestamp.astimezone(pytz.timezone('Asia/Tashkent')) == datetime.time(0, 0):
-            update_data()
         sleep(1)       
 
 if __name__ == '__main__':  
