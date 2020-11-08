@@ -32,7 +32,7 @@ class Team:
     def upd(self):
         print('upd')
         global url_t;
-        html_content = requests.get(url_t + this.name + '/').text
+        html_content = requests.get(url_t + self.name + '/').text
         soup = BeautifulSoup(html_content, "lxml")
         contents=soup.find_all('div', class_='commands')
         next_match = contents[1]
