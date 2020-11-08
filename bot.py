@@ -50,7 +50,7 @@ class Team:
         self.hour = str(hour)
         self.minute = temp[1]
         
-    def get_message():
+    def get_message(self):
         return 'Следующий матч: ' + '\n' + tournament + +date+ ' ' + hour+':'+minute + '\n' +  name + ' - ' + rival
         
     name = 'team'
