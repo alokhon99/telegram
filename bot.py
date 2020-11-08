@@ -16,6 +16,48 @@ team6 = '6'
 team7 = '7'
 team8 = '8'
 
+class Team:
+    def __init__(self, name):
+        self.name = name
+        self.update(name)
+    def update(name):
+        html_content = requests.get(url_t + name + '/').text
+        soup = BeautifulSoup(html_content, "lxml")
+        contents=soup.find_all('div', class_='commands')
+        next_match = contents[1]
+        self.team1 = next_match.find_all('span')[1].text
+        self.team2 = next_match.find_all('span')[3].text
+        details = soup.find_all('div', class_='score-descr')[1]
+        dt_full = details.text
+        dt_full = dt_full.replace(next_match.text,'')
+        dt_words = dt_full.split(' ')
+        self.date = dt_words[0].lstrip() + ' ' + dt_words[1]
+        time = dt_words[2]
+        self.tournament = ''
+        for w in dt_words[3:]:
+            self.tournament = self.tournament + w + ' '
+        self.tournament = tournament.replace('|\n', '').lstrip()
+        temp = time.split(':')
+        hour = int(temp[0])
+        hour = hour + 2
+        if hour > 23:
+            hour = hour - 24
+        self.hour = str(hour)
+        self.minute = temp[1]
+        
+    def get_message():
+        return 'Следующий матч: ' + '\n' + tournament + +date+ ' ' + hour+':'+minute + '\n' +  name + ' - ' + rival
+        
+    name = 'team'
+    team1 = 'team'
+    team2 = 'opponent'
+    hour = '00'
+    minute = '00'
+    date = '12'
+    tounament = 'epl'
+    
+   
+
 def get_updates_json(request, offset=None):
     print('get_update_e')
     params = {'timeout': 100, 'offset': offset}
@@ -38,7 +80,6 @@ def get_chat_id(update):
 def send_mess(chat, text):  
     params = {'chat_id': chat, 'text': text}
     response = requests.post(url + 'sendMessage', data=params)
-    print("I send it"+text+str(chat))
     return response
 
 def innerHTML(element):
@@ -130,6 +171,8 @@ def update_data():
 def main():
     update_id = last_update(get_updates_json(url))['update_id']
     update_data()
+    ars = Team('arsenal')
+    print(ars.get_message())
     while True:
         print("loop")
         json = last_update(get_updates_json(url,update_id))
