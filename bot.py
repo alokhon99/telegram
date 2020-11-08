@@ -22,7 +22,7 @@ class Team:
         self.name = name
         self.upd(name)
         
-    def upd(name):
+    def upd(self, name):
         print('upd')
         global url_t;
         
