@@ -54,7 +54,14 @@ class Team:
     date = '12'
     tounament = 'epl'
     
-   
+global team1 = Team('liverpool')
+global team2 = Team('arsenal')
+global team3 = Team('chelsea')
+global team4 = Team('real')
+global team5 = Team('barcelona')
+global team6 = Team('mu')
+global team7 = Team('juventus')
+global team8 = Team('manchester-city')
 
 def get_updates_json(request, offset=None):
     print('get_update_e')
@@ -118,14 +125,6 @@ def action(message, chat):
 
 def main():
     update_id = last_update(get_updates_json(url))['update_id']
-    global team1 = Team('liverpool')
-    global team2 = Team('arsenal')
-    global team3 = Team('chelsea')
-    global team4 = Team('real')
-    global team5 = Team('barcelona')
-    global team6 = Team('mu')
-    global team7 = Team('juventus')
-    global team8 = Team('manchester-city')
     while True:
         print("loop")
         json = last_update(get_updates_json(url,update_id))
