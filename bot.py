@@ -27,7 +27,7 @@ class Team:
     def __init__(self, name):
         print('init')
         self.name = name
-        self.upd(name)
+        self.upd()
         
     def upd(self):
         print('upd')
