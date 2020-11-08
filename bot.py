@@ -18,9 +18,14 @@ team8 = '8'
 
 class Team:
     def __init__(self, name):
+        print('init')
         self.name = name
-        self.update(name)
-    def update(name):
+        self.upd(name)
+        
+    def upd(name):
+        print('upd')
+        global url_t;
+        
         html_content = requests.get(url_t + name + '/').text
         soup = BeautifulSoup(html_content, "lxml")
         contents=soup.find_all('div', class_='commands')
