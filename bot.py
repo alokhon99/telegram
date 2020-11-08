@@ -41,7 +41,7 @@ class Team:
         self.tournament = ''
         for w in dt_words[3:]:
             self.tournament = self.tournament + w + ' '
-        self.tournament = tournament.replace('|\n', '').lstrip()
+        self.tournament = self.tournament.replace('|\n', '').lstrip()
         temp = time.split(':')
         hour = int(temp[0])
         hour = hour + 2
