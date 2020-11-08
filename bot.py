@@ -54,14 +54,14 @@ class Team:
     date = '12'
     tounament = 'epl'
     
-global team1 = Team('liverpool')
-global team2 = Team('arsenal')
-global team3 = Team('chelsea')
-global team4 = Team('real')
-global team5 = Team('barcelona')
-global team6 = Team('mu')
-global team7 = Team('juventus')
-global team8 = Team('manchester-city')
+team1 = Team('liverpool')
+team2 = Team('arsenal')
+team3 = Team('chelsea')
+team4 = Team('real')
+team5 = Team('barcelona')
+team6 = Team('mu')
+team7 = Team('juventus')
+team8 = Team('manchester-city')
 
 def get_updates_json(request, offset=None):
     print('get_update_e')
