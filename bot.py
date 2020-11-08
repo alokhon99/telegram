@@ -8,6 +8,20 @@ import datetime
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
 
+RU_MONTH_VALUES = {
+    'января': 1,
+    'февраля': 2,
+    'марта': 3,
+    'апреля': 4,
+    'мая': 5,
+    'июня': 6,
+    'июля': 7,
+    'августа': 8,
+    'сентября': 9,
+    'октября': 10,
+    'ноября': 11,
+    'декабря': 12,
+}
 
 class Team:
     def __init__(self, name):
@@ -44,7 +58,21 @@ class Team:
         self.minute = temp[1]
         
     def get_message(self):
+        print(self.is_passed())
         return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - ' + self.team2
+    
+    def is_passed(self):
+        dt = self.date.split(' ')
+        day = str(int(dt[0]))
+        mon = int_value_from_ru_month(dt[1])
+        date = datetime.datetime.strptime(day+'/'+mon+'/2020', "%d/%m/%Y").date()
+        today = date.today()
+        if today > date:
+            return True
+        elif today == date:
+            print('today')
+        else:
+            return True
         
     name = 'team'
     team1 = 'team'
@@ -62,6 +90,11 @@ team5 = Team('barcelona')
 team6 = Team('mu')
 team7 = Team('juventus')
 team8 = Team('manchester-city')
+
+def int_value_from_ru_month(date_str):
+    for k, v in RU_MONTH_VALUES.items():
+        date_str = date_str.replace(k, str(v))
+    return date_str
 
 def get_updates_json(request, offset=None):
     print('get_update_e')
