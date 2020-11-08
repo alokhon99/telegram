@@ -51,7 +51,7 @@ class Team:
         self.minute = temp[1]
         
     def get_message(self):
-        return 'Следующий матч: ' + '\n' + tournament + +date+ ' ' + hour+':'+minute + '\n' +  name + ' - ' + rival
+        return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - ' + self.team2
         
     name = 'team'
     team1 = 'team'
