@@ -177,7 +177,11 @@ def action(message, chat):
 
 
 def main():
-    update_id = last_update(get_updates_json(url))['update_id']
+    while(1):
+        json = last_update(get_updates_json(url))
+        if json != None:
+            break
+    update_id = json['update_id']
     while True:
         print("loop")
         json = last_update(get_updates_json(url,update_id))
