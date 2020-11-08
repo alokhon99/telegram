@@ -7,14 +7,7 @@ import datetime
 
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
-team1 = '1'
-team2 = '2'
-team3 = '3'
-team4 = '4'
-team5 = '5'
-team6 = '6'
-team7 = '7'
-team8 = '8'
+
 
 class Team:
     def __init__(self, name):
@@ -87,10 +80,6 @@ def send_mess(chat, text):
     response = requests.post(url + 'sendMessage', data=params)
     return response
 
-def innerHTML(element):
-    """Returns the inner HTML of an element as a UTF-8 encoded bytestring"""
-    return element.encode_contents()
-
 def get_mess(update):
     message = update['message']['text']
 #     author = update['message']['chat']['first_name']
@@ -106,78 +95,37 @@ def action(message, chat):
      global team7 
      global team8 
      if message == 'liverpool' or message == '/liverpool':
-         send_mess(chat, team1)
+         send_mess(chat, team1.get_message())
      elif message == 'arsenal' or message == '/arsenal':
-         send_mess(chat, team2)
+         send_mess(chat, team2.get_message())
      elif message == 'chelsea' or message == '/chelsea':
-         send_mess(chat, team3)
+         send_mess(chat, team3.get_message())
      elif message == 'real' or message == '/real':
-         send_mess(chat, team4)
+         send_mess(chat, team4.get_message())
      elif message == 'barcelona' or message == '/barcelona' or message == 'barsa':
-         send_mess(chat, team5)
+         send_mess(chat, team5.get_message())
      elif message == 'mu' or message == '/mu' or message == 'mu':
-         send_mess(chat, team6)
+         send_mess(chat, team6.get_message())
      elif message == 'juventus' or message == '/juventus' or message == 'juve' or message == 'cr7' or message == 'penaldu':
-         send_mess(chat, team7)
+         send_mess(chat, team7.get_message())
      elif message == 'manchester-city' or message == '/city' or message == 'city' or message == 'bir qop pul' or message == 'kalbosh' or message == 'kal':
-         send_mess(chat, team8)
+         send_mess(chat, team8.get_message())
      elif message == '1492312':
          send_mess(chat, "yusuf алкаш buni hamma biladi")
      else:
          send_mess( chat,'Используйте команды начинающиеся с /')
 
 
-def next_match(team):
-     html_content = requests.get(url_t + team + '/').text
-     soup = BeautifulSoup(html_content, "lxml")
-     contents=soup.find_all('div', class_='commands')
-     next_match = contents[1]
-     team1 = next_match.find_all('span')[1].text
-     team2 = next_match.find_all('span')[3].text
-     details = soup.find_all('div', class_='score-descr')[1]
-     dt_full = details.text
-     dt_full = dt_full.replace(next_match.text,'')
-     dt_words = dt_full.split(' ')
-     date = dt_words[0].lstrip() + ' ' + dt_words[1]
-     time = dt_words[2]
-     tournament = ''
-     for w in dt_words[3:]:
-            tournament = tournament + w + ' '
-     tournament = tournament.replace('|\n', '').lstrip()
-     temp = time.split(':')
-     hour = int(temp[0])
-     hour = hour + 2
-     if hour > 23:
-         hour = hour - 24
-     hour = str(hour)
-     minute = temp[1]
-     time = hour + ':' + minute
-     new_m = 'Следующий матч: ' + '\n' + tournament + date+ ' ' + time + '\n' +  team1 + ' - ' +  team2
-     return new_m
-
-def update_data():
-    global team1 
-    global team2 
-    global team3 
-    global team4 
-    global team5 
-    global team6
-    global team7 
-    global team8
-    team1 = next_match('liverpool')
-    team2 = next_match('arsenal')
-    team3 = next_match('chelsea')
-    team4 = next_match('real')
-    team5 = next_match('barcelona')
-    team6 = next_match('mu')
-    team7 = next_match('juventus')
-    team8 = next_match('manchester-city')
-    print('updated')
 def main():
     update_id = last_update(get_updates_json(url))['update_id']
-    update_data()
-    ars = Team('arsenal')
-    print(ars.get_message())
+    global team1 = Team('liverpool')
+    global team2 = Team('arsenal')
+    global team3 = Team('chelsea')
+    global team4 = Team('real')
+    global team5 = Team('barcelona')
+    global team6 = Team('mu')
+    global team7 = Team('juventus')
+    global team8 = Team('manchester-city')
     while True:
         print("loop")
         json = last_update(get_updates_json(url,update_id))
