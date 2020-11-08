@@ -29,11 +29,10 @@ class Team:
         self.name = name
         self.upd(name)
         
-    def upd(self, name):
+    def upd(self):
         print('upd')
         global url_t;
-        
-        html_content = requests.get(url_t + name + '/').text
+        html_content = requests.get(url_t + this.name + '/').text
         soup = BeautifulSoup(html_content, "lxml")
         contents=soup.find_all('div', class_='commands')
         next_match = contents[1]
@@ -70,9 +69,14 @@ class Team:
         if today > date:
             return True
         elif today == date:
-            print('today')
+            now = datetime.datetime.now()
+            my_time_string = self.hour+':'+self.minute+':'+'00'
+            my_datetime = datetime.datetime.strptime(my_time_string, "%H:%M:%S")
+            my_datetime = now.replace(hour=my_datetime.time().hour, minute=my_datetime.time().minute, second=my_datetime.time().second, microsecond=0)
+            if (now > my_datetime):
+                return True
         else:
-            return True
+            return False
         
     name = 'team'
     team1 = 'team'
@@ -135,20 +139,36 @@ def action(message, chat):
      global team7 
      global team8 
      if message == 'liverpool' or message == '/liverpool':
+         if team1.is_passed():
+            team1.upd()
          send_mess(chat, team1.get_message())
      elif message == 'arsenal' or message == '/arsenal':
+         if team2.is_passed():
+            team2.upd()
          send_mess(chat, team2.get_message())
      elif message == 'chelsea' or message == '/chelsea':
+         if team3.is_passed():
+            team3.upd()
          send_mess(chat, team3.get_message())
      elif message == 'real' or message == '/real':
+         if team4.is_passed():
+            team4.upd()
          send_mess(chat, team4.get_message())
      elif message == 'barcelona' or message == '/barcelona' or message == 'barsa':
+         if team5.is_passed():
+            team5.upd()
          send_mess(chat, team5.get_message())
      elif message == 'mu' or message == '/mu' or message == 'mu':
+         if team6.is_passed():
+            team6.upd()
          send_mess(chat, team6.get_message())
      elif message == 'juventus' or message == '/juventus' or message == 'juve' or message == 'cr7' or message == 'penaldu':
+         if team7.is_passed():
+            team7.upd()
          send_mess(chat, team7.get_message())
      elif message == 'manchester-city' or message == '/city' or message == 'city' or message == 'bir qop pul' or message == 'kalbosh' or message == 'kal':
+         if team8.is_passed():
+            team8.upd()
          send_mess(chat, team8.get_message())
      elif message == '1492312':
          send_mess(chat, "yusuf алкаш buni hamma biladi")
