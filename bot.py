@@ -71,6 +71,7 @@ class Team:
         elif today == date and self.hour > 12:
             tz = pytz.timezone('Asia/Tashkent')
             now = datetime.datetime.now(tz)
+            print(now)
             my_time_string = self.hour+':'+self.minute+':'+'00'
             my_datetime = datetime.datetime.strptime(my_time_string, "%H:%M:%S")
             my_datetime = now.replace(hour=my_datetime.time().hour, minute=my_datetime.time().minute, second=my_datetime.time().second, microsecond=0)
