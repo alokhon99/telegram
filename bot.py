@@ -61,9 +61,6 @@ class Team:
         return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - ' + self.team2
     
     def is_passed(self):
-        tz = pytz.timezone('Asia/Tashkent')
-        now = datetime.datetime.now(tz)
-        print(now)
         dt = self.date.split(' ')
         day = str(int(dt[0]))
         mon = int_value_from_ru_month(dt[1])
