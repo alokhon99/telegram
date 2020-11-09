@@ -3,3 +3,5 @@ requests==2.24.0
 beautifulsoup4==4.9.3
 lxml
 pytz
+psycopg2-binary
+dj-database-url
