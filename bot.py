@@ -179,6 +179,7 @@ def action(message, chat):
             team8.upd()
          send_mess(chat, team8.get_message())
      elif message == '/fav':
+         db.add_item(text)
          items = db.get_items()
          send_mess(chat, items)
      else:
