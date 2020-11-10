@@ -179,7 +179,6 @@ def action(message, chat):
             team8.upd()
          send_mess(chat, team8.get_message())
      elif message == '/fav':
-         db.add_item('liverpool')
          items = db.get_items()
          send_mess(chat, items)
      else:
@@ -188,6 +187,7 @@ def action(message, chat):
 
 def main():
     db.setup()
+    
     while(1):
         json = last_update(get_updates_json(url))
         if json != None:
