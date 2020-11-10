@@ -9,9 +9,7 @@ import psycopg2
 from dbhelper import DBHelper
 
 db = DBHelper()
-DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
@@ -180,13 +178,16 @@ def action(message, chat):
          if team8.is_passed():
             team8.upd()
          send_mess(chat, team8.get_message())
-     elif message == '1492312':
-         send_mess(chat, "yusuf алкаш buni hamma biladi")
+     elif message == '/fav':
+         db.add_item('liverpool')
+         items = db.get_items()
+         send_mess(chat, "items")
      else:
          send_mess( chat,'Используйте команды начинающиеся с /')
 
 
 def main():
+    db.setup()
     while(1):
         json = last_update(get_updates_json(url))
         if json != None:
