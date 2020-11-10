@@ -181,7 +181,7 @@ def action(message, chat):
      elif message == '/fav':
          db.add_item('liverpool')
          items = db.get_items()
-         send_mess(chat, "items")
+         send_mess(chat, items)
      else:
          send_mess( chat,'Используйте команды начинающиеся с /')
 
