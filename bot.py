@@ -17,7 +17,7 @@ from telegram.ext import Filters
 from telegram.ext import MessageHandler
 
 db = DBHelper()
-
+button_help = 'Помощь'
 
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
@@ -193,48 +193,82 @@ def action(message, chat):
      else:
          send_mess( chat,'Используйте команды начинающиеся с /')
 
+def button_help_handler(update: Update, context: CallbackContext):
+    update.message.reply_text(
+        text='Это помощь',
+        reply_markup=ReplyKeyboardRemove(),
+    )
+    
+    
+def message_handler(update: Update, context: CallbackContext):
+    text = update.message.text
+    if text == button_help:
+        return button_help_handler(update=update, context=context)
+    
+    reply_markup = ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text=button_help)
+            ],
+        ],
+        resize_keyboard=True,
+    )
+
+
+    
+    update.message.reply_text(
+        text='Привет, нажми кнопка ниже!',
+        reply_markup=reply_markup,
+    )
 
 def main():
     db.setup()
-    
-    while(1):
-        json = last_update(get_updates_json(url))
-        if json != None:
-            break
-    update_id = json['update_id']
-    while True:
-        print("loop")
-        json = last_update(get_updates_json(url,update_id))
-        if json == None:
-              continue
-        delay = update_id - json['update_id']
-        print(delay)
-        if delay == 0:
-#             message = re.sub(r'men\b','man', message)
-#             message = re.sub(r'sen\b','san', message)
-#             message = re.sub(r'iq\b','u', message)
-#             message = re.sub(r'men\b','man', message)
-#             message = re.sub(r'mayman\b','miman', message)
-#             message = re.sub(r'maysan\b','misan', message)
-#             message = re.sub(r'yab','vo', message)
-            message = get_mess(json)
-            message = message.lower()
-            chat = get_chat_id(json)
-            action(message, chat)
-            update_id += 1
-        elif delay < 0:
-            bigJ = get_updates_json(url)
-            results = bigJ['result']
-            if len(results) == 0:
-                return
-            total_updates = len(results) - 1
-            prev = results[total_updates + delay]
-            message = get_mess(prev)
-            message = message.lower()
-            chat = get_chat_id(prev)
-            action(message, chat)
-            update_id += 1
-        sleep(1)       
+    updater = Updater(
+        token = '1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8',
+        use_context=True,
+    )
+    updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
+    updater.start_polling()
+    updater.idle()
+
+#     while(1):
+#         json = last_update(get_updates_json(url))
+#         if json != None:
+#             break
+#     update_id = json['update_id']
+#     while True:
+#         print("loop")
+#         json = last_update(get_updates_json(url,update_id))
+#         if json == None:
+#               continue
+#         delay = update_id - json['update_id']
+#         print(delay)
+#         if delay == 0:
+# #             message = re.sub(r'men\b','man', message)
+# #             message = re.sub(r'sen\b','san', message)
+# #             message = re.sub(r'iq\b','u', message)
+# #             message = re.sub(r'men\b','man', message)
+# #             message = re.sub(r'mayman\b','miman', message)
+# #             message = re.sub(r'maysan\b','misan', message)
+# #             message = re.sub(r'yab','vo', message)
+#             message = get_mess(json)
+#             message = message.lower()
+#             chat = get_chat_id(json)
+#             action(message, chat)
+#             update_id += 1
+#         elif delay < 0:
+#             bigJ = get_updates_json(url)
+#             results = bigJ['result']
+#             if len(results) == 0:
+#                 return
+#             total_updates = len(results) - 1
+#             prev = results[total_updates + delay]
+#             message = get_mess(prev)
+#             message = message.lower()
+#             chat = get_chat_id(prev)
+#             action(message, chat)
+#             update_id += 1
+#         sleep(1)       
 
 if __name__ == '__main__':  
     main()
