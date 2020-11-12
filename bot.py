@@ -250,6 +250,71 @@ def message_handler(update: Update, context: CallbackContext):
 
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         return button_country_handler(update=update, context=context)
+    elif message == 'Liverpool' or message == '/liverpool':
+         if team1.is_passed():
+            team1.upd()
+         update.message.reply_text(
+             text= team1.get_message(),
+             reply_markup=ReplyKeyboardRemove(),
+         )
+    elif message == 'Arsenal' or message == '/arsenal':
+        if team2.is_passed():
+           team2.upd()
+        update.message.reply_text(
+             text= team2.get_message(),
+             reply_markup=ReplyKeyboardRemove(),
+         )
+    elif message == 'Chelsea' or message == '/chelsea':
+        if team3.is_passed():
+           team3.upd()
+        update.message.reply_text(
+             text= team3.get_message(),
+             reply_markup=ReplyKeyboardRemove(),
+         )
+    elif message == 'Real Madrid' or message == '/real':
+        if team4.is_passed():
+           team4.upd()
+        update.message.reply_text(
+             text= team4.get_message(),
+             reply_markup=ReplyKeyboardRemove(),
+         )
+    elif message == 'Barcelona' or message == '/barcelona' or message == 'barsa':
+        if team5.is_passed():
+           team5.upd()
+        update.message.reply_text(
+             text= team5.get_message(),
+             reply_markup=ReplyKeyboardRemove(),
+         )
+    elif message == 'Manchester United' or message == '/mu' or message == 'mu':
+        if team6.is_passed():
+           team6.upd()
+        update.message.reply_text(
+             text= team6.get_message(),
+             reply_markup=ReplyKeyboardRemove(),
+         )
+    elif message == 'Juventus' or message == '/juventus' or message == 'juve' or message == 'cr7' or message == 'penaldu':
+        if team7.is_passed():
+           team7.upd()
+        update.message.reply_text(
+             text= team7.get_message(),
+             reply_markup=ReplyKeyboardRemove(),
+         )
+    elif message == 'Manchester City' or message == '/city' or message == 'city' or message == 'bir qop pul' or message == 'kalbosh' or message == 'kal':
+        if team8.is_passed():
+           team8.upd()
+        update.message.reply_text(
+             text= team8.get_message(),
+             reply_markup=ReplyKeyboardRemove(),
+         )
+#     elif message == '/fav':
+#         db.add_item('1')
+#         items = db.get_items()
+#         send_mess(chat, items)
+#     else:
+#         update.message.reply_text(
+#              text= team1.get_message(),
+#              reply_markup=ReplyKeyboardRemove(),
+#          )
     else:
         text = 'Davlatni tanglang'
         reply_markup = ReplyKeyboardMarkup(
