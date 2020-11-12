@@ -262,14 +262,25 @@ def message_handler(update: Update, context: CallbackContext):
      reply_markup = ReplyKeyboardMarkup(
          keyboard=[
              [
-                 KeyboardButton(text='Liverpool'),
-                 KeyboardButton(text='Arsenal'),
-                 KeyboardButton(text='Chelsea'),
-                 KeyboardButton(text='Manchester United'),
-                 KeyboardButton(text='Manchester City'),
-                 KeyboardButton(text='Turnir jadvali'),
+                 KeyboardButton(text='Liverpool')
+             ],
+             [   
+                 KeyboardButton(text='Arsenal')
+             ],
+             [
+                 KeyboardButton(text='Chelsea')
+             ],
+             [
+                 KeyboardButton(text='Manchester United')
+             ],
+             [
+                 KeyboardButton(text='Manchester City')
+             ],
+             [
+                 KeyboardButton(text='Turnir jadvali')
              ],
          ],
+         resize_keyboard=True,
      )
 
 
