@@ -70,7 +70,7 @@ class Team:
         self.hour = str(hour)
         self.minute = temp[1]
         
-    def get_next_message(self):
+    def get_message(self):
         print(self.is_passed())
         return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - ' + self.team2
     
