@@ -194,31 +194,90 @@ def action(message, chat):
          send_mess( chat,'Используйте команды начинающиеся с /')
 
 def button_help_handler(update: Update, context: CallbackContext):
+     reply_markup = ReplyKeyboardMarkup(
+         keyboard=[
+             [
+                 KeyboardButton(text='Angliya')
+                 KeyboardButton(text='Ispaniya')
+                 KeyboardButton(text='Italia')
+             ],
+         ],
+         resize_keyboard=True,
+     )
     update.message.reply_text(
-        text='Это помощь',
-        reply_markup=ReplyKeyboardRemove(),
+        text='Qaysi davlat jamoasini qidiryabsiz ?',
+        reply_markup=reply_markup,
     )
     
     
 def message_handler(update: Update, context: CallbackContext):
-    text = update.message.text
-    if text == button_help:
-        return button_help_handler(update=update, context=context)
+#      message = update.message.text
+#      global team1 
+#      global team2 
+#      global team3 
+#      global team4 
+#      global team5 
+#      global team6
+#      global team7 
+#      global team8 
+#      if message == 'liverpool' or message == '/liverpool':
+#          if team1.is_passed():
+#             team1.upd()
+#          send_mess(chat, team1.get_message())
+#      elif message == 'arsenal' or message == '/arsenal':
+#          if team2.is_passed():
+#             team2.upd()
+#          send_mess(chat, team2.get_message())
+#      elif message == 'chelsea' or message == '/chelsea':
+#          if team3.is_passed():
+#             team3.upd()
+#          send_mess(chat, team3.get_message())
+#      elif message == 'real' or message == '/real':
+#          if team4.is_passed():
+#             team4.upd()
+#          send_mess(chat, team4.get_message())
+#      elif message == 'barcelona' or message == '/barcelona' or message == 'barsa':
+#          if team5.is_passed():
+#             team5.upd()
+#          send_mess(chat, team5.get_message())
+#      elif message == 'mu' or message == '/mu' or message == 'mu':
+#          if team6.is_passed():
+#             team6.upd()
+#          send_mess(chat, team6.get_message())
+#      elif message == 'juventus' or message == '/juventus' or message == 'juve' or message == 'cr7' or message == 'penaldu':
+#          if team7.is_passed():
+#             team7.upd()
+#          send_mess(chat, team7.get_message())
+#      elif message == 'manchester-city' or message == '/city' or message == 'city' or message == 'bir qop pul' or message == 'kalbosh' or message == 'kal':
+#          if team8.is_passed():
+#             team8.upd()
+#          send_mess(chat, team8.get_message())
+#      elif message == '/fav':
+#          db.add_item('1')
+#          items = db.get_items()
+#          send_mess(chat, items)
+#      else:
+#          send_mess( chat,'Используйте команды начинающиеся с /')
     
-    reply_markup = ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text=button_help)
-            ],
-        ],
-        resize_keyboard=True,
-    )
+     reply_markup = ReplyKeyboardMarkup(
+         keyboard=[
+             [
+                 KeyboardButton(text='Liverpool')
+                 KeyboardButton(text='Arsenal')
+                 KeyboardButton(text='Chelsea')
+                 KeyboardButton(text='Manchester United')
+                 KeyboardButton(text='Manchester City')
+                 KeyboardButton(text='Turnir jadvali')
+             ],
+         ],
+         resize_keyboard=True,
+     )
 
 
     
-    update.message.reply_text(
-        text='Привет, нажми кнопка ниже!',
-        reply_markup=reply_markup,
+     update.message.reply_text(
+         text='Привет, нажми кнопка ниже!',
+         reply_markup=reply_markup,
     )
 
 def main():
