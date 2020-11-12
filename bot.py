@@ -70,7 +70,7 @@ class Team:
         self.hour = str(hour)
         self.minute = temp[1]
         
-    def get_message(self):
+    def get_next_message(self):
         print(self.is_passed())
         return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - ' + self.team2
     
@@ -110,7 +110,7 @@ team5 = Team('barcelona')
 team6 = Team('mu')
 team7 = Team('juventus')
 team8 = Team('manchester-city')
-team9 = Tean('milan')
+team9 = Team('milan')
 
 def int_value_from_ru_month(date_str):
     for k, v in RU_MONTH_VALUES.items():
