@@ -270,7 +270,6 @@ def message_handler(update: Update, context: CallbackContext):
                  KeyboardButton(text='Turnir jadvali'),
              ],
          ],
-         resize_keyboard=True,
      )
 
 
