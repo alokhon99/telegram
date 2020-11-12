@@ -229,7 +229,7 @@ def button_country_handler(update: Update, context: CallbackContext):
                     ],
             ],
             resize_keyboard=True,)
-    elif message == 'Italia':
+    elif message == 'Italiya':
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [
