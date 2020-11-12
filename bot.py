@@ -194,16 +194,16 @@ def action(message, chat):
          send_mess( chat,'Используйте команды начинающиеся с /')
 
 def button_help_handler(update: Update, context: CallbackContext):
-     reply_markup = ReplyKeyboardMarkup(
-         keyboard=[
-             [
-                 KeyboardButton(text='Angliya'),
-                 KeyboardButton(text='Ispaniya'),
-                 KeyboardButton(text='Italia'),
-             ],
-         ],
-         resize_keyboard=True,
-     )
+    reply_markup = ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text='Angliya'),
+                KeyboardButton(text='Ispaniya'),
+                KeyboardButton(text='Italia'),
+            ],
+        ],
+        resize_keyboard=True,
+    )
     update.message.reply_text(
         text='Qaysi davlat jamoasini qidiryabsiz ?',
         reply_markup=reply_markup,
