@@ -110,6 +110,7 @@ team5 = Team('barcelona')
 team6 = Team('mu')
 team7 = Team('juventus')
 team8 = Team('manchester-city')
+team9 = Tean('milan')
 
 def int_value_from_ru_month(date_str):
     for k, v in RU_MONTH_VALUES.items():
@@ -316,6 +317,13 @@ def message_handler(update: Update, context: CallbackContext):
            team8.upd()
         update.message.reply_text(
              text= team8.get_message(),
+             reply_markup=reply_markup,
+         )
+    elif message == 'Milan':
+        if team9.is_passed():
+           team9.upd()
+        update.message.reply_text(
+             text= team9.get_message(),
              reply_markup=reply_markup,
          )
 #     elif message == '/fav':
