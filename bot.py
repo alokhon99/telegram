@@ -251,6 +251,7 @@ def message_handler(update: Update, context: CallbackContext):
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         return button_country_handler(update=update, context=context)
     else:
+        text = 'Davlatni tanglang'
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [
@@ -266,7 +267,7 @@ def message_handler(update: Update, context: CallbackContext):
             resize_keyboard=True,)
         
     update.message.reply_text(
-        text=message+' jamoasini tanlang',
+        text= text
         reply_markup=reply_markup,
     )
 
