@@ -106,8 +106,9 @@ class Match:
             hour = hour - 24
         self.hour = str(hour)
         self.minute = temp[1]
-        contents=soup.find_all('div', class_='score score-red')
-        our_class = contents[0]
+        con = soup.find_all('div', class_='score score-red')
+        print(con)
+        our_class = con[0]
         number1 = our_class.find_all('span')[0].text
         number2 = our_class.find_all('span')[1].text
         self.score = number1 + ' : ' + number2
