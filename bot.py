@@ -39,17 +39,17 @@ RU_MONTH_VALUES = {
 
 
 class Match:
-    def __init__(self, which):
+    def __init__(self, which, url):
         self.which = which
         if which == 'p':
-            self.update_as_prev()
+            self.update_as_prev(url)
         elif which == 'n':
-            self.update_as_next()
+            self.update_as_next(url)
         
-    def update_as_next(self):
+    def update_as_next(self, name):
         print('upd')
         global url_t;
-        html_content = requests.get(url_t + self.name + '/').text
+        html_content = requests.get(url_t + name + '/').text
         soup = BeautifulSoup(html_content, "lxml")
         contents=soup.find_all('div', class_='commands')
         next_match = contents[1]
@@ -73,10 +73,10 @@ class Match:
         self.hour = str(hour)
         self.minute = temp[1]
     
-    def update_as_prev(self):
+    def update_as_prev(self, name):
         print('upd')
         global url_t;
-        html_content = requests.get(url_t + self.name + '/').text
+        html_content = requests.get(url_t + name + '/').text
         soup = BeautifulSoup(html_content, "lxml")
         contents=soup.find_all('div', class_='commands')
         next_match = contents[0]
@@ -139,8 +139,8 @@ class Team:
     def __init__(self, name):
         print('init')
         self.name = name
-        p = Match('p')
-        n = Match('n')
+        p = Match('p', name)
+        n = Match('n', name)
         self.next = n
         self.prev = p
         
