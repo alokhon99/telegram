@@ -381,7 +381,7 @@ def message_handler(update: Update, context: CallbackContext):
             resize_keyboard=True,)
     print('baqa keldi')
     if message == "Orqaga":
-        message = x.get_last_command()
+        message = x.commands[len(x.commands)-2] 
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print('baqa keldi')
         x.add_commands(message)
