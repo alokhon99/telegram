@@ -278,6 +278,7 @@ def message_handler(update: Update, context: CallbackContext):
     if x == None:
         x = User(update.message.chat_id)
         users.append(x)
+    print(x)
     reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [
