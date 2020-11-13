@@ -112,6 +112,7 @@ class User:
         return self.commands
 
     def add_commands(command):
+        print('add_commands')
         self.commands.append(command)
         
     def get_last_command():
@@ -282,6 +283,7 @@ def message_handler(update: Update, context: CallbackContext):
         x = User(update.message.chat_id)
         users.append(x)
     print(x.chat_id)
+    print(type(x.chat_id))
     reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [
