@@ -273,8 +273,11 @@ def button_country_handler(update: Update, context: CallbackContext):
 def message_handler(update: Update, context: CallbackContext):
     message = update.message.text
     global users
-    x = next((x for x in users if x.chat_id == update.message.chat_id), None)
-    print(users)
+    x = None
+    for u in users:
+        if u.chat_id == update.message.chat_id:
+            x = u
+            break
     if x == None:
         x = User(update.message.chat_id)
         users.append(x)
