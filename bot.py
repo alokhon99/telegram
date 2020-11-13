@@ -338,7 +338,7 @@ def button_team_handler(update: Update, context: CallbackContext):
     print("team handler")
     reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],],resize_keyboard=True,)
     update.message.reply_text(
-        text=message+' jamoasini tanlang',
+        text="Izlayotgan ma'lumotingizni tanlang",
         reply_markup=reply_markup,
     )
     
