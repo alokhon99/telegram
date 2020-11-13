@@ -107,7 +107,10 @@ class Match:
         self.hour = str(hour)
         self.minute = temp[1]
         con = soup.find_all('div', class_='score score-red')
-        print(con)
+        if len(con) == 0:
+            con = soup.find_all('div', class_='score score-green')
+            if len(con) == 0:
+                con = soup.find_all('div', class_='score score-orange')
         our_class = con[0]
         number1 = our_class.find_all('span')[0].text
         number2 = our_class.find_all('span')[1].text
