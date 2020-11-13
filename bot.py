@@ -274,6 +274,7 @@ def message_handler(update: Update, context: CallbackContext):
     message = update.message.text
     global users
     next((x for x in users if x.chat_id == update.message.chat_id), None)
+    print(users)
     if x == None:
         x = User(update.message.chat_id)
         users.append(x)
