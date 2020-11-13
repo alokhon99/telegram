@@ -459,6 +459,7 @@ def message_handler(update: Update, context: CallbackContext):
                  reply_markup=reply_markup,
             )
         x.clear_history()
+        print('keldi')
     else:
         x.clear_history()
         text = 'Davlatni tanglang'
