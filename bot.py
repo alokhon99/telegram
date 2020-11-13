@@ -103,6 +103,27 @@ class Team:
     date = '12'
     tounament = 'epl'
     
+class User:
+    
+    def __init__(self, chat_id):
+        self.chat_id = chat_id
+
+    def get_commands():
+        return self.commands
+
+    def add_commands(command):
+        self.commands.append(command)
+        
+    def get_last_command():
+        return self.commands[len(self.commands)-1]
+    
+    def clear_history():
+        self.commands = []
+
+    chat_id = '0'
+    commands = []    
+    
+    
 team1 = Team('liverpool')
 team2 = Team('arsenal')
 team3 = Team('chelsea')
@@ -112,6 +133,7 @@ team6 = Team('mu')
 team7 = Team('juventus')
 team8 = Team('manchester-city')
 team9 = Team('milan')
+users = []
 
 def int_value_from_ru_month(date_str):
     for k, v in RU_MONTH_VALUES.items():
@@ -155,7 +177,8 @@ def action(message, chat):
      global team5 
      global team6
      global team7 
-     global team8 
+     global team8
+     
      if message == 'liverpool' or message == '/liverpool':
          if team1.is_passed():
             team1.upd()
@@ -249,6 +272,11 @@ def button_country_handler(update: Update, context: CallbackContext):
     )
 def message_handler(update: Update, context: CallbackContext):
     message = update.message.text
+    global users
+    next((x for x in users if x.chat_id == update.message.chat_id), None)
+    if x == None:
+        x = User(update.message.chat_id)
+        users.append(x)
     reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [
@@ -263,8 +291,10 @@ def message_handler(update: Update, context: CallbackContext):
             ],
             resize_keyboard=True,)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
+        x.add_commands(message)
         return button_country_handler(update=update, context=context)
     elif message == 'Liverpool' or message == '/liverpool':
+         x.add_commands(message)
          if team1.is_passed():
             team1.upd()
          update.message.reply_text(
@@ -272,6 +302,7 @@ def message_handler(update: Update, context: CallbackContext):
              reply_markup=reply_markup,
          )
     elif message == 'Arsenal' or message == '/arsenal':
+        x.add_commands(message)
         if team2.is_passed():
            team2.upd()
         update.message.reply_text(
@@ -279,6 +310,7 @@ def message_handler(update: Update, context: CallbackContext):
              reply_markup=reply_markup,
          )
     elif message == 'Chelsea' or message == '/chelsea':
+        x.add_commands(message)
         if team3.is_passed():
            team3.upd()
         update.message.reply_text(
@@ -286,6 +318,7 @@ def message_handler(update: Update, context: CallbackContext):
              reply_markup=reply_markup,
          )
     elif message == 'Real Madrid' or message == '/real':
+        x.add_commands(message)
         if team4.is_passed():
            team4.upd()
         update.message.reply_text(
@@ -293,6 +326,7 @@ def message_handler(update: Update, context: CallbackContext):
              reply_markup=reply_markup,
          )
     elif message == 'Barcelona' or message == '/barcelona' or message == 'barsa':
+        x.add_commands(message)
         if team5.is_passed():
            team5.upd()
         update.message.reply_text(
@@ -300,6 +334,7 @@ def message_handler(update: Update, context: CallbackContext):
              reply_markup=reply_markup,
          )
     elif message == 'Manchester United' or message == '/mu' or message == 'mu':
+        x.add_commands(message)
         if team6.is_passed():
            team6.upd()
         update.message.reply_text(
@@ -307,6 +342,7 @@ def message_handler(update: Update, context: CallbackContext):
              reply_markup=reply_markup,
          )
     elif message == 'Juventus' or message == '/juventus' or message == 'juve' or message == 'cr7' or message == 'penaldu':
+        x.add_commands(message)
         if team7.is_passed():
            team7.upd()
         update.message.reply_text(
@@ -314,6 +350,7 @@ def message_handler(update: Update, context: CallbackContext):
              reply_markup=reply_markup,
          )
     elif message == 'Manchester City' or message == '/city' or message == 'city' or message == 'bir qop pul' or message == 'kalbosh' or message == 'kal':
+        x.add_commands(message)
         if team8.is_passed():
            team8.upd()
         update.message.reply_text(
@@ -321,6 +358,7 @@ def message_handler(update: Update, context: CallbackContext):
              reply_markup=reply_markup,
          )
     elif message == 'Milan':
+        x.add_commands(message)
         if team9.is_passed():
            team9.upd()
         update.message.reply_text(
@@ -337,6 +375,7 @@ def message_handler(update: Update, context: CallbackContext):
 #              reply_markup=ReplyKeyboardRemove(),
 #          )
     else:
+        x.clear_history()
         text = 'Davlatni tanglang'
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
