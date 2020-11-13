@@ -395,7 +395,7 @@ def message_handler(update: Update, context: CallbackContext):
                         ],
             ],
             resize_keyboard=True,)
-        print(text)
+        print('+')
     update.message.reply_text(
         text= text,
         reply_markup=reply_markup,
