@@ -389,7 +389,10 @@ def message_handler(update: Update, context: CallbackContext):
         print(message)
         return button_team_handler(update=update, context=context)
     elif message == "Keyingi o'yin":
+        m = message
+        reply_markup = ReplyKeyboardMarkup( keyboard=[ [KeyboardButton(text="Keyingi o'yin")], [KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         message = x.get_last_command()
+        x.add_commands(m)
         if message == 'Liverpool' or message == '/liverpool':
             update.message.reply_text(
                  text= team1.get_next(),
@@ -435,6 +438,7 @@ def message_handler(update: Update, context: CallbackContext):
         x.clear_history()    
     elif message == "So'nggi o'yin":
         message = x.get_last_command()
+        reply_markup = ReplyKeyboardMarkup( keyboard=[ [KeyboardButton(text="Keyingi o'yin")], [KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         if message == 'Liverpool' or message == '/liverpool':
             update.message.reply_text(
                  text= team1.get_prev(),
