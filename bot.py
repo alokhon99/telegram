@@ -73,6 +73,7 @@ class Match:
             hour = hour - 24
         self.hour = str(hour)
         self.minute = temp[1]
+        self.score = '_:_'
         print('upd next tugadi')
     
     def update_as_prev(self, name):
@@ -94,18 +95,24 @@ class Match:
         print(time)
         self.tournament = ''
         for w in dt_words[3:]:
+            if w == '\r\nзавершен':
+                break    
             self.tournament = self.tournament + w + ' '
         self.tournament = self.tournament.replace('|', '').lstrip()
         temp = time.split(':')
-        hour = 1
-#         int(temp[0])
+        hour = int(temp[0])
         hour = hour + 2
         if hour > 23:
             hour = hour - 24
         self.hour = str(hour)
-        self.minute = '1'
-        #temp[1]
+        self.minute = temp[1]
+        contents=soup.find_all('div', class_='score score-red')
+        our_class = contents[0]
+        number1 = our_class.find_all('span')[0].text
+        number2 = our_class.find_all('span')[1].text
+        self.score = number1 + ' : ' + number2
         print('upd prev tugadi')
+        
     
     def is_passed(self):
         dt = self.date.split(' ')
@@ -128,7 +135,7 @@ class Match:
             return False
         
     def get_message(self):
-        return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - ' + self.team2    
+        return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' '+self.score+' '+ self.team2    
      
         
     team1 = 'team'
@@ -138,6 +145,7 @@ class Match:
     date = '12'
     tounament = 'epl'
     which = '0'
+    score = '_:_'
        
 
 class Team:
