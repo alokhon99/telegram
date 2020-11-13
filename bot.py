@@ -47,7 +47,7 @@ class Match:
             self.update_as_next(url)
         
     def update_as_next(self, name):
-        print('upd')
+        print('upd next')
         global url_t;
         html_content = requests.get(url_t + name + '/').text
         soup = BeautifulSoup(html_content, "lxml")
@@ -55,6 +55,7 @@ class Match:
         next_match = contents[1]
         self.team1 = next_match.find_all('span')[1].text
         self.team2 = next_match.find_all('span')[3].text
+        print('upd next'+self.team1+self.team2)
         details = soup.find_all('div', class_='score-descr')[1]
         dt_full = details.text
         dt_full = dt_full.replace(next_match.text,'')
@@ -72,9 +73,10 @@ class Match:
             hour = hour - 24
         self.hour = str(hour)
         self.minute = temp[1]
+        print('upd next tugadi')
     
     def update_as_prev(self, name):
-        print('upd')
+        print('upd prev')
         global url_t;
         html_content = requests.get(url_t + name + '/').text
         soup = BeautifulSoup(html_content, "lxml")
@@ -82,7 +84,7 @@ class Match:
         next_match = contents[0]
         self.team1 = next_match.find_all('a')[0].text
         self.team2 = next_match.find_all('a')[1].text
-        print(self.team1+' '+self.team2)
+        print('upd prev'+self.team1+' '+self.team2)
         details = soup.find_all('div', class_='score-descr')[1]
         dt_full = details.text
         dt_full = dt_full.replace(next_match.text,'')
@@ -103,6 +105,7 @@ class Match:
             hour = hour - 24
         self.hour = str(hour)
         self.minute = temp[1]
+        print('upd prev tugadi')
     
     def is_passed(self):
         dt = self.date.split(' ')
