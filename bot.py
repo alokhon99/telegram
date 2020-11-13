@@ -112,8 +112,8 @@ class Match:
             if len(con) == 0:
                 con = soup.find_all('div', class_='score score-orange')
         our_class = con[0]
-        number1 = our_class.find_all('span')[0].text
-        number2 = our_class.find_all('span')[1].text
+        number1 = our_class.find_all('span')[0].text.rstrip()
+        number2 = our_class.find_all('span')[1].text.lstrip()
         self.score = number1 + ' : ' + number2
         print('upd prev tugadi')
         
