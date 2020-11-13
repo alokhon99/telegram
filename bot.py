@@ -92,6 +92,7 @@ class Match:
         print(self_date)
         time = dt_words[2]
         self.tournament = ''
+        print(time)
         for w in dt_words[3:]:
             self.tournament = self.tournament + w + ' '
         self.tournament = self.tournament.replace('|\n', '').lstrip()
