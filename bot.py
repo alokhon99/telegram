@@ -346,7 +346,7 @@ def button_country_handler(update: Update, context: CallbackContext):
     
 def button_team_handler(update: Update, context: CallbackContext):
     print("team handler")
-    reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],],resize_keyboard=True,)
+    reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
     update.message.reply_text(
         text="Izlayotgan ma'lumotingizni tanlang",
         reply_markup=reply_markup,
@@ -354,6 +354,7 @@ def button_team_handler(update: Update, context: CallbackContext):
     
 def message_handler(update: Update, context: CallbackContext):
     message = update.message.text
+    
     global users
     x = None
     for u in users:
@@ -379,6 +380,8 @@ def message_handler(update: Update, context: CallbackContext):
             ],
             resize_keyboard=True,)
     print('baqa keldi')
+    if message == "Orqaga":
+        message = x.get_last_command()
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print('baqa keldi')
         x.add_commands(message)
@@ -389,10 +392,8 @@ def message_handler(update: Update, context: CallbackContext):
         print(message)
         return button_team_handler(update=update, context=context)
     elif message == "Keyingi o'yin":
-        m = message
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [KeyboardButton(text="Keyingi o'yin")], [KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         message = x.get_last_command()
-        x.add_commands(m)
         if message == 'Liverpool' or message == '/liverpool':
             update.message.reply_text(
                  text= team1.get_next(),
