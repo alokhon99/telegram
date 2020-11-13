@@ -83,18 +83,16 @@ class Match:
         contents=soup.find_all('div', class_='commands')
         next_match = contents[0]
         self.team1 = next_match.find_all('a')[0].text
+        print('team1 bu '+self.team1)
         self.team2 = next_match.find_all('a')[1].text
-        print('upd prev'+self.team1+' '+self.team2)
-        details = soup.find_all('div', class_='score-descr')[1]
+        print('team2 bu '+self.team2)
+        details = soup.find_all('div', class_='score-descr')[0]
         dt_full = details.text
         dt_full = dt_full.replace(next_match.text,'')
         dt_words = dt_full.split(' ')
-        print(dt_full)
         self.date = dt_words[0].lstrip() + ' ' + dt_words[1]
-        print(self.date)
         time = dt_words[2]
         self.tournament = ''
-        print(time)
         for w in dt_words[3:]:
             self.tournament = self.tournament + w + ' '
         self.tournament = self.tournament.replace('|\n', '').lstrip()
