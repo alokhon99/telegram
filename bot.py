@@ -297,6 +297,7 @@ def message_handler(update: Update, context: CallbackContext):
             resize_keyboard=True,)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         x.add_commands(message)
+        print(message)
         return button_country_handler(update=update, context=context)
     elif message == 'Liverpool' or message == '/liverpool':
          x.add_commands(message)
