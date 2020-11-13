@@ -105,7 +105,8 @@ class Match:
         if hour > 23:
             hour = hour - 24
         self.hour = str(hour)
-        self.minute = temp[1]
+        self.minute = '1'
+        #temp[1]
         print('upd prev tugadi')
     
     def is_passed(self):
