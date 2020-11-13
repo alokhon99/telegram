@@ -95,7 +95,7 @@ class Match:
         print(time)
         self.tournament = ''
         for w in dt_words[3:]:
-            if w == '\r\nзавершен':
+            if 'завершен' in w:
                 break    
             self.tournament = self.tournament + w + ' '
         self.tournament = self.tournament.replace('|', '').lstrip()
@@ -384,7 +384,7 @@ def message_handler(update: Update, context: CallbackContext):
         x.add_commands(message)
         print(message)
         return button_country_handler(update=update, context=context)
-    elif message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barselona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
+    elif message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
         x.add_commands(message)
         print(message)
         return button_team_handler(update=update, context=context)
