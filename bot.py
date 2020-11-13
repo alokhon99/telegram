@@ -108,17 +108,17 @@ class User:
     def __init__(self, chat_id):
         self.chat_id = chat_id
 
-    def get_commands():
+    def get_commands(self):
         return self.commands
 
-    def add_commands(command):
+    def add_commands(self,command):
         print('add_commands')
         self.commands.append(command)
         
-    def get_last_command():
+    def get_last_command(self):
         return self.commands[len(self.commands)-1]
     
-    def clear_history():
+    def clear_history(self):
         self.commands = []
 
     chat_id = 0
