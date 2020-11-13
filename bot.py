@@ -121,7 +121,7 @@ class User:
     def clear_history():
         self.commands = []
 
-    chat_id = '0'
+    chat_id = 0
     commands = []    
     
     
