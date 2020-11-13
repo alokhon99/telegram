@@ -413,6 +413,7 @@ def message_handler(update: Update, context: CallbackContext):
                  text= team9.get_next(),
                  reply_markup=reply_markup,
             )
+        x.clear_history()    
     elif message == "So'nggi o'yin":
         message = x.get_last_command()
         if message == 'Liverpool' or message == '/liverpool':
@@ -452,21 +453,12 @@ def message_handler(update: Update, context: CallbackContext):
                  text= team8.get_prev(),
               reply_markup=reply_markup,
              )
-        elif message == 'Milan':
+        else:
             update.message.reply_text(
                  text= team9.get_prev(),
                  reply_markup=reply_markup,
             )
-    x.clear_history()
-#     elif message == '/fav':
-#         db.add_item('1')
-#         items = db.get_items()
-#         send_mess(chat, items)
-#     else:
-#         update.message.reply_text(
-#              text= team1.get_message(),
-#              reply_markup=ReplyKeyboardRemove(),
-#          )
+        x.clear_history()
     else:
         x.clear_history()
         text = 'Davlatni tanglang'
