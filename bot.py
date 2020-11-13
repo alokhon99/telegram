@@ -87,7 +87,9 @@ class Match:
         dt_full = details.text
         dt_full = dt_full.replace(next_match.text,'')
         dt_words = dt_full.split(' ')
+        print(dt_full)
         self.date = dt_words[0].lstrip() + ' ' + dt_words[1]
+        print(time)
         time = dt_words[2]
         self.tournament = ''
         for w in dt_words[3:]:
