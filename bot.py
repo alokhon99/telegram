@@ -297,7 +297,9 @@ def message_handler(update: Update, context: CallbackContext):
                         ],
             ],
             resize_keyboard=True,)
+    print('baqa keldi')
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
+        print('baqa keldi')
         x.add_commands(message)
         print(message)
         return button_country_handler(update=update, context=context)
