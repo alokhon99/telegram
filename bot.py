@@ -88,6 +88,7 @@ class Match:
         print('team2 bu '+self.team2)
         details = soup.find_all('div', class_='score-descr')[0]
         dt_full = details.text
+        print('remove '+next_match.text+' from '+dt_full)
         dt_full = dt_full.replace(next_match.text,'')
         dt_words = dt_full.split(' ')
         self.date = dt_words[0].lstrip() + ' ' + dt_words[1]
