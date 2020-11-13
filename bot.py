@@ -99,7 +99,8 @@ class Match:
             self.tournament = self.tournament + w + ' '
         self.tournament = self.tournament.replace('|\n', '').lstrip()
         temp = time.split(':')
-        hour = int(temp[0])
+        hour = 1
+#         int(temp[0])
         hour = hour + 2
         if hour > 23:
             hour = hour - 24
