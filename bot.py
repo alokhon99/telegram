@@ -192,14 +192,14 @@ class User:
         self.commands.append(command)
         
     def get_last_command(self):
-        return self.commands[len(self.commands)-1]
+        return self.commands[len(self.commands)-2]
     
     def clear_history(self):
         self.commands = []
         
     def get_back(self):
         print(self.commands)
-        return self.commands[len(self.commands)-2]
+        return self.commands[len(self.commands)-3]
 
     chat_id = 0
     commands = []    
@@ -353,7 +353,7 @@ def message_handler(update: Update, context: CallbackContext):
         return button_team_handler(update=update, context=context)
     elif message == "Keyingi o'yin" or message =="So'nggi o'yin":
         x.add_commands(message)
-        message = x.get_back()
+        message = x.get_last_command()
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [KeyboardButton(text="Keyingi o'yin")], [KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         if message == 'Liverpool' or message == '/liverpool':
             update.message.reply_text(
