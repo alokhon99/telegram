@@ -341,7 +341,7 @@ def message_handler(update: Update, context: CallbackContext):
     if message == "Orqaga":
         print(x.commands)
         message = x.get_back()
-        print(message)
+        print(x.commands)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print('baqa keldi')
         x.add_commands(message)
