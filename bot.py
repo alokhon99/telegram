@@ -194,7 +194,7 @@ class User:
         self.commands = []
         
     def get_back(self):
-        print(x)
+        print(self.commands)
         return self.commands[len(self.commands)-2]
 
     chat_id = 0
