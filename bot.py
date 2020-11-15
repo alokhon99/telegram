@@ -384,7 +384,7 @@ def message_handler(update: Update, context: CallbackContext):
             ],
             resize_keyboard=True,)
     if message == "Orqaga":
-        print(x)
+        print(x.commands)
         message = x.get_last_command()
         print(message)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
