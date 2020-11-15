@@ -194,6 +194,7 @@ class User:
         self.commands = []
         
     def get_back(self):
+        print(x)
         return self.commands[len(self.commands)-2]
 
     chat_id = 0
@@ -382,7 +383,6 @@ def message_handler(update: Update, context: CallbackContext):
                         ],
             ],
             resize_keyboard=True,)
-    print('baqa keldi')
     if message == "Orqaga":
         print("orqaga ")
         message = x.get_back()
