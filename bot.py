@@ -192,6 +192,9 @@ class User:
     
     def clear_history(self):
         self.commands = []
+        
+    def get_back(self):
+        return self.commands[len(self.commands)-2]
 
     chat_id = 0
     commands = []    
@@ -382,8 +385,7 @@ def message_handler(update: Update, context: CallbackContext):
     print('baqa keldi')
     if message == "Orqaga":
         print("orqaga ")
-        print("uzunligi "+len(x.commands))
-        message = x.commands[len(x.commands)-2] 
+        message = x.get_back()
         print(message)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print('baqa keldi')
