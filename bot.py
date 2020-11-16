@@ -481,7 +481,7 @@ def message_handler(update: Update, context: CallbackContext):
                         ],
             ],
             resize_keyboard=True,)
-    if message == 'Sevimli Jamoa':
+    if message == 'Sevimli Jamoalar':
         update.message.reply_text(
                 text= x.fav,
                 reply_markup=reply_markup,)
@@ -489,6 +489,10 @@ def message_handler(update: Update, context: CallbackContext):
     elif message == "Kuzatib borish":
         insert_fav(x.chat_id, x.team)
         x.fav = x.team
+        update.message.reply_text(
+                text= x.team + " jamoasi Sevimlilar bo'limiga tushdi",
+                reply_markup=reply_markup,)
+        return
     elif message == "Orqaga":
         message = x.get_back()
         print(message)
