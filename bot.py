@@ -539,7 +539,7 @@ def message_handler(update: Update, context: CallbackContext):
     elif message == "Keyingi o'yin" or message =="So'nggi o'yin":
         m = message
         message = x.team
-        reply_markup = ReplyKeyboardMarkup( keyboard=[ [KeyboardButton(text="Keyingi o'yin")], [KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+        reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         if message == 'Liverpool' or message == '/liverpool':
             update.message.reply_text(
                  text= team1.get(m),
