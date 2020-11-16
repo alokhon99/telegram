@@ -275,6 +275,7 @@ def create_tables():
         if conn is not None:
             conn.close()
 def insert_user(chat_id):
+    print('insert')
     global DATABASE_URL
     sql = """INSERT INTO users(chat_id, fav)
              VALUES(%s,%s) RETURNING chat_id;"""
@@ -400,7 +401,7 @@ def message_handler(update: Update, context: CallbackContext):
         x = User(update.message.chat_id)
         users.append(x)
     print(x.chat_id)
-    chid = insert_user(chat_id)
+    chid = insert_user(x.chat_id)
     print(chid)
     print(type(x.chat_id))
     reply_markup = ReplyKeyboardMarkup(
