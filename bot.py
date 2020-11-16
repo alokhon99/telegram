@@ -16,6 +16,7 @@ from telegram.ext import CallbackContext
 from telegram.ext import Filters
 from telegram.ext import MessageHandler
 
+DATABASE_URL = os.environ['DATABASE_URL']
 db = DBHelper()
 button_help = 'Помощь'
 
@@ -236,6 +237,7 @@ def get_updates_json(request, offset=None):
     return response.json()
 
 def create_tables():
+    global DATABASE_URL
     """ create tables in the PostgreSQL database"""
     commands = (
         """
@@ -270,7 +272,7 @@ def create_tables():
         if conn is not None:
             conn.close()
 def insert_user(chat_id):
-    """ insert a new vendor into the vendors table """
+    global DATABASE_URL
     sql = """INSERT INTO users(chat_id, fav)
              VALUES(%s,%s) RETURNING chat_id;"""
     conn = None
