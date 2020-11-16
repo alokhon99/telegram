@@ -354,7 +354,7 @@ def message_handler(update: Update, context: CallbackContext):
         print("keldi buyoga")
         x.league = message
         x.state = 1
-        return button_country_handler(update=update, context=context, message)
+        return button_country_handler(update=update, context=context, message=message)
     elif message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
         x.team = message
         x.state = 2
