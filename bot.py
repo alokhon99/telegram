@@ -241,7 +241,7 @@ def create_tables():
     """ create tables in the PostgreSQL database"""
     commands = (
         """
-        CREATE TABLE [IF NOT EXISTS] users (
+        CREATE TABLE IF NOT EXISTS users (
             chat_id INTEGER PRIMARY KEY,
             username VARCHAR(255),
             fav VARCHAR(20)
@@ -249,7 +249,7 @@ def create_tables():
             
         )
         """,
-        """ CREATE TABLE {IF NOT EXISTS] teams(
+        """ CREATE TABLE IF NOT EXISTS teams(
                 part_id SERIAL PRIMARY KEY,
                 part_name VARCHAR(255) NOT NULL
                 )
