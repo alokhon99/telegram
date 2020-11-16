@@ -198,10 +198,16 @@ class User:
         self.commands = []
         
     def get_back(self):
-        print(self.commands)
+        if self.state == 2:
+            return self.league
+        else:
+            return 'any'
         return self.commands[len(self.commands)-3]
 
     chat_id = 0
+    team = ' '
+    league = ' '
+    state = 0
     commands = []    
     
     
@@ -273,6 +279,7 @@ def button_country_handler(update: Update, context: CallbackContext):
                 [
                     KeyboardButton(text='Turnir jadvali')
                     ],
+                [KeyboardButton(text='Orqaga')],
             ],
             resize_keyboard=True,)
     elif message == 'Ispaniya':
@@ -284,6 +291,7 @@ def button_country_handler(update: Update, context: CallbackContext):
                 [
                     KeyboardButton(text='Real Madrid')
                     ],
+                [KeyboardButton(text='Orqaga')],
             ],
             resize_keyboard=True,)
     elif message == 'Italiya':
@@ -295,6 +303,7 @@ def button_country_handler(update: Update, context: CallbackContext):
                 [
                     KeyboardButton(text='Milan')
                     ],
+                [KeyboardButton(text='Orqaga')],
             ],
             resize_keyboard=True,)
         
@@ -339,21 +348,18 @@ def message_handler(update: Update, context: CallbackContext):
             ],
             resize_keyboard=True,)
     if message == "Orqaga":
-        print(x.commands)
         message = x.get_back()
-        print(x.commands)
-    if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
-        print('baqa keldi')
-        x.add_commands(message)
         print(message)
+    if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
+        x.league = message
+        x.state = 1
         return button_country_handler(update=update, context=context)
     elif message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
-        x.add_commands(message)
-        print(message)
+        x.team = message
+        x.state = 2
         return button_team_handler(update=update, context=context)
     elif message == "Keyingi o'yin" or message =="So'nggi o'yin":
-        x.add_commands(message)
-        message = x.get_last_command()
+        message = x.team
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [KeyboardButton(text="Keyingi o'yin")], [KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         if message == 'Liverpool' or message == '/liverpool':
             update.message.reply_text(
