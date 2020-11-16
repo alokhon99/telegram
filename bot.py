@@ -484,7 +484,8 @@ def message_handler(update: Update, context: CallbackContext):
     if message == 'Sevimli Jamoa':
         update.message.reply_text(
                 text= x.fav,
-                reply_markup=reply_markup,) 
+                reply_markup=reply_markup,)
+        return
     elif message == "Kuzatib borish":
         insert_fav(x.chat_id, x.team)
         x.fav = x.team
