@@ -297,8 +297,6 @@ def users_db():
     finally:
         if conn is not None:
             conn.close()
-
-    return chat_id
             
 def insert_user(chat_id):
     print('insert')
