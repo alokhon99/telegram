@@ -286,9 +286,11 @@ def insert_user(chat_id):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql, (chat_id,'Liverpool'))
+        cur.execute(sql,(chat_id,'Liverpool'))
+        print('executed')
         # get the generated id back
         chat_id = cur.fetchone()[0]
+        print(chat_id)
         # commit the changes to the database
         conn.commit()
         # close communication with the database
