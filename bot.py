@@ -286,7 +286,7 @@ def users_db():
         cur.execute(sql)
         print('executed')
         # get the generated id back
-        users = cur.fetchone()
+        users = cur.fetchall() 
         print(users)
         # commit the changes to the database
         conn.commit()
@@ -376,7 +376,9 @@ def get_user(chat_id):
         cur.execute(sql, (chat_id,))
         print('executed')
         # get the generated id back
-        fav = cur.fetchone()[0]
+        fav = cur.fetchone()
+        if fav != None:
+            fav = fav[0]
         print(fav)
         # commit the changes to the database
         conn.commit()
@@ -483,6 +485,7 @@ def message_handler(update: Update, context: CallbackContext):
             break
     if x == None:
         fav = get_user(update.message.chat_id)
+        print(fav)
         if fav == None:
             insert_user(x.chat_id)
         x = User(update.message.chat_id)
