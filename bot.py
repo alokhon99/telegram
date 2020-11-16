@@ -202,7 +202,6 @@ class User:
             return self.league
         else:
             return 'any'
-        return self.commands[len(self.commands)-3]
 
     chat_id = 0
     team = ' '
@@ -359,48 +358,49 @@ def message_handler(update: Update, context: CallbackContext):
         x.state = 2
         return button_team_handler(update=update, context=context)
     elif message == "Keyingi o'yin" or message =="So'nggi o'yin":
+        m = message
         message = x.team
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [KeyboardButton(text="Keyingi o'yin")], [KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         if message == 'Liverpool' or message == '/liverpool':
             update.message.reply_text(
-                 text= team1.get(message),
+                 text= team1.get(m),
                 reply_markup=reply_markup,
             )
         elif message == 'Arsenal' or message == '/arsenal':
             update.message.reply_text(
-                 text= team2.get(message),
+                 text= team2.get(m),
                 reply_markup=reply_markup,
             )
         elif message == 'Chelsea' or message == '/chelsea':
             update.message.reply_text(
-                 text= team3.get(message),
+                 text= team3.get(m),
                 reply_markup=reply_markup,
             )
         elif message == 'Real Madrid' or message == '/real':
             update.message.reply_text(
-                 text= team4.get(message),
+                 text= team4.get(m),
                 reply_markup=reply_markup,
             )
         elif message == 'Barcelona' or message == '/barcelona' or message == 'barsa':
             update.message.reply_text(
-             text= team5.get(message),
+             text= team5.get(m),
              reply_markup=reply_markup,
             )
         elif message == 'Manchester United' or message == '/mu' or message == 'mu':
-            update.message.reply_text(text= team6.get(message),reply_markup=reply_markup,)
+            update.message.reply_text(text= team6.get(m),reply_markup=reply_markup,)
         elif message == 'Juventus' or message == '/juventus' or message == 'juve' or message == 'cr7' or message == 'penaldu':
             update.message.reply_text(
-                 text= team7.get(message),
+                 text= team7.get(m),
                  reply_markup=reply_markup,
             )
         elif message == 'Manchester City' or message == '/city' or message == 'city' or message == 'bir qop pul' or message == 'kalbosh' or message == 'kal':
             update.message.reply_text(
-                 text= team8.get(message),
+                 text= team8.get(m),
               reply_markup=reply_markup,
              )
         elif message == 'Milan':
             update.message.reply_text(
-                 text= team9.get(message),
+                 text= team9.get(m),
                  reply_markup=reply_markup,
             )  
         print('keldi')
