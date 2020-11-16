@@ -305,6 +305,34 @@ def insert_user(chat_id):
 
     return chat_id
 
+def get_user(chat_id):
+    print('select')
+    global DATABASE_URL
+    sql = """SELECT * FROM users
+             WHERE chat_id = %s;"""
+    conn = None
+    try:
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        print('connect set')
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql,(chat_id))
+        print('executed')
+        # get the generated id back
+        all = cur.fetchone()[0]
+        print(all)
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
 def last_update(data):  
     results = data['result']
     if len(results) == 0:
