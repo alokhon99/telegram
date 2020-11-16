@@ -256,7 +256,7 @@ def create_tables():
     conn = None
     try:
         # read the connection parameters
-        params = config()
+        params = config.config()
         # connect to the PostgreSQL server
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
@@ -280,7 +280,7 @@ def insert_user(chat_id):
     chat_id = None
     try:
         # read database configuration
-        params = config()
+        params = config.config()
         # connect to the PostgreSQL database
         conn = psycopg2.connect(**params)
         # create a new cursor
