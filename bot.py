@@ -1,5 +1,5 @@
 import requests, re
-from config import config
+import config
 from time import sleep
 from bs4 import BeautifulSoup
 import requests
