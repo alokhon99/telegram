@@ -255,8 +255,7 @@ def get_mess(update):
 #     author = update['message']['chat']['first_name']
     return message;
 
-def button_country_handler(update: Update, context: CallbackContext):
-    message = update.message.text
+def button_country_handler(update: Update, context: CallbackContext, message):
     print("handlerga keldi")
     print("bu "+message+" message")
     if message == 'Angliya':
@@ -355,7 +354,7 @@ def message_handler(update: Update, context: CallbackContext):
         print("keldi buyoga")
         x.league = message
         x.state = 1
-        return button_country_handler(update=update, context=context)
+        return button_country_handler(update=update, context=context, message)
     elif message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
         x.team = message
         x.state = 2
