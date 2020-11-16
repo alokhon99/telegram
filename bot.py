@@ -277,8 +277,8 @@ def create_tables():
 def insert_user(chat_id):
     print('insert')
     global DATABASE_URL
-    sql = """INSERT INTO users(chat_id, fav)
-             VALUES(%s,%s) RETURNING chat_id;"""
+    sql = """INSERT INTO users(chat_id)
+             VALUES(%s) RETURNING chat_id;"""
     print('insert')
     conn = None
     try:
@@ -288,7 +288,38 @@ def insert_user(chat_id):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql,(chat_id,'Liverpool'))
+        cur.execute(sql,(chat_id))
+        print('executed')
+        # get the generated id back
+        chat_id = cur.fetchone()[0]
+        print(chat_id)
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+    return chat_id
+def insert_fav(chat_id, fav):
+    print('insert')
+    global DATABASE_URL
+    sql = """UPDATE users
+             SET fav = %s
+             WHERE chat_id = %s;"""
+    print('update')
+    conn = None
+    try:
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        print('connect set')
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql,(chat_id,fav))
         print('executed')
         # get the generated id back
         chat_id = cur.fetchone()[0]
@@ -412,7 +443,7 @@ def button_country_handler(update: Update, context: CallbackContext, message):
     
 def button_team_handler(update: Update, context: CallbackContext):
     print("team handler")
-    reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+    reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
     update.message.reply_text(
         text="Izlayotgan ma'lumotingizni tanlang",
         reply_markup=reply_markup,
@@ -447,6 +478,9 @@ def message_handler(update: Update, context: CallbackContext):
                         ],
             ],
             resize_keyboard=True,)
+    if message == "Kuzatib borish":
+        insert_fav(x.chat_id, x.team)
+        x.fav = x.team
     if message == "Orqaga":
         message = x.get_back()
         print(message)
