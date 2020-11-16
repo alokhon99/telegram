@@ -17,8 +17,6 @@ from telegram.ext import Filters
 from telegram.ext import MessageHandler
 
 DATABASE_URL = os.environ['DATABASE_URL']
-db = DBHelper()
-button_help = 'Помощь'
 
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
@@ -274,6 +272,34 @@ def create_tables():
     finally:
         if conn is not None:
             conn.close()
+def users_db():
+    global DATABASE_URL
+    sql = """SELECT * FROM users;"""
+    conn = None
+    try:
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        print('connect set')
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql,(chat_id))
+        print('executed')
+        # get the generated id back
+        users = cur.fetchone()[0]
+        print(users)
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+    return chat_id
+            
 def insert_user(chat_id):
     print('insert')
     global DATABASE_URL
@@ -302,8 +328,7 @@ def insert_user(chat_id):
     finally:
         if conn is not None:
             conn.close()
-
-    return chat_id
+            
 def insert_fav(chat_id, fav):
     print('insert')
     global DATABASE_URL
@@ -465,6 +490,7 @@ def message_handler(update: Update, context: CallbackContext):
         x = User(update.message.chat_id)
         x.fav = fav
         users.append(x)
+    users_db()
     reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [
