@@ -426,6 +426,7 @@ def message_handler(update: Update, context: CallbackContext):
             x = u
             break
     if x == None:
+        get_user(update.message.chat_id)
         x = User(update.message.chat_id)
         users.append(x)
     print(x.chat_id)
