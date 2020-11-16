@@ -278,11 +278,12 @@ def insert_user(chat_id):
     global DATABASE_URL
     sql = """INSERT INTO users(chat_id, fav)
              VALUES(%s,%s) RETURNING chat_id;"""
+    print('insert')
     conn = None
-    chid = None
     try:
         # connect to the PostgreSQL database
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        print('connect set')
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
