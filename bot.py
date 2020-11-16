@@ -316,7 +316,7 @@ def insert_user(chat_id):
         cur.execute(sql,(chat_id))
         print('executed')
         # get the generated id back
-        chat_id = cur.fetchone()[0]
+        chat_id = cur.fetchone()
         print(chat_id)
         # commit the changes to the database
         conn.commit()
