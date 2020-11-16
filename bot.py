@@ -279,14 +279,14 @@ def users_db():
     try:
         # connect to the PostgreSQL database
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-        print('connect set')
+        print('connect set user_db')
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
         cur.execute(sql)
         print('executed')
         # get the generated id back
-        users = cur.fetchone()[0]
+        users = cur.fetchone()
         print(users)
         # commit the changes to the database
         conn.commit()
