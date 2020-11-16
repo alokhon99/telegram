@@ -309,7 +309,7 @@ def get_user(chat_id):
     print('select')
     global DATABASE_URL
     sql = """SELECT fav FROM users
-             WHERE chat_id = %s;"""
+             WHERE chat_id = %d;"""
     conn = None
     try:
         # connect to the PostgreSQL database
@@ -318,7 +318,7 @@ def get_user(chat_id):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql,(chat_id))
+        cur.execute(sql,(str(chat_id)))
         print('executed')
         # get the generated id back
         fav = cur.fetchone()[0]
