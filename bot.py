@@ -476,12 +476,20 @@ def message_handler(update: Update, context: CallbackContext):
                 [
                     KeyboardButton(text='Italiya')
                         ],
+                [
+                    KeyboardButton(text='Sevimli Jamoa')
+                        ],
             ],
             resize_keyboard=True,)
-    if message == "Kuzatib borish":
+    if message == 'Sevimli Jamoa':
+        update.message.reply_text(
+                text= x.fav
+                reply_markup=reply_markup,
+            ) 
+    elif message == "Kuzatib borish":
         insert_fav(x.chat_id, x.team)
         x.fav = x.team
-    if message == "Orqaga":
+    elif message == "Orqaga":
         message = x.get_back()
         print(message)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
