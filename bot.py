@@ -1,5 +1,4 @@
 import requests, re
-import config
 from time import sleep
 from bs4 import BeautifulSoup
 import requests
@@ -255,8 +254,6 @@ def create_tables():
         """)
     conn = None
     try:
-        # read the connection parameters
-        params = config.config()
         # connect to the PostgreSQL server
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
@@ -279,10 +276,8 @@ def insert_user(chat_id):
     conn = None
     chat_id = None
     try:
-        # read database configuration
-        params = config.config()
         # connect to the PostgreSQL database
-        conn = psycopg2.connect(**params)
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
