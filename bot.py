@@ -279,7 +279,7 @@ def insert_user(chat_id):
     sql = """INSERT INTO users(chat_id, fav)
              VALUES(%s,%s) RETURNING chat_id;"""
     conn = None
-    chat_id = None
+    chid = None
     try:
         # connect to the PostgreSQL database
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
