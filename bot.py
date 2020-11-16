@@ -235,6 +235,70 @@ def get_updates_json(request, offset=None):
     print('get_update_o')
     return response.json()
 
+def create_tables():
+    """ create tables in the PostgreSQL database"""
+    commands = (
+        """
+        CREATE TABLE [IF NOT EXISTS] users (
+            chat_id INTEGER PRIMARY KEY,
+            username VARCHAR(255),
+            fav VARCHAR(20)
+            
+            
+        )
+        """,
+        """ CREATE TABLE {IF NOT EXISTS] teams(
+                part_id SERIAL PRIMARY KEY,
+                part_name VARCHAR(255) NOT NULL
+                )
+        """)
+    conn = None
+    try:
+        # read the connection parameters
+        params = config()
+        # connect to the PostgreSQL server
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require'))
+        cur = conn.cursor()
+        # create table one by one
+        for command in commands:
+            cur.execute(command)
+        # close communication with the PostgreSQL database server
+        cur.close()
+        # commit the changes
+        conn.commit()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+def insert_user(chat_id):
+    """ insert a new vendor into the vendors table """
+    sql = """INSERT INTO users(chat_id, fav)
+             VALUES(%s,%s) RETURNING chat_id;"""
+    conn = None
+    chat_id = None
+    try:
+        # read database configuration
+        params = config()
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(**params)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+        cur.execute(sql, (chat_id,'Liverpool'))
+        # get the generated id back
+        chat_id = cur.fetchone()[0]
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+    return chat_id
 
 def last_update(data):  
     results = data['result']
@@ -332,6 +396,8 @@ def message_handler(update: Update, context: CallbackContext):
         x = User(update.message.chat_id)
         users.append(x)
     print(x.chat_id)
+    chid = insert_user(chat_id)
+    print(chid)
     print(type(x.chat_id))
     reply_markup = ReplyKeyboardMarkup(
             keyboard=[
@@ -443,7 +509,7 @@ def message_handler(update: Update, context: CallbackContext):
         )
 
 def main():
-    db.setup()
+    create_tables()
     updater = Updater(
         token = '1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8',
         use_context=True,
