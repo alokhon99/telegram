@@ -257,6 +257,8 @@ def get_mess(update):
 
 def button_country_handler(update: Update, context: CallbackContext):
     message = update.message.text
+    print("handlerga keldi")
+    print("bu "+message+" message")
     if message == 'Angliya':
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
