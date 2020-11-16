@@ -319,7 +319,7 @@ def insert_fav(chat_id, fav):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql,(chat_id,fav))
+        cur.execute(sql,(fav, chat_id))
         print('executed')
         # get the generated id back
         chat_id = cur.fetchone()[0]
@@ -575,6 +575,9 @@ def message_handler(update: Update, context: CallbackContext):
                         ],
                 [
                     KeyboardButton(text='Italiya')
+                        ],
+                [
+                    KeyboardButton(text='Sevimli Jamoa')
                         ],
             ],
             resize_keyboard=True,)
