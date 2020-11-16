@@ -488,7 +488,7 @@ def message_handler(update: Update, context: CallbackContext):
         print(fav)
         if fav == None:
             print("if")
-            insert_user(x.chat_id)
+            insert_user(update.message.chat_id)
         x = User(update.message.chat_id)
         x.fav = fav
         users.append(x)
