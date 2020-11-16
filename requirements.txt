@@ -5,3 +5,4 @@ lxml
 pytz
 psycopg2-binary
 dj-database-url
+config
