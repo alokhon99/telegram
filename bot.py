@@ -139,7 +139,9 @@ class Match:
             return False
         
     def get_message(self):
-        return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' '+self.score+' '+ self.team2    
+        if self.which == 'p':
+            return 'Последный матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' '+self.score+' '+ self.team2
+        return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' '+ '-'+ self.team2    
      
         
     team1 = 'team'
