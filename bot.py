@@ -309,7 +309,7 @@ def get_user(chat_id):
     print('select')
     global DATABASE_URL
     sql = """SELECT fav FROM users
-             WHERE chat_id = %d;"""
+             WHERE chat_id = %s;"""
     conn = None
     try:
         # connect to the PostgreSQL database
