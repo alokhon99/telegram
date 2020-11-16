@@ -308,7 +308,7 @@ def insert_user(chat_id):
 def get_user(chat_id):
     print('select')
     global DATABASE_URL
-    sql = """SELECT * FROM users
+    sql = """SELECT fav FROM users
              WHERE chat_id = %s;"""
     conn = None
     try:
@@ -321,8 +321,8 @@ def get_user(chat_id):
         cur.execute(sql,(chat_id))
         print('executed')
         # get the generated id back
-        all = cur.fetchone()[0]
-        print(all)
+        fav = cur.fetchone()[0]
+        print(fav)
         # commit the changes to the database
         conn.commit()
         # close communication with the database
@@ -332,6 +332,7 @@ def get_user(chat_id):
     finally:
         if conn is not None:
             conn.close()
+    return fav
 
 def last_update(data):  
     results = data['result']
@@ -426,11 +427,14 @@ def message_handler(update: Update, context: CallbackContext):
             x = u
             break
     if x == None:
-        get_user(update.message.chat_id)
+        fav = get_user(update.message.chat_id)
+        if fav == None:
+            insert_user(x.chat_id)
         x = User(update.message.chat_id)
+        x.fav = fav
         users.append(x)
     print(x.chat_id)
-    chid = insert_user(x.chat_id)
+    chid = 
     print(chid)
     print(type(x.chat_id))
     reply_markup = ReplyKeyboardMarkup(
