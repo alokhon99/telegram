@@ -433,10 +433,6 @@ def message_handler(update: Update, context: CallbackContext):
         x = User(update.message.chat_id)
         x.fav = fav
         users.append(x)
-    print(x.chat_id)
-    chid = 
-    print(chid)
-    print(type(x.chat_id))
     reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [
