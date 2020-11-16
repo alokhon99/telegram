@@ -283,7 +283,7 @@ def users_db():
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql,(chat_id))
+        cur.execute(sql)
         print('executed')
         # get the generated id back
         users = cur.fetchone()[0]
