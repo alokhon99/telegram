@@ -278,9 +278,6 @@ def button_country_handler(update: Update, context: CallbackContext, message):
                 [
                     KeyboardButton(text='Manchester City')
                     ],
-                [
-                    KeyboardButton(text='Turnir jadvali')
-                    ],
                 [KeyboardButton(text='Orqaga')],
             ],
             resize_keyboard=True,)
@@ -408,6 +405,21 @@ def message_handler(update: Update, context: CallbackContext):
                  reply_markup=reply_markup,
             )  
         print('keldi')
+    elif message == 'Turnir jadvali':
+        
+        text = ''
+        reply_markup = ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text='Orqaga')
+                    ],
+            ],
+            resize_keyboard=True,)
+        print('+')
+        update.message.reply_text(
+           text= text,
+            reply_markup=reply_markup,
+        )
     else:
         x.clear_history()
         text = 'Davlatni tanglang'
