@@ -125,6 +125,7 @@ class Match:
         mon = int_value_from_ru_month(dt[1])
         date = datetime.datetime.strptime(day+'/'+str(mon)+'/2020', "%d/%m/%Y").date()
         today = date.today()
+        print('is_passed')
         if today > date:
             return True
         elif today == date and self.hour > 12:
@@ -173,6 +174,7 @@ class Team:
             print('passed?')
             self.next.update_as_next()
             self.prev.update_as_prev()
+        print('not passed')
         if message == "Keyingi o'yin":
             return self.next.get_message()
         else:
