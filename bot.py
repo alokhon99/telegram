@@ -657,6 +657,8 @@ def callback_30(context: telegram.ext.CallbackContext):
 
 
 def main():
+    os.environ['TZ'] = 'Asia/Tashkent'
+    time.tzset()
     print(datetime.now())
 #     create_tables()
     updater = Updater(
