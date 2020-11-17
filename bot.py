@@ -691,7 +691,6 @@ def main():
     tshv = pytz.timezone("Asia/Tashkent")
     datetime_object = tshv.localize(datetime_object)
     obuna(j)
-    print(a)
     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
     updater.start_polling()
     updater.idle()
