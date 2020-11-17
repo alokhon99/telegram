@@ -660,7 +660,7 @@ def callback_30(context: telegram.ext.CallbackContext):
 def main():
     os.environ['TZ'] = 'Asia/Tashkent'
     time.tzset()
-    datetime_object = datetime.strptime('Nov 17 2020  12:10AM', '%b %d %Y %I:%M%p')
+    datetime_object = datetime.strptime('Nov 17 2020  00:20PM', '%b %d %Y %I:%M%p')
     print(datetime_object)
     print(datetime.now())
 #     create_tables()
