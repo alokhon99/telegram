@@ -18,7 +18,9 @@ from telegram.ext import Updater
 from telegram.ext import CallbackContext
 from telegram.ext import Filters
 from telegram.ext import MessageHandler
-from classes import Match, User, Team
+from classes import Match
+from classes import User 
+from classes import Team
 DATABASE_URL = os.environ['DATABASE_URL']
 
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
