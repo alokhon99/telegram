@@ -1,3 +1,44 @@
+import requests, re
+import telegram.ext
+import time
+from time import sleep
+from bs4 import BeautifulSoup
+import requests
+import pytz
+import datetime
+from datetime import datetime
+import os
+import psycopg2
+from dbhelper import DBHelper
+from telegram import Update
+from telegram import KeyboardButton
+from telegram import ReplyKeyboardMarkup
+from telegram import ReplyKeyboardRemove
+from telegram.ext import Updater
+from telegram.ext import CallbackContext
+from telegram.ext import Filters
+from telegram.ext import MessageHandler
+from classes import Match, User, Team
+DATABASE_URL = os.environ['DATABASE_URL']
+
+url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
+url_t = "https://www.sports.ru/"
+
+RU_MONTH_VALUES = {
+    'января': 1,
+    'февраля': 2,
+    'марта': 3,
+    'апреля': 4,
+    'мая': 5,
+    'июня': 6,
+    'июля': 7,
+    'августа': 8,
+    'сентября': 9,
+    'октября': 10,
+    'ноября': 11,
+    'декабря': 12,
+}
+
 class Match:
     def __init__(self, which, url):
         self.which = which
