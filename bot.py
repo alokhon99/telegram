@@ -81,7 +81,6 @@ class Match:
 #         for user in users:
 #             if user.fav == name:
                 
-    
     def update_as_prev(self, name):
         print('upd prev')
         global url_t;
