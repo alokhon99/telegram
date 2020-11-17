@@ -77,6 +77,10 @@ class Match:
         self.minute = temp[1]
         self.score = '_:_'
         print('upd next tugadi')
+        global users
+        for user in users:
+            if user.fav == name:
+                
     
     def update_as_prev(self, name):
         print('upd prev')
@@ -214,16 +218,16 @@ class User:
     commands = []    
     
     
-# team1 = Team('liverpool')
-# team2 = Team('arsenal')
-# team3 = Team('chelsea')
-# team4 = Team('real')
-# team5 = Team('barcelona')
-# team6 = Team('mu')
-# team7 = Team('juventus')
-# team8 = Team('manchester-city')
-# team9 = Team('milan')
-# users = []
+team1 = Team('liverpool')
+team2 = Team('arsenal')
+team3 = Team('chelsea')
+team4 = Team('real')
+team5 = Team('barcelona')
+team6 = Team('mu')
+team7 = Team('juventus')
+team8 = Team('manchester-city')
+team9 = Team('milan')
+users = []
 
 def int_value_from_ru_month(date_str):
     for k, v in RU_MONTH_VALUES.items():
@@ -651,8 +655,9 @@ def message_handler(update: Update, context: CallbackContext):
            text= text,
             reply_markup=reply_markup,
         )
-def callback_30(context: telegram.ext.CallbackContext):
+def callback(context: telegram.ext.CallbackContext):
     print(context)
+    print(context.job.context)
     context.bot.send_message(chat_id='383326777', 
                              text='A single message with 30s delay')
 
@@ -660,7 +665,7 @@ def callback_30(context: telegram.ext.CallbackContext):
 def main():
     os.environ['TZ'] = 'Asia/Tashkent'
     time.tzset()
-    datetime_object = datetime.strptime('11/17/2020 15:00:00.000000', '%m/%d/%Y %H:%M:%S.%f')
+    datetime_object = datetime.strptime('11/17/2020 16:16:00.000000', '%m/%d/%Y %H:%M:%S.%f')
     print(datetime_object-datetime.now())
 #     create_tables()
     updater = Updater(
@@ -670,7 +675,7 @@ def main():
     j = updater.job_queue
     tshv = pytz.timezone("Asia/Tashkent")
     datetime_object = tshv.localize(datetime_object)
-    a = j.run_once(callback=callback_30, when=datetime_object)
+    a = j.run_once(callback=callback_30, when=datetime_object,context= ('3123123','qalesan'))
     print(a)
 #     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
     updater.start_polling()
