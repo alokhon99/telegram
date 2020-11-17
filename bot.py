@@ -77,9 +77,10 @@ class Match:
         self.minute = temp[1]
         self.score = '_:_'
         print('upd next tugadi')
-#         global users
-#         for user in users:
-#             if user.fav == name:
+        global users
+        for user in users:
+            if user.fav == name:
+                
                 
     def update_as_prev(self, name):
         print('upd prev')
@@ -214,18 +215,19 @@ class User:
     team = ' '
     league = ' '
     state = 0
-    commands = []    
+    commands = []
     
     
-# team1 = Team('liverpool')
-# team2 = Team('arsenal')
-# team3 = Team('chelsea')
-# team4 = Team('real')
-# team5 = Team('barcelona')
-# team6 = Team('mu')
-# team7 = Team('juventus')
-# team8 = Team('manchester-city')
-# team9 = Team('milan')
+team1 = Team('liverpool')
+team2 = Team('arsenal')
+team3 = Team('chelsea')
+team4 = Team('real')
+team5 = Team('barcelona')
+team6 = Team('mu')
+team7 = Team('juventus')
+team8 = Team('manchester-city')
+team9 = Team('milan')
+teams = {'Liverpool': team1, 'Arsenal': team2, 'Chelsea': team3, 'Real Madrid': team4, 'Barcelona': team5, 'Manchester United': team6, 'Juventus': team7, 'Manchester City': team8, 'Milan': team9}
 users = []
 
 def int_value_from_ru_month(date_str):
@@ -655,18 +657,34 @@ def message_handler(update: Update, context: CallbackContext):
             reply_markup=reply_markup,
         )
 def callback(context: telegram.ext.CallbackContext):
-    print(context)
-    print(context.job.context)
-    context.bot.send_message(chat_id='383326777', 
-                             text='A single message with 30s delay')
+    chat_id = context.job.context[0]
+    text = context.job.context[1]
+    context.bot.send_message(chat_id=chat_id, 
+                             text=text)
 
+def obuna(job):
+    global users
+    for user in users:
+        if user.fan:
+            team = teams.get(user.fan)
+            match = team.next
+            dt = match.date.split(' ')
+            day = int(dt[0])
+            mon = int_value_from_ru_month(dt[1])
+#             d = datetime.datetime(2020, mon, day, int(match.hour), int(match.minute))
+            d = datetime.datetime(2020, 11, 17, int('17'), 18)
+            tshv = pytz.timezone("Asia/Tashkent")
+            d = tshv.localize(d)
+            a = job.run_once(callback=callback, when=d,context= (user.chat_id, match.get_message))
+            
+            
 
 def main():
     os.environ['TZ'] = 'Asia/Tashkent'
     time.tzset()
     datetime_object = datetime.strptime('11/17/2020 16:16:00.000000', '%m/%d/%Y %H:%M:%S.%f')
     print(datetime_object-datetime.now())
-#     create_tables()
+    create_tables()
     updater = Updater(
         token = '1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8',
         use_context=True,
@@ -676,7 +694,7 @@ def main():
     datetime_object = tshv.localize(datetime_object)
     a = j.run_once(callback=callback, when=datetime_object,context= ('3123123','qalesan'))
     print(a)
-#     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
+    updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
     updater.start_polling()
     updater.idle()
 
