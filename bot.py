@@ -660,7 +660,7 @@ def callback_30(context: telegram.ext.CallbackContext):
 def main():
     os.environ['TZ'] = 'Asia/Tashkent'
     time.tzset()
-    datetime_object = datetime.strptime('11/17/2020 12:33:00.000000', '%m/%d/%Y %H:%M:%S.%f')
+    datetime_object = datetime.strptime('11/17/2020 12:40:00.000000', '%m/%d/%Y %H:%M:%S.%f')
     print(datetime_object)
     print(datetime.now())
 #     create_tables()
@@ -669,7 +669,7 @@ def main():
         use_context=True,
     )
     j = updater.job_queue
-    j.run_once(callback_30, datetime_object)
+    j.run_once(callback=callback_30, when=datetime_object)
 #     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
     updater.start_polling()
     updater.idle()
