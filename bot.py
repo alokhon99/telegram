@@ -77,9 +77,9 @@ class Match:
         self.minute = temp[1]
         self.score = '_:_'
         print('upd next tugadi')
-        global users
-        for user in users:
-            if user.fav == name:
+#         global users
+#         for user in users:
+#             if user.fav == name:
                 
     
     def update_as_prev(self, name):
@@ -218,15 +218,15 @@ class User:
     commands = []    
     
     
-team1 = Team('liverpool')
-team2 = Team('arsenal')
-team3 = Team('chelsea')
-team4 = Team('real')
-team5 = Team('barcelona')
-team6 = Team('mu')
-team7 = Team('juventus')
-team8 = Team('manchester-city')
-team9 = Team('milan')
+# team1 = Team('liverpool')
+# team2 = Team('arsenal')
+# team3 = Team('chelsea')
+# team4 = Team('real')
+# team5 = Team('barcelona')
+# team6 = Team('mu')
+# team7 = Team('juventus')
+# team8 = Team('manchester-city')
+# team9 = Team('milan')
 users = []
 
 def int_value_from_ru_month(date_str):
