@@ -77,9 +77,6 @@ class Match:
         self.minute = temp[1]
         self.score = '_:_'
         print('upd next tugadi')
-        global users
-        for user in users:
-            if user.fav == name:
                 
                 
     def update_as_prev(self, name):
@@ -665,6 +662,7 @@ def callback(context: telegram.ext.CallbackContext):
 def obuna(job):
     global users
     for user in users:
+        print(user.fan)
         if user.fan:
             team = teams.get(user.fan)
             match = team.next
@@ -692,7 +690,7 @@ def main():
     j = updater.job_queue
     tshv = pytz.timezone("Asia/Tashkent")
     datetime_object = tshv.localize(datetime_object)
-    a = j.run_once(callback=callback, when=datetime_object,context= ('3123123','qalesan'))
+    obuna(j)
     print(a)
     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
     updater.start_polling()
