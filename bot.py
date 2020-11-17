@@ -660,7 +660,9 @@ def callback(context: telegram.ext.CallbackContext):
                              text=text)
 
 def obuna(job):
+    print('obuna')
     global users
+    print(users)
     for user in users:
         print(user.fan)
         if user.fan:
