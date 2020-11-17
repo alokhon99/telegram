@@ -669,7 +669,8 @@ def main():
         use_context=True,
     )
     j = updater.job_queue
-    j.run_once(callback=callback_30, when=datetime_object)
+    a = j.run_once(callback=callback_30, when=datetime_object)
+    print(a)
 #     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
     updater.start_polling()
     updater.idle()
