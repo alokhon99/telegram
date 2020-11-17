@@ -361,6 +361,31 @@ def insert_fav(chat_id, fav):
 
     return chat_id
 
+def alarm(context):
+    """Send the alarm message."""
+    job = context.job
+    context.bot.send_message(job.context, text='Beep!')
+
+def set_timer(update, context):
+    """Add a job to the queue."""
+    chat_id = update.message.chat_id
+    try:
+        # args[0] should contain the time for the timer in seconds
+        due = int(context.args[0])
+        if due < 0:
+            update.message.reply_text('Sorry we can not go back to future!')
+            return
+ 
+        job_removed = remove_job_if_exists(str(chat_id), context)
+        context.job_queue.run_once(alarm, due, context=chat_id, name=str(chat_id))
+ 
+        text = 'Timer successfully set!'
+        if job_removed:
+            text += ' Old one was removed.'
+        update.message.reply_text(text)
+ 
+    except (IndexError, ValueError):
+        update.message.reply_text('Usage: /set <seconds>')
 def get_user(chat_id):
     print('select')
     global DATABASE_URL
@@ -478,7 +503,8 @@ def button_team_handler(update: Update, context: CallbackContext):
     
 def message_handler(update: Update, context: CallbackContext):
     message = update.message.text
-    
+    print(update.message.chat_id)
+    type(update.message.chat_id)
     global users
     x = None
     for u in users:
