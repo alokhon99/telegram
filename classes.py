@@ -123,7 +123,7 @@ class Match:
         dt = self.date.split(' ')
         day = str(int(dt[0]))
         mon = int_value_from_ru_month(dt[1])
-        date = datetime.datetime.strptime(day+'/'+mon+'/2020', "%d/%m/%Y").date()
+        date = datetime.datetime.strptime(day+'/'+str(mon)+'/2020', "%d/%m/%Y").date()
         today = date.today()
         if today > date:
             return True
