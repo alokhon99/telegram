@@ -661,6 +661,7 @@ def main():
     os.environ['TZ'] = 'Asia/Tashkent'
     time.tzset()
     datetime_object = datetime.strptime('Nov 17 2020  12:10AM', '%b %d %Y %I:%M%p')
+    print(datetime_object)
     print(datetime.now())
 #     create_tables()
     updater = Updater(
