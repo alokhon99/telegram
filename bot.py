@@ -648,14 +648,21 @@ def message_handler(update: Update, context: CallbackContext):
            text= text,
             reply_markup=reply_markup,
         )
+def callback_30(context: telegram.ext.CallbackContext):
+    print(context)
+    context.bot.send_message(chat_id='383326777', 
+                             text='A single message with 30s delay')
+
 
 def main():
-    create_tables()
+#     create_tables()
     updater = Updater(
         token = '1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8',
         use_context=True,
     )
-    updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
+    j = updater.job_queue
+    j.run_once(callback_30, 30)
+#     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
     updater.start_polling()
     updater.idle()
 
