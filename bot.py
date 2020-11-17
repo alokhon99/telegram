@@ -1,5 +1,6 @@
 import requests, re
 import telegram.ext
+import time
 from time import sleep
 from bs4 import BeautifulSoup
 import requests
