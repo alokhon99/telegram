@@ -661,7 +661,7 @@ def main():
     os.environ['TZ'] = 'Asia/Tashkent'
     time.tzset()
     datetime_object = datetime.strptime('11/17/2020 15:00:00.000000', '%m/%d/%Y %H:%M:%S.%f')
-    print(datetime_object)
+    datetime_object.tzinfo = 'Asia/Tashkent'
     print(datetime_object-datetime.now())
 #     create_tables()
     updater = Updater(
@@ -669,6 +669,7 @@ def main():
         use_context=True,
     )
     j = updater.job_queue
+    
     a = j.run_once(callback=callback_30, when=datetime_object)
     print(a)
 #     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
