@@ -402,7 +402,7 @@ def message_handler(update: Update, context: CallbackContext):
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         if message == 'Liverpool' or message == '/liverpool':
             print('keldiiiiiik')
-            print(team1.get(m))
+            print(m)
             update.message.reply_text(
                  text= team1.get(m),
                 reply_markup=reply_markup,
