@@ -167,7 +167,9 @@ class Team:
         self.prev = p
         
     def get(self, message):
+        print('get')
         if self.next.is_passed():
+            print('passed?')
             self.next.update_as_next()
             self.prev.update_as_prev()
         if message == "Keyingi o'yin":
