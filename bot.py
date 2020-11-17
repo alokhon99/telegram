@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import requests
 import pytz
 import datetime
+from datetime import datetime
 import os
 import psycopg2
 from dbhelper import DBHelper
@@ -656,6 +657,7 @@ def callback_30(context: telegram.ext.CallbackContext):
 
 
 def main():
+    print(datetime.now())
 #     create_tables()
     updater = Updater(
         token = '1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8',
