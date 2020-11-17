@@ -214,16 +214,16 @@ class User:
     commands = []    
     
     
-team1 = Team('liverpool')
-team2 = Team('arsenal')
-team3 = Team('chelsea')
-team4 = Team('real')
-team5 = Team('barcelona')
-team6 = Team('mu')
-team7 = Team('juventus')
-team8 = Team('manchester-city')
-team9 = Team('milan')
-users = []
+# team1 = Team('liverpool')
+# team2 = Team('arsenal')
+# team3 = Team('chelsea')
+# team4 = Team('real')
+# team5 = Team('barcelona')
+# team6 = Team('mu')
+# team7 = Team('juventus')
+# team8 = Team('manchester-city')
+# team9 = Team('milan')
+# users = []
 
 def int_value_from_ru_month(date_str):
     for k, v in RU_MONTH_VALUES.items():
@@ -660,7 +660,7 @@ def callback_30(context: telegram.ext.CallbackContext):
 def main():
     os.environ['TZ'] = 'Asia/Tashkent'
     time.tzset()
-    datetime_object = datetime.strptime('11/17/2020 12:50:00.000000', '%m/%d/%Y %H:%M:%S.%f')
+    datetime_object = datetime.strptime('11/15/2020 12:52:00.000000', '%m/%d/%Y %H:%M:%S.%f')
     print(datetime_object)
     print(datetime.now()-datetime_object)
 #     create_tables()
