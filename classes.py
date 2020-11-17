@@ -75,8 +75,7 @@ class Match:
         self.minute = temp[1]
         self.score = '_:_'
         print('upd next tugadi')
-                
-                
+    
     def update_as_prev(self, name):
         print('upd prev')
         global url_t;
@@ -123,9 +122,8 @@ class Match:
         dt = self.date.split(' ')
         day = str(int(dt[0]))
         mon = int_value_from_ru_month(dt[1])
-        date = datetime.datetime.strptime(day+'/'+str(mon)+'/2020', "%d/%m/%Y").date()
+        date = datetime.datetime.strptime(day+'/'+mon+'/2020', "%d/%m/%Y").date()
         today = date.today()
-        print('is_passed')
         if today > date:
             return True
         elif today == date and self.hour > 12:
@@ -141,7 +139,6 @@ class Match:
             return False
         
     def get_message(self):
-        print('get_message')
         if self.which == 'p':
             return 'Последный матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' '+self.score+' '+ self.team2
         return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - '+ self.team2    
@@ -155,7 +152,6 @@ class Match:
     tounament = 'epl'
     which = '0'
     score = '_:_'
-
        
 
 class Team:
@@ -169,12 +165,9 @@ class Team:
         self.prev = p
         
     def get(self, message):
-        print('get')
         if self.next.is_passed():
-            print('passed?')
             self.next.update_as_next()
             self.prev.update_as_prev()
-        print('not passed')
         if message == "Keyingi o'yin":
             return self.next.get_message()
         else:
@@ -216,4 +209,4 @@ class User:
     team = ' '
     league = ' '
     state = 0
-    commands = []
+    commands = []   
