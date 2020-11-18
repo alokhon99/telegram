@@ -38,7 +38,10 @@ team9 = Team('milan')
 teams = {'Liverpool': team1, 'Arsenal': team2, 'Chelsea': team3, 'Real Madrid': team4, 'Barcelona': team5, 'Manchester United': team6, 'Juventus': team7, 'Manchester City': team8, 'Milan': team9}
 users = []
 
-
+updater = Updater(
+        token = '1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8',
+        use_context=True,
+    )
 
 
 def create_tables():
@@ -309,13 +312,13 @@ def message_handler(update: Update, context: CallbackContext):
         return
     elif message == "Kuzatib borish":
         insert_fav(str(x.chat_id), x.team)
-        global j
+        global updater
         x.fav = x.team
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         update.message.reply_text(
                 text= x.team + " jamoasi Sevimlilar bo'limiga tushdi",
                 reply_markup=reply_markup,)
-        obuna(j,x)
+        obuna(updater.job_queue, x)
         return
     elif message == "Orqaga":
         message = x.get_back()
@@ -466,11 +469,8 @@ def main():
     datetime_object = datetime.strptime('11/17/2020 16:16:00.000000', '%m/%d/%Y %H:%M:%S.%f')
     print(datetime_object-datetime.now())
     create_tables()
-    updater = Updater(
-        token = '1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8',
-        use_context=True,
-    )
-    global j = updater.job_queue
+    global updater
+    j = updater.job_queue
     tshv = pytz.timezone("Asia/Tashkent")
     datetime_object = tshv.localize(datetime_object)
     obuna(j)
