@@ -41,12 +41,7 @@ teams = {'Liverpool': team1, 'Arsenal': team2, 'Chelsea': team3, 'Real Madrid': 
 users = []
 
 
-def get_updates_json(request, offset=None):
-    print('get_update_e')
-    params = {'timeout': 100, 'offset': offset}
-    response = requests.get(request + 'getUpdates', data=params)
-    print('get_update_o')
-    return response.json()
+
 
 def create_tables():
     global DATABASE_URL
@@ -175,31 +170,6 @@ def insert_fav(chat_id, fav):
 
     return chat_id
 
-def alarm(context):
-    """Send the alarm message."""
-    job = context.job
-    context.bot.send_message(job.context, text='Beep!')
-
-def set_timer(update, context):
-    """Add a job to the queue."""
-    chat_id = update.message.chat_id
-    try:
-        # args[0] should contain the time for the timer in seconds
-        due = int(context.args[0])
-        if due < 0:
-            update.message.reply_text('Sorry we can not go back to future!')
-            return
- 
-        job_removed = remove_job_if_exists(str(chat_id), context)
-        context.job_queue.run_once(alarm, due, context=chat_id, name=str(chat_id))
- 
-        text = 'Timer successfully set!'
-        if job_removed:
-            text += ' Old one was removed.'
-        update.message.reply_text(text)
- 
-    except (IndexError, ValueError):
-        update.message.reply_text('Usage: /set <seconds>')
 def get_user(chat_id):
     print('select')
     global DATABASE_URL
@@ -232,26 +202,7 @@ def get_user(chat_id):
             conn.close()
     return fav
 
-def last_update(data):  
-    results = data['result']
-    if len(results) == 0:
-        return
-    total_updates = len(results) - 1
-    return results[total_updates]
 
-def get_chat_id(update):  
-    chat_id = update['message']['chat']['id']
-    return chat_id
-
-def send_mess(chat, text):  
-    params = {'chat_id': chat, 'text': text}
-    response = requests.post(url + 'sendMessage', data=params)
-    return response
-
-def get_mess(update):
-    message = update['message']['text']
-#     author = update['message']['chat']['first_name']
-    return message;
 
 def button_country_handler(update: Update, context: CallbackContext, message):
     print("handlerga keldi")
