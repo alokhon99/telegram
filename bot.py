@@ -442,8 +442,8 @@ def obuna(job, x=None, old=' '):
     print(old)
     if x:
         team = teams.get(x.fav)
-        print(str(user[0])+old)
-        print(job.get_jobs_by_name(str(user[0])+old))
+        print(str(x.chat_id+old)
+        print(job.get_jobs_by_name(str(x.chat_id)+old))
         for j in job.get_jobs_by_name(str(x.chat_id)+old):
                 j.schedule_removal()
                 print(str(x.chat_id)+old)
