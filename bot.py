@@ -429,15 +429,15 @@ def obuna(job):
     print(users)
     for user in users:
         print(user[2])
-        if user[2] == None:
+        if user[2]:
             team = teams.get(user[2])
             match = team.next
             dt = match.date.split(' ')
             day = int(dt[0])
             mon = int_value_from_ru_month(dt[1])
-#             d = datetime.datetime(2020, mon, day, int(match.hour), int(match.minute))
-            d = datetime(2020, 11, 18, 14, 18)
-            print(d)
+            ten_minute = datetime.timedelta(minutes=10)
+            d = datetime.datetime(2020, mon, day, int(match.hour), int(match.minute))
+            print(d-ten_minute)
             tshv = pytz.timezone("Asia/Tashkent")
             d = tshv.localize(d)
             a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_message()))
