@@ -440,7 +440,7 @@ def obuna(job):
             print(d)
             tshv = pytz.timezone("Asia/Tashkent")
             d = tshv.localize(d)
-            a = job.run_once(callback=callback, when=d,context= (user[0], match.get_message))
+            a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_message()))
             
             
 
