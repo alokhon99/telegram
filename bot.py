@@ -432,6 +432,14 @@ def callback(context: telegram.ext.CallbackContext):
                              text=text)
 
 def obuna(job, x=None, old=' '):
+    print('job')
+    print(job)
+    print('x')
+    
+    
+    print(x)
+    print('old')
+    print(old)
     if x:
         team = teams.get(x.fav)
         print(str(user[0])+old)
