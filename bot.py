@@ -21,25 +21,13 @@ from telegram.ext import MessageHandler
 from classes import Match
 from classes import User 
 from classes import Team
+from classes import RU_MONTH_VALUES
+from classes import int_value_from_ru_month
 DATABASE_URL = os.environ['DATABASE_URL']
 
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
 
-RU_MONTH_VALUES = {
-    'января': 1,
-    'февраля': 2,
-    'марта': 3,
-    'апреля': 4,
-    'мая': 5,
-    'июня': 6,
-    'июля': 7,
-    'августа': 8,
-    'сентября': 9,
-    'октября': 10,
-    'ноября': 11,
-    'декабря': 12,
-}
 
 
     
@@ -56,10 +44,6 @@ team9 = Team('milan')
 teams = {'Liverpool': team1, 'Arsenal': team2, 'Chelsea': team3, 'Real Madrid': team4, 'Barcelona': team5, 'Manchester United': team6, 'Juventus': team7, 'Manchester City': team8, 'Milan': team9}
 users = []
 
-def int_value_from_ru_month(date_str):
-    for k, v in RU_MONTH_VALUES.items():
-        date_str = date_str.replace(k, str(v))
-    return date_str
 
 def get_updates_json(request, offset=None):
     print('get_update_e')
