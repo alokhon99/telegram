@@ -434,7 +434,7 @@ def callback(context: telegram.ext.CallbackContext):
 def obuna(job, x=None, old=' '):
     if x:
         team = teams.get(x.fav)
-        print(str(user[0])+old))
+        print(str(user[0])+old)
         print(job.get_jobs_by_name(str(user[0])+old))
         for j in job.get_jobs_by_name(str(x.chat_id)+old):
                 j.schedule_removal()
