@@ -425,6 +425,7 @@ def callback(context: telegram.ext.CallbackContext):
 def obuna(job, x=None):
     if x:
         team = teams.get(x.fav)
+        print(x.fav)
         match = team.next
         dt = match.date.split(' ')
         day = int(dt[0])
@@ -437,7 +438,6 @@ def obuna(job, x=None):
         tshv = pytz.timezone("Asia/Tashkent")
         d = tshv.localize(d)
         a = job.run_once(callback=callback, when=d,context= (x.chat_id, match.get_notification()), name = str(x.chat_id)+user[2])
-        
     else:
         print('obuna')
         users = users_db()
