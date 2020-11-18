@@ -433,7 +433,7 @@ def obuna(job):
             dt = match.date.split(' ')
             day = int(dt[0])
             mon = int_value_from_ru_month(dt[1])
-            ten_minute = datetime.timedelta(minutes=10)
+            ten_minute = timedelta(minutes=10)
             d = datetime.datetime(2020, mon, day, int(match.hour), int(match.minute))
             print(d-ten_minute)
             tshv = pytz.timezone("Asia/Tashkent")
