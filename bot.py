@@ -314,6 +314,7 @@ def message_handler(update: Update, context: CallbackContext):
         insert_fav(str(x.chat_id), x.team)
         global updater
         f = x.fav
+        print(f)
         x.fav = x.team
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         update.message.reply_text(
@@ -433,6 +434,7 @@ def callback(context: telegram.ext.CallbackContext):
 def obuna(job, x=None, old=' '):
     if x:
         team = teams.get(x.fav)
+        print(str(user[0])+old))
         print(job.get_jobs_by_name(str(user[0])+old))
         for j in job.get_jobs_by_name(str(x.chat_id)+old):
                 j.schedule_removal()
