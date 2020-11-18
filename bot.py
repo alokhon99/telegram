@@ -308,7 +308,7 @@ def message_handler(update: Update, context: CallbackContext):
                 reply_markup=reply_markup,)
         return
     elif message == "Kuzatib borish":
-        insert_fav(x.chat_id, x.team)
+        insert_fav(str(x.chat_id), x.team)
         x.fav = x.team
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         update.message.reply_text(
