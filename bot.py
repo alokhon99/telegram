@@ -5,7 +5,7 @@ from time import sleep
 from bs4 import BeautifulSoup
 import requests
 import pytz
-from datetime import datetime, timedelta, strptime
+from datetime import datetime, timedelta
 import os
 import psycopg2
 from telegram import Update
