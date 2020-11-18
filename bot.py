@@ -278,12 +278,15 @@ def message_handler(update: Update, context: CallbackContext):
             x = u
             break
     if x == None:
-        fav = get_user(update.message.chat_id)
-        if fav == None:
+        u = get_user(update.message.chat_id)
+        if u == None:
             print("if")
             insert_user(update.message.chat_id)
+            fav = None
+        else:
+            fav = u[2]
         x = User(update.message.chat_id)
-        x.fav = fav[2]
+        x.fav = fav
         users.append(x)
     users_db()
     reply_markup = ReplyKeyboardMarkup(
