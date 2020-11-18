@@ -423,7 +423,22 @@ def callback(context: telegram.ext.CallbackContext):
                              text=text)
 
 def obuna(job, x=None):
-    if x != None:
+    if x:
+        team = teams.get(x.fav)
+        match = team.next
+        dt = match.date.split(' ')
+        day = int(dt[0])
+        mon = int(int_value_from_ru_month(dt[1]))
+        ten_minute = timedelta(minutes=10)
+        hour = int(match.hour)
+        minute = int(match.minute)
+        d = datetime(2020, mon, day, hour, minute)
+        print(d-ten_minute)
+        tshv = pytz.timezone("Asia/Tashkent")
+        d = tshv.localize(d)
+        a = job.run_once(callback=callback, when=d,context= (x.chat_id, match.get_notification()), name = str(x.chat_id)+user[2])
+        
+    else:
         print('obuna')
         users = users_db()
         print(users)
@@ -442,23 +457,7 @@ def obuna(job, x=None):
                 print(d-ten_minute)
                 tshv = pytz.timezone("Asia/Tashkent")
                 d = tshv.localize(d)
-                a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_notification()), name = user[0]+user[2])
-    else:
-        team = teams.get(x.fav)
-        match = team.next
-        dt = match.date.split(' ')
-        day = int(dt[0])
-        mon = int(int_value_from_ru_month(dt[1]))
-        ten_minute = timedelta(minutes=10)
-        hour = int(match.hour)
-        minute = int(match.minute)
-        d = datetime(2020, mon, day, hour, minute)
-        print(d-ten_minute)
-        tshv = pytz.timezone("Asia/Tashkent")
-        d = tshv.localize(d)
-        a = job.run_once(callback=callback, when=d,context= (x.chat_id, match.get_notification()), name = str(x.chat_id)+user[2])
-            
-            
+                a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_notification()), name = user[0]+user[2])      
 
 def main():
     os.environ['TZ'] = 'Asia/Tashkent'
