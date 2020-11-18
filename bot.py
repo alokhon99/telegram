@@ -464,6 +464,7 @@ def main():
 #         json = last_update(get_updates_json(url))
 #         if json != None:
 #             break
+
 #     update_id = json['update_id']
 #     while True:
 #         print("loop")
