@@ -44,6 +44,7 @@ def int_value_from_ru_month(date_str):
     for k, v in RU_MONTH_VALUES.items():
         print('convert1')
         date_str = date_str.replace(k, str(v))
+    print(date_str)
     return date_str
 
 class Match:
