@@ -425,7 +425,7 @@ def callback(context: telegram.ext.CallbackContext):
 def obuna(job, x=None):
     if x:
         team = teams.get(x.fav)
-        print(x.fav)
+        print('bu kevoti '+x.fav)
         match = team.next
         dt = match.date.split(' ')
         day = int(dt[0])
