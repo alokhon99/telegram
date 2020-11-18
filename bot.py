@@ -5,11 +5,9 @@ from time import sleep
 from bs4 import BeautifulSoup
 import requests
 import pytz
-import datetime
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, strptime
 import os
 import psycopg2
-from dbhelper import DBHelper
 from telegram import Update
 from telegram import KeyboardButton
 from telegram import ReplyKeyboardMarkup
