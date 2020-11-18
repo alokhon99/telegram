@@ -309,12 +309,13 @@ def message_handler(update: Update, context: CallbackContext):
         return
     elif message == "Kuzatib borish":
         insert_fav(str(x.chat_id), x.team)
+        global j
         x.fav = x.team
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         update.message.reply_text(
                 text= x.team + " jamoasi Sevimlilar bo'limiga tushdi",
                 reply_markup=reply_markup,)
-        obuna(x)
+        obuna(j,x)
         return
     elif message == "Orqaga":
         message = x.get_back()
@@ -469,7 +470,7 @@ def main():
         token = '1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8',
         use_context=True,
     )
-    j = updater.job_queue
+    global j = updater.job_queue
     tshv = pytz.timezone("Asia/Tashkent")
     datetime_object = tshv.localize(datetime_object)
     obuna(j)
