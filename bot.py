@@ -142,7 +142,7 @@ def insert_fav(chat_id, fav):
     print('insert')
     global DATABASE_URL
     sql = """UPDATE users
-             SET fav = %s
+             SET fav = '%s'
              WHERE chat_id = %s;"""
     print('update')
     conn = None
@@ -156,7 +156,7 @@ def insert_fav(chat_id, fav):
         cur.execute(sql,(fav, chat_id))
         print('executed')
         # get the generated id back
-        chat_id = cur.fetchone()[0]
+        chat_id = cur.fetchone()
         print(chat_id)
         # commit the changes to the database
         conn.commit()
