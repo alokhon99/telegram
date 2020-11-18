@@ -157,7 +157,7 @@ def insert_fav(chat_id, fav):
 #         cur.execute(sql,(fav, chat_id))
         cur.execute(sql)
         print('executed')
-        print('row count '+cur.rowcount)
+        print('row count '+str(cur.rowcount))
         # get the generated id back
         # commit the changes to the database
         conn.commit()
