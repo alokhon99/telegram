@@ -143,8 +143,8 @@ def insert_fav(chat_id, fav):
     global DATABASE_URL
     chat_id = int(chat_id)
     sql = """UPDATE users
-             SET fav = %s
-             WHERE chat_id = %s;"""
+             SET fav = 'Juventus'
+             WHERE chat_id = 842243317;"""
     print('update')
     conn = None
     try:
@@ -154,7 +154,8 @@ def insert_fav(chat_id, fav):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql,(fav, chat_id))
+#         cur.execute(sql,(fav, chat_id))
+        cur.execute(sql)
         print('executed')
         # get the generated id back
         chat_id = cur.fetchone()
