@@ -314,6 +314,7 @@ def message_handler(update: Update, context: CallbackContext):
         update.message.reply_text(
                 text= x.team + " jamoasi Sevimlilar bo'limiga tushdi",
                 reply_markup=reply_markup,)
+        obuna(x)
         return
     elif message == "Orqaga":
         message = x.get_back()
@@ -421,26 +422,41 @@ def callback(context: telegram.ext.CallbackContext):
     context.bot.send_message(chat_id=chat_id, 
                              text=text)
 
-def obuna(job):
-    print('obuna')
-    users = users_db()
-    print(users)
-    for user in users:
-        print(user[2])
-        if user[2]:
-            team = teams.get(user[2])
-            match = team.next
-            dt = match.date.split(' ')
-            day = int(dt[0])
-            mon = int(int_value_from_ru_month(dt[1]))
-            ten_minute = timedelta(minutes=10)
-            hour = int(match.hour)
-            minute = int(match.minute)
-            d = datetime(2020, mon, day, hour, minute)
-            print(d-ten_minute)
-            tshv = pytz.timezone("Asia/Tashkent")
-            d = tshv.localize(d)
-            a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_message()))
+def obuna(job, x=None):
+    if x:
+        print('obuna')
+        users = users_db()
+        print(users)
+        for user in users:
+            print(user[2])
+            if user[2]:
+                team = teams.get(user[2])
+                match = team.next
+                dt = match.date.split(' ')
+                day = int(dt[0])
+                mon = int(int_value_from_ru_month(dt[1]))
+                ten_minute = timedelta(minutes=10)
+                hour = int(match.hour)
+                minute = int(match.minute)
+                d = datetime(2020, mon, day, hour, minute)
+                print(d-ten_minute)
+                tshv = pytz.timezone("Asia/Tashkent")
+                d = tshv.localize(d)
+                a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_notification()), name = user[0]+user[2])
+    else:
+        team = teams.get(x.fav)
+        match = team.next
+        dt = match.date.split(' ')
+        day = int(dt[0])
+        mon = int(int_value_from_ru_month(dt[1]))
+        ten_minute = timedelta(minutes=10)
+        hour = int(match.hour)
+        minute = int(match.minute)
+        d = datetime(2020, mon, day, hour, minute)
+        print(d-ten_minute)
+        tshv = pytz.timezone("Asia/Tashkent")
+        d = tshv.localize(d)
+        a = job.run_once(callback=callback, when=d,context= (x.chat_id, match.get_notification()), name = str(x.chat_id)+user[2])
             
             
 
