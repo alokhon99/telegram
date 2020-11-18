@@ -23,6 +23,20 @@ DATABASE_URL = os.environ['DATABASE_URL']
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
 
+RU_MONTH_VALUES = {
+    'января': 1,
+    'февраля': 2,
+    'марта': 3,
+    'апреля': 4,
+    'мая': 5,
+    'июня': 6,
+    'июля': 7,
+    'августа': 8,
+    'сентября': 9,
+    'октября': 10,
+    'ноября': 11,
+    'декабря': 12,
+}
 
 def int_value_from_ru_month(date_str):
     for k, v in RU_MONTH_VALUES.items():
@@ -114,6 +128,7 @@ class Match:
         dt = self.date.split(' ')
         day = str(int(dt[0]))
         print('is_passed2')
+        print(dt[1])
         mon = int_value_from_ru_month(dt[1])
         print('is_passed3')
         date = datetime.datetime.strptime(day+'/'+mon+'/2020', "%d/%m/%Y").date()
