@@ -313,11 +313,15 @@ def message_handler(update: Update, context: CallbackContext):
     elif message == "Kuzatib borish":
         insert_fav(str(x.chat_id), x.team)
         global updater
+        f = x.fav
         x.fav = x.team
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         update.message.reply_text(
                 text= x.team + " jamoasi Sevimlilar bo'limiga tushdi",
                 reply_markup=reply_markup,)
+        if f != None:
+              obuna(updater.job_queue, x, f)
+              return
         obuna(updater.job_queue, x)
         return
     elif message == "Orqaga":
@@ -426,9 +430,13 @@ def callback(context: telegram.ext.CallbackContext):
     context.bot.send_message(chat_id=chat_id, 
                              text=text)
 
-def obuna(job, x=None):
+def obuna(job, x=None, old=' '):
     if x:
         team = teams.get(x.fav)
+        print(job.get_jobs_by_name(str(user[0])+old))
+           for j in job.get_jobs_by_name(str(x.chat_id)+old):
+               j.schedule_removal()
+               print(str(x.chat_id)+old)
         print('bu kevoti '+x.fav)
         match = team.next
         dt = match.date.split(' ')
