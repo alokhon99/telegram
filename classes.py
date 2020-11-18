@@ -139,7 +139,7 @@ class Match:
         print(type(day))
         print(mon)
         print(type(mon))
-        date = datetime.datetime.strptime(day+'/'+mon+'/2020', "%d/%m/%Y").date()
+        date = datetime.strptime(day+'/'+mon+'/2020', "%d/%m/%Y").date()
         print('is_passed4')
         today = date.today()
         if today > date:
