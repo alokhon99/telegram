@@ -457,7 +457,7 @@ def obuna(job, x=None):
                 print(d-ten_minute)
                 tshv = pytz.timezone("Asia/Tashkent")
                 d = tshv.localize(d)
-                a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_notification()), name = user[0]+user[2])      
+                a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_notification()), name = str(user[0])+user[2])      
 
 def main():
     os.environ['TZ'] = 'Asia/Tashkent'
