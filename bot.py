@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import requests
 import pytz
 import datetime
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import psycopg2
 from dbhelper import DBHelper
