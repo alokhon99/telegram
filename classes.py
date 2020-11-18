@@ -39,9 +39,12 @@ RU_MONTH_VALUES = {
 }
 
 def int_value_from_ru_month(date_str):
+    print('convert1')
+    print(date_str)
     for k, v in RU_MONTH_VALUES.items():
+        print('convert1')
         date_str = date_str.replace(k, str(v))
-    return date_st
+    return date_str
 
 class Match:
     def __init__(self, which, url):
