@@ -141,8 +141,9 @@ def insert_user(chat_id):
 def insert_fav(chat_id, fav):
     print('insert')
     global DATABASE_URL
+    chat_id = int(chat_id)
     sql = """UPDATE users
-             SET fav = '%s'
+             SET fav = %s
              WHERE chat_id = %s;"""
     print('update')
     conn = None
