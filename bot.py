@@ -176,7 +176,7 @@ def insert_fav(chat_id, fav):
 def get_user(chat_id):
     print('select')
     global DATABASE_URL
-    sql = """SELECT fav FROM users
+    sql = """SELECT * FROM users
              WHERE chat_id = %s;"""
     conn = None
     try:
@@ -191,8 +191,6 @@ def get_user(chat_id):
         print('executed')
         # get the generated id back
         fav = cur.fetchone()
-        if fav != None:
-            fav = fav[0]
         print(fav)
         # commit the changes to the database
         conn.commit()
@@ -281,12 +279,11 @@ def message_handler(update: Update, context: CallbackContext):
             break
     if x == None:
         fav = get_user(update.message.chat_id)
-        print('mana u' + fav)
-        if fav == None:
+        if  == None:
             print("if")
             insert_user(update.message.chat_id)
         x = User(update.message.chat_id)
-        x.fav = fav
+        x.fav = fav[2]
         users.append(x)
     users_db()
     reply_markup = ReplyKeyboardMarkup(
