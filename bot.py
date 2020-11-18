@@ -106,6 +106,7 @@ def users_db():
     finally:
         if conn is not None:
             conn.close()
+    return users
             
 def insert_user(chat_id):
     print('insert')
@@ -424,21 +425,21 @@ def callback(context: telegram.ext.CallbackContext):
 
 def obuna(job):
     print('obuna')
-    global users
+    users = users_db()
     print(users)
     for user in users:
-        print(user.fan)
-        if user.fan:
-            team = teams.get(user.fan)
+        print(user[2])
+        if user[2]:
+            team = teams.get(user[2])
             match = team.next
             dt = match.date.split(' ')
             day = int(dt[0])
             mon = int_value_from_ru_month(dt[1])
 #             d = datetime.datetime(2020, mon, day, int(match.hour), int(match.minute))
-            d = datetime.datetime(2020, 11, 17, int('17'), 18)
+            d = datetime.datetime(2020, 11, 18, 13, 5)
             tshv = pytz.timezone("Asia/Tashkent")
             d = tshv.localize(d)
-            a = job.run_once(callback=callback, when=d,context= (user.chat_id, match.get_message))
+            a = job.run_once(callback=callback, when=d,context= (user[0], match.get_message))
             
             
 
