@@ -432,7 +432,7 @@ def obuna(job):
             match = team.next
             dt = match.date.split(' ')
             day = int(dt[0])
-            mon = int_value_from_ru_month(dt[1])
+            mon = int(int_value_from_ru_month(dt[1]))
             ten_minute = timedelta(minutes=10)
             hour = int(match.hour)
             minute = int(match.minute)
