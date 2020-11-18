@@ -423,7 +423,7 @@ def callback(context: telegram.ext.CallbackContext):
                              text=text)
 
 def obuna(job, x=None):
-    if x:
+    if x != None:
         print('obuna')
         users = users_db()
         print(users)
