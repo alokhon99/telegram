@@ -437,6 +437,7 @@ def obuna(job):
             mon = int_value_from_ru_month(dt[1])
 #             d = datetime.datetime(2020, mon, day, int(match.hour), int(match.minute))
             d = datetime(2020, 11, 18, 13, 5)
+            print(d)
             tshv = pytz.timezone("Asia/Tashkent")
             d = tshv.localize(d)
             a = job.run_once(callback=callback, when=d,context= (user[0], match.get_message))
