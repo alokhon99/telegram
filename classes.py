@@ -17,13 +17,17 @@ from telegram import ReplyKeyboardRemove
 from telegram.ext import Updater
 from telegram.ext import CallbackContext
 from telegram.ext import Filters
-from telegram.ext import MessageHandler
-from bot import int_value_from_ru_month, RU_MONTH_VALUES 
+from telegram.ext import MessageHandler 
 DATABASE_URL = os.environ['DATABASE_URL']
 
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
 
+
+def int_value_from_ru_month(date_str):
+    for k, v in RU_MONTH_VALUES.items():
+        date_str = date_str.replace(k, str(v))
+    return date_st
 
 class Match:
     def __init__(self, which, url):
