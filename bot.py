@@ -28,10 +28,6 @@ DATABASE_URL = os.environ['DATABASE_URL']
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
 
-
-
-    
-    
 team1 = Team('liverpool')
 team2 = Team('arsenal')
 team3 = Team('chelsea')
