@@ -1,5 +1,31 @@
 import sqlite3
 
+def get_updates_json(request, offset=None):
+    print('get_update_e')
+    params = {'timeout': 100, 'offset': offset}
+    response = requests.get(request + 'getUpdates', data=params)
+    print('get_update_o')
+    return response.json()
+def last_update(data):  
+    results = data['result']
+    if len(results) == 0:
+        return
+    total_updates = len(results) - 1
+    return results[total_updates]
+
+def get_chat_id(update):  
+    chat_id = update['message']['chat']['id']
+    return chat_id
+
+def send_mess(chat, text):  
+    params = {'chat_id': chat, 'text': text}
+    response = requests.post(url + 'sendMessage', data=params)
+    return response
+
+def get_mess(update):
+    message = update['message']['text']
+#     author = update['message']['chat']['first_name']
+    return message;
 
 class DBHelper:
     def __init__(self, dbname="todo.sqlite"):
