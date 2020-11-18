@@ -280,7 +280,7 @@ def message_handler(update: Update, context: CallbackContext):
             break
     if x == None:
         fav = get_user(update.message.chat_id)
-        print(fav)
+        print('mana u' + fav)
         if fav == None:
             print("if")
             insert_user(update.message.chat_id)
