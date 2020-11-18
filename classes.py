@@ -134,7 +134,7 @@ class Match:
         print(dt[1])
         mon = int_value_from_ru_month(dt[1])
         print('is_passed3')
-        date = datetime.datetime.strptime(day+'/'+mon+'/2020', "%d/%m/%Y").date()
+        date = datetime.datetime.strptime(day+'/'+str(mon)+'/2020', "%d/%m/%Y").date()
         print('is_passed4')
         today = date.today()
         if today > date:
