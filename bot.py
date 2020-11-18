@@ -444,9 +444,9 @@ def obuna(job, x=None, old=' '):
         team = teams.get(x.fav)
         print(str(x.chat_id)+old)
         print(job.get_jobs_by_name(str(x.chat_id)+old)
-        for j in job.get_jobs_by_name(str(x.chat_id)+old):
-                j.schedule_removal()
-                print(str(x.chat_id)+old)
+#         for j in job.get_jobs_by_name(str(x.chat_id)+old):
+#                 j.schedule_removal()
+#                 print(str(x.chat_id)+old)
         print('bu kevoti '+x.fav)
         match = team.next
         dt = match.date.split(' ')
