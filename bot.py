@@ -298,11 +298,11 @@ def button_team_handler(update: Update, context: CallbackContext):
     
 def message_handler(update: Update, context: CallbackContext):
     message = update.message.text.replace(" \u2764\ufe0f",'')
-    
     print(update.message.chat_id)
     name = update.message.from_user.first_name
     if update.message.from_user.last_name != None:
         name = name + update.message.from_user.last_name
+    print(name)
     type(update.message.chat_id)
     global users
     x = None
@@ -321,7 +321,6 @@ def message_handler(update: Update, context: CallbackContext):
             if u[1] != name:
                 insert_name(update.message.chat_id, name)
         x = User(update.message.chat_id)
-        x.fav = fav
         users.append(x)
     users_db()
     print('x.fav')
