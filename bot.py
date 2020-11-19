@@ -494,8 +494,8 @@ def callback_update(context: telegram.ext.CallbackContext):
                 if key == u.fav:
                         team = teams[key]
                         break
-        team.next.update_as_next(u.fav)
-        team.prev.update_as_prev(u.fav)
+        team.next.update_as_next(team.name)
+        team.prev.update_as_prev(team.name)
         if team.next.is_passed() == False:
                 obuna(job, u)
         else:
