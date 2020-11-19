@@ -206,7 +206,7 @@ class User:
     
     def __init__(self, chat_id):
         self.chat_id = chat_id
-        self.fan = ''
+        self.fan = 'No'
 
     def get_commands(self):
         return self.commands
