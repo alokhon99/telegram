@@ -425,11 +425,33 @@ def message_handler(update: Update, context: CallbackContext):
            text= text,
             reply_markup=reply_markup,
         )
+def callback_update(context: telegram.ext.CallbackContext):
+        global teams
+        chat_id = context.job.context[0]
+        job = context.job.context[1]
+        for user in users:
+                if user.chat_id == chat_id:
+                        u = user
+                        break
+        for key in teams:
+                if key == u.fav:
+                        team = teams[key]
+                        break
+        team.next.update_as_next(u.fav)
+        team.prev.update_as_prev(u.fav)
+        if team.next.is_passed() == False:
+                obuna(job, u)
+        else:
+               two_hour = timedelta(hours=2)
+               job.run_once(callback=callback_update, when=two_hour,context= (x.chat_id, job)) 
 def callback(context: telegram.ext.CallbackContext):
     chat_id = context.job.context[0]
     text = context.job.context[1]
+    job = context.job.context[2]
     context.bot.send_message(chat_id=chat_id, 
                              text=text)
+    two_hour = timedelta(hours=2)
+    job.run_once(callback=callback_update, when=two_hour,context= (x.chat_id, job))
 
 def obuna(job, x=None, old=' '):
     print('job')
@@ -459,7 +481,7 @@ def obuna(job, x=None, old=' '):
         print(d-ten_minute)
         tshv = pytz.timezone("Asia/Tashkent")
         d = tshv.localize(d)
-        a = job.run_once(callback=callback, when=d,context= (x.chat_id, match.get_notification()), name = str(x.chat_id)+user[2])
+        a = job.run_once(callback=callback, when=d,context= (x.chat_id, match.get_notification(), job), name = str(x.chat_id)+user[2])
     else:
         print('obuna')
         users = users_db()
