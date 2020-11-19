@@ -370,7 +370,7 @@ def message_handler(update: Update, context: CallbackContext):
     elif message == "Keyingi o'yin" or message =="So'nggi o'yin":
         m = message
         message = x.team
-        if message == x.fan:
+        if message == x.fav:
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         else:
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
@@ -420,11 +420,11 @@ def message_handler(update: Update, context: CallbackContext):
             )  
         print('keldi')
     elif message == 'Kuzatib borishni bekor qilish':
-        if message == x.fan:
+        if message == x.fav:
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         else:
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
-        x.fan = None
+        x.fav = ''
         insert_fav(x.chat_id,'')
         text = 'Endi siz '+x.team+'ni kuzatib bormaysiz'
         print('+')
