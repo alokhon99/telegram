@@ -338,7 +338,7 @@ def message_handler(update: Update, context: CallbackContext):
                         KeyboardButton(text='Italiya')
                                 ],
                         [
-                        KeyboardButton(text=x.fav)
+                        KeyboardButton(text=x.fav+" \u2764\ufe0f")
                                 ],
                 ],
                 resize_keyboard=True,)
@@ -461,7 +461,7 @@ def message_handler(update: Update, context: CallbackContext):
                                 KeyboardButton(text='Angliya')],[
                                 KeyboardButton(text='Ispaniya')],[
                                 KeyboardButton(text='Italiya')],[
-                                KeyboardButton(text=x.fav)],],
+                                KeyboardButton(text=x.fav+" \u2764\ufe0f")],],
                                 resize_keyboard=True,)
         else:
                 reply_markup = ReplyKeyboardMarkup(
