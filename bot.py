@@ -172,6 +172,35 @@ def insert_fav(chat_id, fav):
             conn.close()
 
     return chat_id
+def change_to_no():
+    print('insert')
+    global DATABASE_URL
+    sql = """ UPDATE users
+             SET fav = 'No'
+             WHERE fav = NULL;"""
+    print('update')
+    conn = None
+    try:
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        print('connect set')
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+#         cur.execute(sql,(fav, chat_id))
+        cur.execute(sql)
+        print('executed')
+        print('row count '+str(cur.rowcount))
+        # get the generated id back
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
 
 def insert_name(chat_id, name):
     print('insert')
@@ -556,6 +585,7 @@ def obuna(job, x=None, old=' '):
                 a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_notification()), name = str(user[0])+user[2])      
 
 def main():
+    
     os.environ['TZ'] = 'Asia/Tashkent'
     time.tzset()
     datetime_object = datetime.strptime('11/17/2020 16:16:00.000000', '%m/%d/%Y %H:%M:%S.%f')
@@ -565,7 +595,9 @@ def main():
     j = updater.job_queue
     tshv = pytz.timezone("Asia/Tashkent")
     datetime_object = tshv.localize(datetime_object)
+    change_to_no()
     obuna(j)
+    
     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
     updater.start_polling()
     updater.idle()
