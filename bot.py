@@ -315,19 +315,16 @@ def message_handler(update: Update, context: CallbackContext):
         if u == None:
             print("if")
             insert_user(update.message.chat_id)
+            insert_fav('No')
         u = get_user(update.message.chat_id)
         if u[1] != name:
             insert_name(update.message.chat_id, name)
-        print(u[2])
-        print(type(u[2]))
+        if u[2] == None:
+              insert_fav('No')  
         x = User(update.message.chat_id)
-        if u[2] != None:
-                x.fav = u[2]
         users.append(x)
     users_db()
-    print('x.fav')
-    print(type(x.fav))
-    if x.fav != '':
+    if x.fav != 'No':
         reply_markup = ReplyKeyboardMarkup(
                     keyboard=[
                         [
@@ -424,30 +421,24 @@ def message_handler(update: Update, context: CallbackContext):
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         else:
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
-        x.fav = ''
-        insert_fav(x.chat_id,'')
+        x.fav = 'No'
+        insert_fav(x.chat_id,'No')
         text = 'Endi siz '+x.team+'ni kuzatib bormaysiz'
         print('+')
         update.message.reply_text(
            text= text,
             reply_markup=reply_markup,
         )
-    elif message == 'Sevimli Jamoa':
-        update.message.reply_text(
-                text= x.fav,
-                reply_markup=reply_markup,)
-        return
     elif message == "Kuzatib borish":
         insert_fav(str(x.chat_id), x.team)
         global updater
         f = x.fav
-        print(f)
         x.fav = x.team
         reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         update.message.reply_text(
                 text= x.team + " jamoasi Sevimlilar bo'limiga tushdi",
                 reply_markup=reply_markup,)
-        if f != None:
+        if f != 'No':
               obuna(updater.job_queue, x, f)
               return
         obuna(updater.job_queue, x)
@@ -455,7 +446,7 @@ def message_handler(update: Update, context: CallbackContext):
     else:
         x.clear_history()
         text = 'Davlatni tanglang'
-        if x.fav:
+        if x.fav != 'No':
                 reply_markup = ReplyKeyboardMarkup(
                       keyboard=[
                                [
