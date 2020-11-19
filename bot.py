@@ -389,8 +389,7 @@ def message_handler(update: Update, context: CallbackContext):
         x.state = 2
         print('message')
         print(message)
-        print(x.fan)
-        if message == x.fan:
+        if x.fan == message:
                 print('kirdi')
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         else:
