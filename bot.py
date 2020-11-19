@@ -345,27 +345,7 @@ def message_handler(update: Update, context: CallbackContext):
     else:
         reply_markup = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Angliya')],[KeyboardButton(text='Ispaniya')],[KeyboardButton(text='Italiya')],],resize_keyboard=True,)
     print('t1 '+x.fav)
-    if message == 'Sevimli Jamoa':
-        update.message.reply_text(
-                text= x.fav,
-                reply_markup=reply_markup,)
-        return
-    elif message == "Kuzatib borish":
-        insert_fav(str(x.chat_id), x.team)
-        global updater
-        f = x.fav
-        print(f)
-        x.fav = x.team
-        reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
-        update.message.reply_text(
-                text= x.team + " jamoasi Sevimlilar bo'limiga tushdi",
-                reply_markup=reply_markup,)
-        if f != None:
-              obuna(updater.job_queue, x, f)
-              return
-        obuna(updater.job_queue, x)
-        return
-    elif message == "Orqaga":
+    if message == "Orqaga":
         message = x.get_back()
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print("keldi buyoga")
@@ -455,6 +435,26 @@ def message_handler(update: Update, context: CallbackContext):
            text= text,
             reply_markup=reply_markup,
         )
+    elif message == 'Sevimli Jamoa':
+        update.message.reply_text(
+                text= x.fav,
+                reply_markup=reply_markup,)
+        return
+    elif message == "Kuzatib borish":
+        insert_fav(str(x.chat_id), x.team)
+        global updater
+        f = x.fav
+        print(f)
+        x.fav = x.team
+        reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+        update.message.reply_text(
+                text= x.team + " jamoasi Sevimlilar bo'limiga tushdi",
+                reply_markup=reply_markup,)
+        if f != None:
+              obuna(updater.job_queue, x, f)
+              return
+        obuna(updater.job_queue, x)
+        return
     else:
         x.clear_history()
         text = 'Davlatni tanglang'
