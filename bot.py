@@ -355,7 +355,7 @@ def message_handler(update: Update, context: CallbackContext):
                 ],
                 resize_keyboard=True,)
     update.message.reply_text(
-                text= "Profilaktika ishlari bo'lmoqda. E'tiboringiz uchun rahmat! ,
+                text= "Profilaktika ishlari bo'lmoqda. E'tiboringiz uchun rahmat!" ,
                 reply_markup=reply_markup,)
     return
 
