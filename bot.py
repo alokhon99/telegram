@@ -375,17 +375,14 @@ def message_handler(update: Update, context: CallbackContext):
         return button_country_handler(update=update, context=context, message=message)
     elif message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
         print(x.fav)
-        x.team = message
-        x.state = 2
-        print('message')
-        print(type(message))
-        print(type(x.fan))
         if x.fan == message:
                 print('kirdi')
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         else:
                 print('buyaqqqa')
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+        x.team = message
+        x.state = 2
         update.message.reply_text(
         text="Izlayotgan ma'lumotingizni tanlang",
         reply_markup=reply_markup,
