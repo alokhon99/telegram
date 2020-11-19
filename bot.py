@@ -311,17 +311,19 @@ def message_handler(update: Update, context: CallbackContext):
             x = u
             break
     if x == None:
+        x = User(update.message.chat_id)
         u = get_user(update.message.chat_id)
         if u == None:
             print("if")
             insert_user(update.message.chat_id)
-            insert_fav('No')
+            insert_fav(update.message.chat_id, 'No')
         u = get_user(update.message.chat_id)
         if u[1] != name:
             insert_name(update.message.chat_id, name)
         if u[2] == None or u[2] == '':
-              insert_fav('No')  
-        x = User(update.message.chat_id)
+              insert_fav(update.message.chat_id, 'No')
+        else:
+                x.fav = u[2]
         users.append(x)
     users_db()
     if x.fav != 'No':
