@@ -323,6 +323,8 @@ def message_handler(update: Update, context: CallbackContext):
         x.fav = fav
         users.append(x)
     users_db()
+    print('x.fav')
+    print(x.fav)
     if x.fav:
         reply_markup = ReplyKeyboardMarkup(
                     keyboard=[
@@ -385,6 +387,7 @@ def message_handler(update: Update, context: CallbackContext):
     elif message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
         x.team = message
         x.state = 2
+        print('message')
         print(message)
         print(x.fan)
         if message == x.fan:
