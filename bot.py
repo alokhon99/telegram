@@ -367,7 +367,6 @@ def message_handler(update: Update, context: CallbackContext):
         return
     elif message == "Orqaga":
         message = x.get_back()
-    print(x.fav)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print("keldi buyoga")
         x.league = message
