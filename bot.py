@@ -322,7 +322,7 @@ def message_handler(update: Update, context: CallbackContext):
         users.append(x)
     users_db()
     print('x.fav')
-    print(x.fav)
+    print(type(x.fav))
     if x.fav != '':
         reply_markup = ReplyKeyboardMarkup(
                     keyboard=[
