@@ -173,6 +173,39 @@ def insert_fav(chat_id, fav):
 
     return chat_id
 
+def insert_name(chat_id, name):
+    print('insert')
+    global DATABASE_URL
+    chat_id = int(chat_id)
+    sql = """ UPDATE users
+             SET username = %s
+             WHERE chat_id = %s;"""
+    print('update')
+    conn = None
+    try:
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        print('connect set')
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the INSERT statement
+#         cur.execute(sql,(fav, chat_id))
+        cur.execute(sql,(name, chat_id,))
+        print('executed')
+        print('row count '+str(cur.rowcount))
+        # get the generated id back
+        # commit the changes to the database
+        conn.commit()
+        # close communication with the database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+    return chat_id
+
 def get_user(chat_id):
     print('select')
     global DATABASE_URL
@@ -285,6 +318,11 @@ def message_handler(update: Update, context: CallbackContext):
             fav = None
         else:
             fav = u[2]
+            if u[1] == None:
+                        name = update.message.from_user.first_name
+                        if update.message.from_user.last_name != None:
+                                name = name + update.message.from_user.last_name
+                        insert_name(update.message.chat_id, name)
         x = User(update.message.chat_id)
         x.fav = fav
         users.append(x)
