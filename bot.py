@@ -297,7 +297,8 @@ def button_team_handler(update: Update, context: CallbackContext):
     
     
 def message_handler(update: Update, context: CallbackContext):
-    message = update.message.text
+    message = update.message.text.replace(" \u2764\ufe0f",'')
+    
     print(update.message.chat_id)
     name = update.message.from_user.first_name
     if update.message.from_user.last_name != None:
