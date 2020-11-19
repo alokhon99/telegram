@@ -344,6 +344,7 @@ def message_handler(update: Update, context: CallbackContext):
                 resize_keyboard=True,)
     else:
         reply_markup = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Angliya')],[KeyboardButton(text='Ispaniya')],[KeyboardButton(text='Italiya')],],resize_keyboard=True,)
+    print('t1 '+x.fav)
     if message == 'Sevimli Jamoa':
         update.message.reply_text(
                 text= x.fav,
