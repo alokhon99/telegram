@@ -315,12 +315,12 @@ def message_handler(update: Update, context: CallbackContext):
         if u == None:
             print("if")
             insert_user(update.message.chat_id)
-        else:
-            if u[1] != name:
-                insert_name(update.message.chat_id, name)
-        x = User(update.message.chat_id)
+        u = get_user(update.message.chat_id)
+        if u[1] != name:
+            insert_name(update.message.chat_id, name)
         print(u[2])
         print(type(u[2]))
+        x = User(update.message.chat_id)
         if u[2] != None:
                 x.fav = u[2]
         users.append(x)
