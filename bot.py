@@ -450,7 +450,7 @@ def callback(context: telegram.ext.CallbackContext):
     job = context.job.context[2]
     context.bot.send_message(chat_id=chat_id, 
                              text=text)
-    two_hour = timedelta(hours=2)
+    two_hour = timedelta(hours=4)
     job.run_once(callback=callback_update, when=two_hour,context= (x.chat_id, job))
 
 def obuna(job, x=None, old=' '):
