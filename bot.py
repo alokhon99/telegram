@@ -303,6 +303,9 @@ def button_team_handler(update: Update, context: CallbackContext):
 def message_handler(update: Update, context: CallbackContext):
     message = update.message.text
     print(update.message.chat_id)
+    name = update.message.from_user.first_name
+    if update.message.from_user.last_name != None:
+        name = name + update.message.from_user.last_name
     type(update.message.chat_id)
     global users
     x = None
@@ -318,11 +321,8 @@ def message_handler(update: Update, context: CallbackContext):
             fav = None
         else:
             fav = u[2]
-            if u[1] == None:
-                        name = update.message.from_user.first_name
-                        if update.message.from_user.last_name != None:
-                                name = name + update.message.from_user.last_name
-                        insert_name(update.message.chat_id, name)
+            if u[1] != name:
+                insert_name(update.message.chat_id, name)
         x = User(update.message.chat_id)
         x.fav = fav
         users.append(x)
