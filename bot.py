@@ -315,15 +315,14 @@ def message_handler(update: Update, context: CallbackContext):
         if u == None:
             print("if")
             insert_user(update.message.chat_id)
-            fav = None
         else:
-            fav = u[2]
             if u[1] != name:
                 insert_name(update.message.chat_id, name)
         x = User(update.message.chat_id)
         users.append(x)
     users_db()
     print('x.fav')
+    print(x.fav)
     if x.fav != '':
         reply_markup = ReplyKeyboardMarkup(
                     keyboard=[
