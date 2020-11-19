@@ -354,15 +354,6 @@ def message_handler(update: Update, context: CallbackContext):
                                 ],
                 ],
                 resize_keyboard=True,)
-    update.message.reply_text(
-                text= "Profilaktika ishlari bo'lmoqda. E'tiboringiz uchun rahmat!" ,
-                reply_markup=reply_markup,)
-    return
-
-
-
-
-
     if message == 'Sevimli Jamoa':
         update.message.reply_text(
                 text= x.fav,
@@ -394,6 +385,7 @@ def message_handler(update: Update, context: CallbackContext):
     elif message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
         x.team = message
         x.state = 2
+        print(message)
         print(x.fan)
         if message == x.fan:
                 print('kirdi')
