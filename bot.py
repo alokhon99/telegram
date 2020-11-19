@@ -324,8 +324,8 @@ def message_handler(update: Update, context: CallbackContext):
         users.append(x)
     users_db()
     print('x.fav')
-    print(type(x.fav))
-    if x.fav:
+    print(x.fav)
+    if x.fav != '':
         reply_markup = ReplyKeyboardMarkup(
                     keyboard=[
                         [
@@ -344,7 +344,6 @@ def message_handler(update: Update, context: CallbackContext):
                 resize_keyboard=True,)
     else:
         reply_markup = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Angliya')],[KeyboardButton(text='Ispaniya')],[KeyboardButton(text='Italiya')],],resize_keyboard=True,)
-    print(x.fav)
     if message == 'Sevimli Jamoa':
         update.message.reply_text(
                 text= x.fav,
