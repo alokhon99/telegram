@@ -355,6 +355,10 @@ def message_handler(update: Update, context: CallbackContext):
                 insert_fav(update.message.chat_id, 'No')
         else:
                 x.fav = u[2]
+    else:
+        u = get_user(update.message.chat_id)
+        if u[1] != name:
+                insert_name(update.message.chat_id, name)
         users.append(x)
     users_db()
     print(x.fav)
