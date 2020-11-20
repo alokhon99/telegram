@@ -404,6 +404,7 @@ def message_handler(update: Update, context: CallbackContext):
         return 
     elif message == "Keyingi o'yin" or message =="So'nggi o'yin":
         m = message
+        print('keyingi oyin')
         message = x.team
         if message == x.fav:
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
