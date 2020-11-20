@@ -570,8 +570,8 @@ def obuna(job, x=None, old=' '):
         users = users_db()
         print(users)
         for user in users:
-            print(user[2])
-            if user[2] != 'No' and user[2] != None:
+            print(user)
+            if user[2] != 'No' and user[2] != None and user[2] != '':
                 team = teams.get(user[2])
                 match = team.next
                 dt = match.date.split(' ')
