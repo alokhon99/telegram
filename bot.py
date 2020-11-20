@@ -477,6 +477,7 @@ def message_handler(update: Update, context: CallbackContext):
         obuna(updater.job_queue, x)
         return
     else:
+        print(message)
         x.clear_history()
         text = 'Davlatni tanglang'
         if x.fav != 'No':
