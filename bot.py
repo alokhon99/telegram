@@ -203,7 +203,7 @@ def change_to_no():
             conn.close()
 
 def insert_name(chat_id, name):
-    print('insert')
+    print('insert name')
     global DATABASE_URL
     chat_id = int(chat_id)
     sql = """ UPDATE users
@@ -348,6 +348,7 @@ def message_handler(update: Update, context: CallbackContext):
             insert_fav(update.message.chat_id, 'No')
         u = get_user(update.message.chat_id)
         print(u)
+        print(name)
         if u[1] != name:
                 insert_name(update.message.chat_id, name)
         if u[2] == None or u[2] == '':
