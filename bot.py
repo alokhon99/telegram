@@ -354,6 +354,8 @@ def message_handler(update: Update, context: CallbackContext):
         if u[2] == None or u[2] == '':
                 insert_fav(update.message.chat_id, 'No')
         else:
+                print('elsega kirdi')
+                print(u[2])
                 x.fav = u[2]
     else:
         u = get_user(update.message.chat_id)
