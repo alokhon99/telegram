@@ -357,11 +357,11 @@ def message_handler(update: Update, context: CallbackContext):
                 print('elsega kirdi')
                 print(u[2])
                 x.fav = u[2]
+        users.append(x)
     else:
         u = get_user(update.message.chat_id)
         if u[1] != name:
                 insert_name(update.message.chat_id, name)
-        users.append(x)
     users_db()
     print(x.fav)
     if x.fav != 'No':
