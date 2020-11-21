@@ -143,7 +143,7 @@ class Match:
         if today > date:
             print('is_passed5')
             return True
-        elif today == date and self.hour > 12:
+        elif today == date and int(self.hour) > 12:
             print('is_passed6')
             tz = pytz.timezone('Asia/Tashkent')
             now = datetime.datetime.now(tz)
