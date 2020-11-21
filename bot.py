@@ -584,7 +584,10 @@ def obuna(job, x=None, old=' '):
                 d = datetime(2020, mon, day, hour, minute)
                 tshv = pytz.timezone("Asia/Tashkent")
                 d = tshv.localize(d)
-                a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_notification()), name = str(user[0])+user[2])      
+                if hour < 12:
+                        d = d - ten_minute + timedelta(days=1)
+                print(d)
+                a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_notification(), job), name = str(user[0])+user[2])      
 
 def main():
     
@@ -597,7 +600,7 @@ def main():
     j = updater.job_queue
     tshv = pytz.timezone("Asia/Tashkent")
     datetime_object = tshv.localize(datetime_object)
-    change_to_no()
+#     change_to_no()
     obuna(j)
     
     updater.dispatcher.add_handler(MessageHandler(filters=Filters.all, callback=message_handler))
