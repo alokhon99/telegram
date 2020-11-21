@@ -157,9 +157,8 @@ class Match:
             if (now > my_datetime):
                 print('is_passed9')
                 return True
-        else:
-            print('is_passed7')
-            return False
+        print('is_passed7')
+        return False
         
     def get_message(self):
         if self.which == 'p':
