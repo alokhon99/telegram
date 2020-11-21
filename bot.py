@@ -574,8 +574,8 @@ def obuna(job, x=None, old=' '):
         print('obuna test6')
         d = tshv.localize(d)
         print('obuna test7')
-        a = job.run_once(callback=callback, when=d-ten_minute,context= (x.chat_id, match.get_notification(), job), name = str(x.chat_id)+user[2])
-        print(str(x.chat_id)+user[2] + ' job qoshildi queuega')
+        a = job.run_once(callback=callback, when=d-ten_minute,context= (x.chat_id, match.get_notification(), job), name = str(x.chat_id)+x.fav)
+        print(str(x.chat_id)+x.fav + ' job qoshildi queuega')
     else:
         print('obuna')
         users = users_db()
