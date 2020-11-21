@@ -565,6 +565,7 @@ def obuna(job, x=None, old=' '):
         tshv = pytz.timezone("Asia/Tashkent")
         d = tshv.localize(d)
         a = job.run_once(callback=callback, when=d-ten_minute,context= (x.chat_id, match.get_notification(), job), name = str(x.chat_id)+user[2])
+        print(str(x.chat_id)+user[2] + ' job qoshildi queuega')
     else:
         print('obuna')
         users = users_db()
