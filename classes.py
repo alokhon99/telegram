@@ -146,6 +146,7 @@ class Match:
         elif today == date and int(self.hour) > 12:
             print('is_passed6')
             tz = pytz.timezone('Asia/Tashkent')
+            print('is_passed8')
             now = datetime.datetime.now(tz)
             print(now)
             my_time_string = self.hour+':'+self.minute+':'+'00'
