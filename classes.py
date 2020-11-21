@@ -147,7 +147,7 @@ class Match:
             print('is_passed6')
             tz = pytz.timezone('Asia/Tashkent')
             print('is_passed8')
-            now = datetime.datetime.now(tz)
+            now = datetime.now(tz)
             print(now)
             my_time_string = self.hour+':'+self.minute+':'+'00'
             my_datetime = datetime.datetime.strptime(my_time_string, "%H:%M:%S")
