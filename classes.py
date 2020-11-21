@@ -155,6 +155,7 @@ class Match:
             my_datetime = datetime.strptime(my_time_string, "%H:%M:%S")
             my_datetime = now.replace(hour=my_datetime.time().hour, minute=my_datetime.time().minute, second=my_datetime.time().second, microsecond=0)
             if (now > my_datetime):
+                print('is_passed9')
                 return True
         else:
             print('is_passed7')
