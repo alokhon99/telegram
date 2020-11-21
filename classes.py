@@ -116,6 +116,8 @@ class Match:
             con = soup.find_all('div', class_='score score-green')
             if len(con) == 0:
                 con = soup.find_all('div', class_='score score-orange')
+                if len(con) == 0:
+                    con = soup.find_all('div', class_='score score-gray')
         our_class = con[0]
         number1 = our_class.find_all('span')[0].text.rstrip().lstrip()
         number2 = our_class.find_all('span')[1].text.lstrip().rstrip()
