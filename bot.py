@@ -536,6 +536,7 @@ def callback_update(context: telegram.ext.CallbackContext):
                two_hour = timedelta(hours=2)
                job.run_once(callback=callback_update, when=two_hour,context= (x.chat_id, job)) 
 def callback(context: telegram.ext.CallbackContext):
+    print(context.job.context)
     chat_id = context.job.context[0]
     text = context.job.context[1]
     job = context.job.context[2]
