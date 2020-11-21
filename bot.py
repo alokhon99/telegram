@@ -534,7 +534,7 @@ def callback_update(context: telegram.ext.CallbackContext):
                 obuna(job, u)
         else:
                two_hour = timedelta(hours=2)
-               job.run_once(callback=callback_update, when=two_hour,context= (x.chat_id, job)) 
+               job.run_once(callback=callback_update, when=two_hour,context= (chat_id, job)) 
 def callback(context: telegram.ext.CallbackContext):
     print(context.job.context)
     chat_id = context.job.context[0]
@@ -543,7 +543,7 @@ def callback(context: telegram.ext.CallbackContext):
     context.bot.send_message(chat_id=chat_id, 
                              text=text)
     two_hour = timedelta(hours=4)
-    job.run_once(callback=callback_update, when=two_hour,context= (x.chat_id, job))
+    job.run_once(callback=callback_update, when=two_hour,context= (chat_id, job))
 
 def obuna(job, x=None, old=' '):
     if x:
@@ -562,10 +562,9 @@ def obuna(job, x=None, old=' '):
         hour = int(match.hour)
         minute = int(match.minute)
         d = datetime(2020, mon, day, hour, minute)
-        print(d-ten_minute)
         tshv = pytz.timezone("Asia/Tashkent")
         d = tshv.localize(d)
-        a = job.run_once(callback=callback, when=d,context= (x.chat_id, match.get_notification(), job), name = str(x.chat_id)+user[2])
+        a = job.run_once(callback=callback, when=d-ten_minute,context= (x.chat_id, match.get_notification(), job), name = str(x.chat_id)+user[2])
     else:
         print('obuna')
         users = users_db()
@@ -585,7 +584,8 @@ def obuna(job, x=None, old=' '):
                 tshv = pytz.timezone("Asia/Tashkent")
                 d = tshv.localize(d)
                 if hour < 12:
-                        d = d - ten_minute + timedelta(days=1)
+                        d = d + timedelta(days=1)
+                d = d - ten_minute
                 print(d)
                 a = job.run_once(callback=callback, when=d,context= (int(user[0]), match.get_notification(), job), name = str(user[0])+user[2])      
 
