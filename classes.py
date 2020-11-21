@@ -138,6 +138,8 @@ class Match:
         date = datetime.strptime(day+'/'+mon+'/2020', "%d/%m/%Y").date()
         print('is_passed4')
         today = date.today()
+        print(today)
+        print(date)
         if today > date:
             print('is_passed5')
             return True
@@ -152,6 +154,7 @@ class Match:
             if (now > my_datetime):
                 return True
         else:
+            print('is_passed7')
             return False
         
     def get_message(self):
