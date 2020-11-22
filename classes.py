@@ -141,7 +141,7 @@ class Match:
         print(date)
         if int(self.hour) < 12:
             print('is_passed4')
-            date = date + timedelta(days=1)
+            date = date + datetime.timedelta(days=1)
         print(date)
         print('is_passed5')
         now = datetime.now()
