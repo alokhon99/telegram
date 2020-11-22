@@ -128,36 +128,24 @@ class Match:
     def is_passed(self):
         print('is_passed1')
         dt = self.date.split(' ')
-        day = str(int(dt[0]))
+        day = int(dt[0])
         print('is_passed2')
         print(dt[1])
-        mon = str(int_value_from_ru_month(dt[1]))
+        mon = int(int_value_from_ru_month(dt[1]))
         print('is_passed3')
         print(day)
         print(type(day))
         print(mon)
         print(type(mon))
-        date = datetime.strptime(day+'/'+mon+'/2020', "%d/%m/%Y").date()
-        print('is_passed4')
-        today = date.today()
-        print(today)
+        date = datetime(2020, mon, day, int(self.hour), int(self.minute))
         print(date)
-        if today > date:
-            print('is_passed5')
+        if int(self.hour) < 12:
+            date = date + timedelta(days=1)
+        print(date)
+        print('is_passed4')
+        now = datetime.now()
+        if now > date:
             return True
-        elif today == date and int(self.hour) > 12:
-            print('is_passed6')
-            tz = pytz.timezone('Asia/Tashkent')
-            print('is_passed8')
-            now = datetime.now(tz)
-            print(now)
-            my_time_string = self.hour+':'+self.minute+':'+'00'
-            my_datetime = datetime.strptime(my_time_string, "%H:%M:%S")
-            my_datetime = now.replace(hour=my_datetime.time().hour, minute=my_datetime.time().minute, second=my_datetime.time().second, microsecond=0)
-            if (now > my_datetime):
-                print('is_passed9')
-                return True
-        print('is_passed7')
         return False
         
     def get_message(self):
