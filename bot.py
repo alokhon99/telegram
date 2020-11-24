@@ -35,7 +35,8 @@ team6 = Team('mu')
 team7 = Team('juventus')
 team8 = Team('manchester-city')
 team9 = Team('milan')
-teams = {'Liverpool': team1, 'Arsenal': team2, 'Chelsea': team3, 'Real Madrid': team4, 'Barcelona': team5, 'Manchester United': team6, 'Juventus': team7, 'Manchester City': team8, 'Milan': team9}
+team10 = Team('tottenham')
+teams = {'Liverpool': team1, 'Arsenal': team2, 'Chelsea': team3, 'Real Madrid': team4, 'Barcelona': team5, 'Manchester United': team6, 'Juventus': team7, 'Manchester City': team8, 'Milan': team9, 'Tottenham': team10}
 users = []
 
 updater = Updater(
@@ -390,7 +391,7 @@ def message_handler(update: Update, context: CallbackContext):
         x.league = message
         x.state = 1
         return button_country_handler(update=update, context=context, message=message)
-    elif message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
+    elif message == 'Tottenham' or message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
         if x.fav == message:
                 print('kirdi')
                 reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
@@ -435,6 +436,11 @@ def message_handler(update: Update, context: CallbackContext):
                 reply_markup=reply_markup,
             )
         elif message == 'Barcelona' or message == '/barcelona' or message == 'barsa':
+            update.message.reply_text(
+             text= team5.get(m),
+             reply_markup=reply_markup,
+            )
+        elif message == 'Tottenham' or message == '/tottenham' or message == 'tot':
             update.message.reply_text(
              text= team5.get(m),
              reply_markup=reply_markup,
