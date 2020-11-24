@@ -289,6 +289,9 @@ def button_country_handler(update: Update, context: CallbackContext, message):
                 [
                     KeyboardButton(text='Manchester City')
                     ],
+                [
+                    KeyboardButton(text='Tottenham')
+                    ],
                 [KeyboardButton(text='Orqaga')],
             ],
             resize_keyboard=True,)
