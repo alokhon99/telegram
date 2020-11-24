@@ -578,6 +578,8 @@ def obuna(job, x=None, old=' '):
         minute = int(match.minute)
         print('obuna test4')
         d = datetime(2020, mon, day, hour, minute)
+        if hour < 12:
+                d = d + timedelta(days=1)
         print('obuna test5')
         tshv = pytz.timezone("Asia/Tashkent")
         print('obuna test6')
