@@ -445,7 +445,7 @@ def message_handler(update: Update, context: CallbackContext):
             )
         elif message == 'Tottenham' or message == '/tottenham' or message == 'tot':
             update.message.reply_text(
-             text= team5.get(m),
+             text= team10.get(m),
              reply_markup=reply_markup,
             )
         elif message == 'Manchester United' or message == '/mu' or message == 'mu':
