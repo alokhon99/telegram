@@ -145,8 +145,11 @@ class Match:
         print(date)
         print('is_passed5')
         now = datetime.now()
+        print('is_passed6')
         if now > date:
+            print('is_passed7')
             return True
+        print('is_passed8')
         return False
         
     def get_message(self):
