@@ -389,6 +389,14 @@ def message_handler(update: Update, context: CallbackContext):
         reply_markup = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Angliya')],[KeyboardButton(text='Ispaniya')],[KeyboardButton(text='Italiya')],],resize_keyboard=True,)
     if message == "Orqaga":
         message = x.get_back()
+    if message == 'Bugun':
+        today = []
+        for key in teams:
+                team = teams[key]
+                match = team.next
+                if match.is_today():
+                        today.append(match)
+        print(today)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print("keldi buyoga")
         x.league = message
