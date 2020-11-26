@@ -395,7 +395,7 @@ def message_handler(update: Update, context: CallbackContext):
                 team = teams[key]
                 match = team.next
                 if match.is_today():
-                        today.append(match)
+                        today.append(match.get_message())
         print(today)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print("keldi buyoga")
