@@ -153,12 +153,10 @@ class Match:
         return False
         
     def get_message(self):
-        if self.which == 'p':
-            return 'Последный матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' '+self.score+' '+ self.team2
-        return 'Следующий матч: ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - '+ self.team2
+        return self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - '+ self.team2
     
     def get_notification(self):
-        return 'Через несколько минут! ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - '+ self.team2
+        return 'Через несколько минут! ' + '\n' + self.get_message()
     
     def is_today(self):
         print('is_today1')
@@ -203,9 +201,9 @@ class Team:
             self.next.update_as_next()
             self.prev.update_as_prev()
         if message == "Keyingi o'yin":
-            return self.next.get_message()
+            return 'Следующий матч: ' + '\n' + self.next.get_message()
         else:
-            return self.prev.get_message()
+            return 'Последный матч: ' + '\n' + self.prev.get_message()
         
     
     def get_prev(self):
