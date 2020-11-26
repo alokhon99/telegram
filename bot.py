@@ -383,6 +383,7 @@ def message_handler(update: Update, context: CallbackContext):
                         [
                         KeyboardButton(text=x.fav+" \u2764\ufe0f")
                                 ],
+                        [KeyboardButton(text="Bugun")],
                 ],
                 resize_keyboard=True,)
     else:
@@ -391,11 +392,15 @@ def message_handler(update: Update, context: CallbackContext):
         message = x.get_back()
     if message == 'Bugun':
         today = 'Сегодняшние матчи:\n\n'
+        flag = 0
         for key in teams:
                 team = teams[key]
                 match = team.next
                 if match.is_today():
+                        flag = 1
                         today = today + match.get_message() + '\n' + '\n'
+        if flag == 0:
+                today = 'Увы, сегодняшние матчи не найдено\xF0\x9F\x98\x94'
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [KeyboardButton(text='Orqaga')],
@@ -521,7 +526,9 @@ def message_handler(update: Update, context: CallbackContext):
                                 KeyboardButton(text='Angliya')],[
                                 KeyboardButton(text='Ispaniya')],[
                                 KeyboardButton(text='Italiya')],[
-                                KeyboardButton(text=x.fav+" \u2764\ufe0f")],],
+                                KeyboardButton(text=x.fav+" \u2764\ufe0f")],
+                      [KeyboardButton(text="Bugun")],],
+                               
                                 resize_keyboard=True,)
         else:
                 reply_markup = ReplyKeyboardMarkup(
@@ -535,6 +542,7 @@ def message_handler(update: Update, context: CallbackContext):
                         [
                         KeyboardButton(text='Italiya')
                                 ],
+                        [KeyboardButton(text="Bugun")],
                         ],
                         resize_keyboard=True,)
         print('+')
