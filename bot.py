@@ -395,8 +395,17 @@ def message_handler(update: Update, context: CallbackContext):
                 team = teams[key]
                 match = team.next
                 if match.is_today():
-                        today = today + '\n' + match.get_message())
-        print(today)
+                        today = today + match.get_message() + '\n'
+        reply_markup = ReplyKeyboardMarkup(
+            keyboard=[
+                [KeyboardButton(text='Orqaga')],
+            ],
+            resize_keyboard=True,)
+        update.message.reply_text(
+        text=today,
+        reply_markup=reply_markup,
+        )
+        return 
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print("keldi buyoga")
         x.league = message
