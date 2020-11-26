@@ -390,12 +390,12 @@ def message_handler(update: Update, context: CallbackContext):
     if message == "Orqaga":
         message = x.get_back()
     if message == 'Bugun':
-        today = ''
+        today = 'Сегодняшние матчи:\n\n'
         for key in teams:
                 team = teams[key]
                 match = team.next
                 if match.is_today():
-                        today = today + match.get_message() + '\n'
+                        today = today + match.get_message() + '\n' + '\n'
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [KeyboardButton(text='Orqaga')],
