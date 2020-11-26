@@ -159,7 +159,24 @@ class Match:
     
     def get_notification(self):
         return 'Через несколько минут! ' + '\n' + self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - '+ self.team2
-     
+    
+    def is_today(self):
+        print('is_today1')
+        dt = self.date.split(' ')
+        day = int(dt[0])
+        print('is_passed2')
+        print(dt[1])
+        mon = int(int_value_from_ru_month(dt[1]))
+        print('is_passed3')
+        print(day)
+        print(type(day))
+        print(mon)
+        print(type(mon))
+        date = datetime(2020, mon, day, int(self.hour), int(self.minute))
+        if date.date() == datetime.today().date():
+            return True
+        else:
+            return False
         
     team1 = 'team'
     team2 = 'opponent'
