@@ -154,7 +154,7 @@ class Match:
         
     def get_message(self):
         str =  self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1
-        if this.which == 'p':
+        if self.which == 'p':
             str = str + self.score
         else:
             str = str + ' - '
