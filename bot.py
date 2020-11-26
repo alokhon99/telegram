@@ -390,12 +390,12 @@ def message_handler(update: Update, context: CallbackContext):
     if message == "Orqaga":
         message = x.get_back()
     if message == 'Bugun':
-        today = []
+        today = ''
         for key in teams:
                 team = teams[key]
                 match = team.next
                 if match.is_today():
-                        today.append(match.get_message())
+                        today = today + '\n' + match.get_message())
         print(today)
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
         print("keldi buyoga")
