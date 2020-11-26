@@ -153,7 +153,12 @@ class Match:
         return False
         
     def get_message(self):
-        return self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1 + ' - '+ self.team2
+        str =  self.tournament + self.date+ ' ' + self.hour+':'+self.minute + '\n' +  self.team1
+        if this.which == 'p':
+            str = str + self.score
+        else:
+            str = str + ' - '
+        return str + self.team2
     
     def get_notification(self):
         return 'Через несколько минут! ' + '\n' + self.get_message()
