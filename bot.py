@@ -7,6 +7,7 @@ import requests
 import pytz
 from datetime import datetime, timedelta
 import os
+import emoji
 import psycopg2
 from telegram import Update
 from telegram import KeyboardButton
@@ -400,7 +401,8 @@ def message_handler(update: Update, context: CallbackContext):
                         flag = 1
                         today = today + match.get_message() + '\n' + '\n'
         if flag == 0:
-                today = 'Увы, сегодняшние матчи не найденоu"\uE403"'
+                e = emoji.emojize(":pensive:")
+                today = 'Увы, сегодняшние матчи не найденоu' + e
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [KeyboardButton(text='Orqaga')],
