@@ -401,8 +401,7 @@ def message_handler(update: Update, context: CallbackContext):
                         flag = 1
                         today = today + match.get_message() + '\n' + '\n'
         if flag == 0:
-                e = emoji.emojize(":pensive:")
-                today = 'Увы, сегодняшние матчи не найденоu' + e
+                today = 'Увы, сегодняшние матчи не найденоu' + emoji.emojize(":pensive:")
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [KeyboardButton(text='Orqaga')],
