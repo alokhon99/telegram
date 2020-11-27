@@ -402,7 +402,7 @@ def message_handler(update: Update, context: CallbackContext):
                         today = today + match.get_message() + '\n' + '\n'
         if flag == 0:
                 e = "\N{pensive face}"
-                today = 'Увы, сегодняшние матчи не найденоu' + e
+                today = 'Увы, сегодняшние матчи не найдено' + e
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
                 [KeyboardButton(text='Orqaga')],
