@@ -110,7 +110,90 @@ def users_db():
         if conn is not None:
             conn.close()
     return users
-            
+
+def get_keyboard(n, fav=None):
+        if n == 0:
+            return ReplyKeyboardMarkup(
+                    keyboard=[
+                        [
+                        KeyboardButton(text='Angliya')
+                        ],
+                        [
+                        KeyboardButton(text='Ispaniya')
+                                ],
+                        [
+                        KeyboardButton(text='Italiya')
+                                ],
+                        [
+                        KeyboardButton(text= fav+" \u2764\ufe0f")
+                                ],
+                        [KeyboardButton(text="Bugun")],
+                ],
+                resize_keyboard=True,)
+        elif n == 1:
+            return ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Angliya')],[KeyboardButton(text='Ispaniya')],[KeyboardButton(text='Italiya')],[KeyboardButton(text="Bugun")],],resize_keyboard=True,)    
+        elif n == 2:
+            return ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text='Liverpool')
+                    ],
+                [
+                    KeyboardButton(text='Arsenal')
+                    ],
+                [
+                    KeyboardButton(text='Chelsea')
+                    ],
+                [
+                    KeyboardButton(text='Manchester United')
+                    ],
+                [
+                    KeyboardButton(text='Manchester City')
+                    ],
+                [
+                    KeyboardButton(text='Tottenham')
+                    ],
+                [KeyboardButton(text='Orqaga')],
+            ],
+            resize_keyboard=True,)
+        elif n == 3:
+            return ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text='Barcelona')
+                    ],
+                [
+                    KeyboardButton(text='Real Madrid')
+                    ],
+                [KeyboardButton(text='Orqaga')],
+            ],
+            resize_keyboard=True,)                   
+        elif n == 4:
+            return ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text='Juventus')
+                    ],
+                [
+                    KeyboardButton(text='Milan')
+                    ],
+                [KeyboardButton(text='Orqaga')],
+            ],
+            resize_keyboard=True,)
+        elif n == 5:
+            return ReplyKeyboardMarkup(
+            keyboard=[
+                [KeyboardButton(text='Orqaga')],
+            ],
+            resize_keyboard=True,)
+        elif n == 6:
+            return ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+        else:
+            return ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+
+
+
+
 def insert_user(chat_id):
     print('insert')
     global DATABASE_URL
@@ -273,63 +356,17 @@ def button_country_handler(update: Update, context: CallbackContext, message):
     print("handlerga keldi")
     print("bu "+message+" message")
     if message == 'Angliya':
-        reply_markup = ReplyKeyboardMarkup(
-            keyboard=[
-                [
-                    KeyboardButton(text='Liverpool')
-                    ],
-                [
-                    KeyboardButton(text='Arsenal')
-                    ],
-                [
-                    KeyboardButton(text='Chelsea')
-                    ],
-                [
-                    KeyboardButton(text='Manchester United')
-                    ],
-                [
-                    KeyboardButton(text='Manchester City')
-                    ],
-                [
-                    KeyboardButton(text='Tottenham')
-                    ],
-                [KeyboardButton(text='Orqaga')],
-            ],
-            resize_keyboard=True,)
+        reply_markup = get_keyboard(2)
     elif message == 'Ispaniya':
-        reply_markup = ReplyKeyboardMarkup(
-            keyboard=[
-                [
-                    KeyboardButton(text='Barcelona')
-                    ],
-                [
-                    KeyboardButton(text='Real Madrid')
-                    ],
-                [KeyboardButton(text='Orqaga')],
-            ],
-            resize_keyboard=True,)
+        reply_markup = get_keyboard(3)
     elif message == 'Italiya':
-        reply_markup = ReplyKeyboardMarkup(
-            keyboard=[
-                [
-                    KeyboardButton(text='Juventus')
-                    ],
-                [
-                    KeyboardButton(text='Milan')
-                    ],
-                [KeyboardButton(text='Orqaga')],
-            ],
-            resize_keyboard=True,)
+        reply_markup = get_keyboard(4)
         
     update.message.reply_text(
         text=message+' jamoasini tanlang',
         reply_markup=reply_markup,
     )
-    
-def button_team_handler(update: Update, context: CallbackContext):
-    print("team handler")
-    
-    
+      
 def message_handler(update: Update, context: CallbackContext):
     message = update.message.text.replace(" \u2764\ufe0f",'')
     print(update.message.chat_id)
@@ -370,25 +407,9 @@ def message_handler(update: Update, context: CallbackContext):
     users_db()
     print(x.fav)
     if x.fav != 'No':
-        reply_markup = ReplyKeyboardMarkup(
-                    keyboard=[
-                        [
-                        KeyboardButton(text='Angliya')
-                        ],
-                        [
-                        KeyboardButton(text='Ispaniya')
-                                ],
-                        [
-                        KeyboardButton(text='Italiya')
-                                ],
-                        [
-                        KeyboardButton(text=x.fav+" \u2764\ufe0f")
-                                ],
-                        [KeyboardButton(text="Bugun")],
-                ],
-                resize_keyboard=True,)
+        reply_markup = get_keyboard(0,x.fav)
     else:
-        reply_markup = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Angliya')],[KeyboardButton(text='Ispaniya')],[KeyboardButton(text='Italiya')],],resize_keyboard=True,)
+        reply_markup = get_keyboard(1)
     if message == "Orqaga":
         message = x.get_back()
     if message == 'Bugun':
@@ -403,14 +424,10 @@ def message_handler(update: Update, context: CallbackContext):
         if flag == 0:
                 e = "\N{pensive face}"
                 today = 'Увы, сегодняшние матчи не найдено' + e
-        reply_markup = ReplyKeyboardMarkup(
-            keyboard=[
-                [KeyboardButton(text='Orqaga')],
-            ],
-            resize_keyboard=True,)
+        
         update.message.reply_text(
         text=today,
-        reply_markup=reply_markup,
+        reply_markup=get_keyboard(5),
         )
         return 
     if message == 'Angliya' or message == 'Ispaniya' or message == 'Italiya':
@@ -421,10 +438,10 @@ def message_handler(update: Update, context: CallbackContext):
     elif message == 'Tottenham' or message == 'Liverpool' or message == 'Arsenal' or message == 'Chelsea' or message == 'Real Madrid' or message == 'Barcelona' or message == 'Manchester United' or message == 'Juventus' or message == 'Manchester City' or message == 'Milan':
         if x.fav == message:
                 print('kirdi')
-                reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+                reply_markup = get_keyboard(6)
         else:
                 print('buyaqqqa')
-                reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+                reply_markup = get_keyboard(7)
         x.team = message
         x.state = 2
         update.message.reply_text(
@@ -437,12 +454,10 @@ def message_handler(update: Update, context: CallbackContext):
         print('keyingi oyin')
         message = x.team
         if message == x.fav:
-                reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+                reply_markup = get_keyboard(6)
         else:
-                reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
+                reply_markup = get_keyboard(7)
         if message == 'Liverpool' or message == '/liverpool':
-            print('keldiiiiiik')
-            print(m)
             update.message.reply_text(
                  text= team1.get(m),
                 reply_markup=reply_markup,
@@ -491,27 +506,22 @@ def message_handler(update: Update, context: CallbackContext):
             )  
         print('keldi')
     elif message == 'Kuzatib borishni bekor qilish':
-        if message == x.fav:
-                reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
-        else:
-                reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         x.fav = 'No'
         insert_fav(x.chat_id,'No')
         text = 'Endi siz '+x.team+'ni kuzatib bormaysiz'
         print('+')
         update.message.reply_text(
            text= text,
-            reply_markup=reply_markup,
+           reply_markup=get_keyboard(7),
         )
     elif message == "Kuzatib borish":
         insert_fav(str(x.chat_id), x.team)
         global updater
         f = x.fav
         x.fav = x.team
-        reply_markup = ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
         update.message.reply_text(
                 text= x.team + " jamoasi Sevimlilar bo'limiga tushdi",
-                reply_markup=reply_markup,)
+                reply_markup=get_keyboard(6),)
         if f != 'No':
               obuna(updater.job_queue, x, f)
               return
@@ -522,31 +532,9 @@ def message_handler(update: Update, context: CallbackContext):
         x.clear_history()
         text = 'Davlatni tanglang'
         if x.fav != 'No':
-                reply_markup = ReplyKeyboardMarkup(
-                      keyboard=[
-                               [
-                                KeyboardButton(text='Angliya')],[
-                                KeyboardButton(text='Ispaniya')],[
-                                KeyboardButton(text='Italiya')],[
-                                KeyboardButton(text=x.fav+" \u2764\ufe0f")],
-                      [KeyboardButton(text="Bugun")],],
-                               
-                                resize_keyboard=True,)
+                reply_markup = get_keyboard(0,x.fav)
         else:
-                reply_markup = ReplyKeyboardMarkup(
-                    keyboard=[
-                        [
-                        KeyboardButton(text='Angliya')
-                        ],
-                        [
-                        KeyboardButton(text='Ispaniya')
-                                ],
-                        [
-                        KeyboardButton(text='Italiya')
-                                ],
-                        [KeyboardButton(text="Bugun")],
-                        ],
-                        resize_keyboard=True,)
+                reply_markup = get_keyboard(1)
         print('+')
         update.message.reply_text(
            text= text,
