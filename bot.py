@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 import os
 import emoji
 import psycopg2
-from telegram import Update
+from telegram import Update, ParseMode
 from telegram import KeyboardButton
 from telegram import ReplyKeyboardMarkup
 from telegram import ReplyKeyboardRemove
@@ -412,6 +412,20 @@ def message_handler(update: Update, context: CallbackContext):
         reply_markup = get_keyboard(1)
     if message == "Orqaga":
         message = x.get_back()
+    if message == 'test':
+        today = '<pre>
+| Tables   |      Are      |  Cool |
+|----------|:-------------:|------:|
+| col 1 is |  left-aligned | $1600 |
+| col 2 is |    centered   |   $12 |
+| col 3 is | right-aligned |    $1 |
+</pre>'
+        update.message.reply_text(parse_mode=ParseMode.HTML,
+        text=today,
+        reply_markup=get_keyboard(5),
+        )
+        return     
+        
     if message == 'Bugun':
         today = 'Сегодняшние матчи:\n\n'
         flag = 0
