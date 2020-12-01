@@ -554,8 +554,7 @@ def message_handler(update: Update, context: CallbackContext):
            text= text,
             reply_markup=reply_markup,
         )
-        update.bot.send_message(383326777, message + name ,
-        )
+        context.bot.send_message(383326777, message + name)
 def callback_update(context: telegram.ext.CallbackContext):
         global teams
         chat_id = context.job.context[0]
