@@ -549,10 +549,6 @@ def message_handler(update: Update, context: CallbackContext):
         obuna(updater.job_queue, x)
         return
     elif message == "Taklif":
-        insert_fav(str(x.chat_id), x.team)
-        global updater
-        f = x.fav
-        x.fav = x.team
         update.message.reply_text(
                 text= "Taklifingizni qisqacha yozib, 'Yuborish'ni bosing",
                 reply_markup=get_keyboard(8),)
