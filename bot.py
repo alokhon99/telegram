@@ -128,7 +128,7 @@ def get_keyboard(n, fav=None):
                         KeyboardButton(text= fav+" \u2764\ufe0f")
                                 ],
                         [KeyboardButton(text="Bugun")],
-                        [KeyboardButton(text="Taklif!")],
+                        [KeyboardButton(text="Taklifim bor!")],
                 ],
                 resize_keyboard=True,)
         elif n == 1:
@@ -548,7 +548,7 @@ def message_handler(update: Update, context: CallbackContext):
               return
         obuna(updater.job_queue, x)
         return
-    elif message == "Taklif":
+    elif message == "Taklifim bor!":
         update.message.reply_text(
                 text= "Taklifingizni qisqacha yozib, 'Yuborish'ni bosing",
                 reply_markup=get_keyboard(8),)
