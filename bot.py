@@ -550,7 +550,7 @@ def message_handler(update: Update, context: CallbackContext):
         return
     elif message == "Taklifim bor!":
         update.message.reply_text(
-                text= "Taklifingizni qisqacha yozib, 'Yuborish'ni bosing",
+                text= "Taklifingizni qisqacha yozib, bizga yuboring",
                 reply_markup=get_keyboard(8),)
         return
     elif message == "Yuborish":
@@ -560,6 +560,13 @@ def message_handler(update: Update, context: CallbackContext):
         context.bot.send_message(383326777, message + ' ' +name)
         return
     else:
+        ex = x.get_back()
+        if ex == "Taklifim bor!":
+                update.message.reply_text(
+                text= "Taklifingiz qabul qilindi. E'tiboringiz uchun rahmat!",
+                reply_markup=get_keyboard(5),)
+                context.bot.send_message(383326777, message + ' ' +name)
+                return
         print(message)
         x.clear_history()
         text = 'Davlatni tanglang'
