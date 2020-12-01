@@ -128,6 +128,7 @@ def get_keyboard(n, fav=None):
                         KeyboardButton(text= fav+" \u2764\ufe0f")
                                 ],
                         [KeyboardButton(text="Bugun")],
+                        [KeyboardButton(text="Taklif!")],
                 ],
                 resize_keyboard=True,)
         elif n == 1:
@@ -188,9 +189,15 @@ def get_keyboard(n, fav=None):
             resize_keyboard=True,)
         elif n == 6:
             return ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borishni bekor qilish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
-        else:
+        elif n == 7:
             return ReplyKeyboardMarkup( keyboard=[ [ KeyboardButton(text="Keyingi o'yin")],[KeyboardButton(text="So'nggi o'yin")],[KeyboardButton(text='Kuzatib borish')],[KeyboardButton(text='Orqaga')], ],resize_keyboard=True,)
-
+        else:
+            return ReplyKeyboardMarkup(
+            keyboard=[
+                    [KeyboardButton(text='Yuborish')],
+                [KeyboardButton(text='Orqaga')],
+            ],
+            resize_keyboard=True,)
 
 
 
@@ -541,6 +548,21 @@ def message_handler(update: Update, context: CallbackContext):
               return
         obuna(updater.job_queue, x)
         return
+    elif message == "Taklif":
+        insert_fav(str(x.chat_id), x.team)
+        global updater
+        f = x.fav
+        x.fav = x.team
+        update.message.reply_text(
+                text= "Taklifingizni qisqacha yozib, 'Yuborish'ni bosing",
+                reply_markup=get_keyboard(8),)
+        return
+    elif message == "Yuborish":
+        update.message.reply_text(
+                text= "Taklifingiz qabul qilindi. E'tiboringiz uchun rahmat!",
+                reply_markup=get_keyboard(5),)
+        context.bot.send_message(383326777, message + ' ' +name)
+        return
     else:
         print(message)
         x.clear_history()
@@ -554,7 +576,6 @@ def message_handler(update: Update, context: CallbackContext):
            text= text,
             reply_markup=reply_markup,
         )
-        context.bot.send_message(383326777, message + name)
 def callback_update(context: telegram.ext.CallbackContext):
         global teams
         chat_id = context.job.context[0]
