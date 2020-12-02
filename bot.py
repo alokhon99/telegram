@@ -549,6 +549,7 @@ def message_handler(update: Update, context: CallbackContext):
         obuna(updater.job_queue, x)
         return
     elif message == "Taklifim bor!":
+        x.state = 0
         update.message.reply_text(
                 text= "Taklifingizni qisqacha yozib, bizga yuboring",
                 reply_markup=get_keyboard(8),)
@@ -560,8 +561,7 @@ def message_handler(update: Update, context: CallbackContext):
         context.bot.send_message(383326777, message + ' ' +name)
         return
     else:
-        ex = x.get_back()
-        if ex == "Taklifim bor!":
+        if x.state == 0:
                 update.message.reply_text(
                 text= "Taklifingiz qabul qilindi. E'tiboringiz uchun rahmat!",
                 reply_markup=get_keyboard(5),)
