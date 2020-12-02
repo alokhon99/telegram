@@ -549,7 +549,7 @@ def message_handler(update: Update, context: CallbackContext):
         obuna(updater.job_queue, x)
         return
     elif message == "Taklifim bor!":
-        x.state = 0
+        x.state = 9
         update.message.reply_text(
                 text= "Taklifingizni qisqacha yozib, bizga yuboring",
                 reply_markup=get_keyboard(5),)
@@ -558,11 +558,12 @@ def message_handler(update: Update, context: CallbackContext):
         context.bot.send_photo(x.chat_id, 'https://hcti.io/v1/image/f0b72c6e-16dc-4487-9a11-5134d069f053')
         return
     else:
-        if x.state == 0 and message != 'any':
+        if x.state == 9 and message != 'any':
                 update.message.reply_text(
                 text= "Taklifingiz qabul qilindi. E'tiboringiz uchun rahmat!",
                 reply_markup=get_keyboard(5),)
                 context.bot.send_message(383326777, message + '\n' +name)
+                x.state == 0
                 return
         print(message)
         x.clear_history()
