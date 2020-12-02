@@ -554,6 +554,9 @@ def message_handler(update: Update, context: CallbackContext):
                 text= "Taklifingizni qisqacha yozib, bizga yuboring",
                 reply_markup=get_keyboard(5),)
         return
+    elif message == 'tabletest':
+        context.bot.send_photo(x.chat_id, 'https://hcti.io/v1/image/f0b72c6e-16dc-4487-9a11-5134d069f053')
+        return
     else:
         if x.state == 0 and message != 'any':
                 update.message.reply_text(
