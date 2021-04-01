@@ -137,7 +137,7 @@ class Match:
         print(type(day))
         print(mon)
         print(type(mon))
-        date = datetime(2020, mon, day, int(self.hour), int(self.minute))
+        date = datetime(2021, mon, day, int(self.hour), int(self.minute))
         print(date)
         if int(self.hour) < 12:
             print('is_passed4')
@@ -175,7 +175,7 @@ class Match:
         print(type(day))
         print(mon)
         print(type(mon))
-        date = datetime(2020, mon, day, int(self.hour), int(self.minute))
+        date = datetime(2021, mon, day, int(self.hour), int(self.minute))
         if date.date() == datetime.today().date():
             return True
         else:
