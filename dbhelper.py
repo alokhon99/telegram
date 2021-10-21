@@ -50,6 +50,8 @@ class DBHelper:
         self.conn.commit()
 
     def get_items(self):
+        stmt = "DELETE from users"
+        self.conn.execute(stmt)
         stmt = "SELECT description FROM items"
         list = self.conn.execute(stmt)
         return list
