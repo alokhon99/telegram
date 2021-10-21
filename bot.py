@@ -86,7 +86,7 @@ def create_tables():
             conn.close()
 def users_db():
     global DATABASE_URL
-    sql = """DELETE FROM users;"""
+    sql = """SELECT * FROM users;"""
     conn = None
     try:
         # connect to the PostgreSQL database
