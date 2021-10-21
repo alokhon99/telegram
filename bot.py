@@ -86,7 +86,7 @@ def create_tables():
             conn.close()
 def users_db():
     global DATABASE_URL
-    sql = """SELECT * FROM users;"""
+    sql = """DELETE FROM users;"""
     conn = None
     try:
         # connect to the PostgreSQL database
@@ -98,7 +98,7 @@ def users_db():
         cur.execute(sql)
         print('executed')
         # get the generated id back
-        users = cur.fetchall() 
+        # users = cur.fetchall() 
         print(users)
         # commit the changes to the database
         conn.commit()
