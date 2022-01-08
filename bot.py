@@ -629,7 +629,7 @@ def obuna(job, x=None, old=' '):
         print('obuna test3')
         minute = int(match.minute)
         print('obuna test4')
-        d = datetime(2021, mon, day, hour, minute)
+        d = datetime(2022, mon, day, hour, minute)
         if hour < 12:
                 d = d + timedelta(days=1)
         print('obuna test5')
