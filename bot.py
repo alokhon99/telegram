@@ -614,25 +614,17 @@ def obuna(job, x=None, old=' '):
         for j in job.get_jobs_by_name(str(x.chat_id)+old):
                 j.schedule_removal()
                 print(str(x.chat_id)+old)
-        print('bu kevoti '+x.fav)
+
         match = team.next
-        print('obuna test1')
         dt = match.date.split(' ')
-        print('obuna test1')
         day = int(dt[0])
-        print('obuna test1')
         mon = int(int_value_from_ru_month(dt[1]))
-        print('obuna test1')
         ten_minute = timedelta(minutes=10)
-        print('obuna test2')
         hour = int(match.hour)
-        print('obuna test3')
         minute = int(match.minute)
-        print('obuna test4')
         d = datetime(2022, mon, day, hour, minute)
         if hour < 12:
                 d = d + timedelta(days=1)
-        print('obuna test5')
         tshv = pytz.timezone("Asia/Tashkent")
         print('obuna test6')
         d = tshv.localize(d)
