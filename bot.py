@@ -22,7 +22,7 @@ from classes import User
 from classes import Team
 from classes import RU_MONTH_VALUES
 from classes import int_value_from_ru_month
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = 'postgres://footassist:0KtNMQ1KkpCHZA0PcdZjcUCNwPs5BS5v@dpg-cgj9t1ebb6mo06kif9f0-a/footassist'
 
 url = "https://api.telegram.org/bot1304159941:AAFZS7emVJ-dmkbGlOmjdZV6gnufSfdgBX8/"
 url_t = "https://www.sports.ru/"
