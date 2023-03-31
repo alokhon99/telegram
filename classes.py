@@ -175,7 +175,7 @@ class Match:
         print(type(day))
         print(mon)
         print(type(mon))
-        date = datetime(2022, mon, day, int(self.hour), int(self.minute))
+        date = datetime(int(datetime.now().year), mon, day, int(self.hour), int(self.minute))
         if date.date() == datetime.today().date():
             return True
         else:
